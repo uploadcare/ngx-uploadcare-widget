@@ -1,0 +1,38 @@
+{
+  "name": "ngx-uploadcare-widget",
+  "version": "0.0.1",
+  "description": "Angular 2+ wrapper for Uploadcare Widget",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uploadcare/ngx-uploadcare-widget.git"
+  },
+  "keywords": [
+    "angular",
+    "ngx",
+    "uploadcare",
+    "widget",
+    "uploader",
+    "filepicker",
+    "dialog",
+    "upload",
+    "store",
+    "file",
+    "files",
+    "image",
+    "images"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uploadcare/ngx-uploadcare-widget/issues"
+  },
+  "homepage": "https://github.com/uploadcare/ngx-uploadcare-widget#readme",
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-uploadcare": "^1.1.0"
+  }
+}
