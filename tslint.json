@@ -1,0 +1,11 @@
+{
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
+  "extends": "tslint-config-swimlane/base",
+  "rules": {
+    "no-unused-variable": true,
+    "no-this-assignment": false
+  },
+  "import-blacklist": [true, "rxjs", "rxjs/operators"]
+}

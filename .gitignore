@@ -1,3 +1,15 @@
+node_modules/
+.DS_Store
+npm-debug.log
+compiled/
+dist/
+build/
+coverage/
 .idea
-node_modules
-*.log
+yarn.lock
+/ngx-charts.iml
+ngx-charts.iml
+release/src/
+release/demo/
+release/app/
+.vscode/

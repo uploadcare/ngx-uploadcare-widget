@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <h2>Uploadcare widget demo</h2>
+    </div>
+    <div class="col-md-12 text-center">
+        <ngx-uploadcare-widget
+        [images-only]="imagesOnly"
+        [public-key]="publicKey"
+        (upload-complete)="onUpload($event)">
+      </ngx-uploadcare-widget>
+    </div>
+  </div>
+  <!-- <div class="row settings">
+    <div class="col-md-12 text-center">
+      <h3>Settings</h3>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div class="form-group">
+        <label for="uc-public-key">Uploadcare public key:</label>
+        <input type="text" class="form-control" id="uploadcare-public-key" [(ngModel)]="publicKey"/>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="uc-multiple">
+        <label class="form-check-label" for="uc-multiple">Multiple files</label>
+      </div>
+      <div class="form-group">
+        <label for="uc-multiple-min">Multiple min:</label>
+        <input type="number" class="form-control" id="uc-multiple-min" disabled/>
+      </div>
+      <div class="form-group">
+        <label for="uc-multiple-max">Multiple max:</label>
+        <input type="number" class="form-control" id="uc-multiple-max" disabled/>
+      </div>
+    </div>
+  </div> -->
+</div>
+
