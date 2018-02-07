@@ -11,7 +11,14 @@ export class AppComponent {
   imagesOnly: boolean;
   publicKey = 'demopublickey';
   onUpload(info) {
-    console.log('fired Event with info');
+    console.log('fired Event "onUpload"');
     console.log(info);
+  }
+  onChange(promise) {
+    console.log('fired Event "onChange"');
+    promise.then((data) => {
+      console.log('resolved promise from "onChange" with data:');
+      console.log(data);
+    });
   }
 }

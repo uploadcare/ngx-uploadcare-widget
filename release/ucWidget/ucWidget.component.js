@@ -12,16 +12,21 @@ import uploadcare from 'uploadcare-widget';
 var UcWidgetComponent = /** @class */ (function () {
     function UcWidgetComponent(element) {
         this.publicKey = 'demopublickey';
-        this.cdnUrl = null;
-        this.uploadComplete = new EventEmitter();
+        this.fileId = null;
+        this.cdnBase = null;
+        this.onUploadComplete = new EventEmitter();
+        this.onChange = new EventEmitter();
         this.element = element;
     }
     UcWidgetComponent.prototype.ngAfterViewInit = function () {
         var inputElement = uploadcare.jQuery(this.element.nativeElement).children('input')[0];
-        var widget = uploadcare.SingleWidget(inputElement);
+        var widget = uploadcare.Widget(inputElement);
         var that = this;
         widget.onUploadComplete(function (fileInfo) {
-            that.uploadComplete.emit(fileInfo);
+            that.onUploadComplete.emit(fileInfo);
+        });
+        widget.onChange(function (promise) {
+            that.onChange.emit(promise);
         });
     };
     __decorate([
@@ -85,21 +90,29 @@ var UcWidgetComponent = /** @class */ (function () {
         __metadata("design:type", String)
     ], UcWidgetComponent.prototype, "secureExpire", void 0);
     __decorate([
-        Input('cdn-url'),
+        Input('file-id'),
         __metadata("design:type", Object)
-    ], UcWidgetComponent.prototype, "cdnUrl", void 0);
+    ], UcWidgetComponent.prototype, "fileId", void 0);
+    __decorate([
+        Input('cdn-base'),
+        __metadata("design:type", Object)
+    ], UcWidgetComponent.prototype, "cdnBase", void 0);
     __decorate([
         Input('do-not-store'),
         __metadata("design:type", Boolean)
     ], UcWidgetComponent.prototype, "doNotStore", void 0);
     __decorate([
-        Output('upload-complete'),
+        Output('on-upload-complete'),
         __metadata("design:type", Object)
-    ], UcWidgetComponent.prototype, "uploadComplete", void 0);
+    ], UcWidgetComponent.prototype, "onUploadComplete", void 0);
+    __decorate([
+        Output('on-change'),
+        __metadata("design:type", Object)
+    ], UcWidgetComponent.prototype, "onChange", void 0);
     UcWidgetComponent = __decorate([
         Component({
             selector: 'ngx-uploadcare-widget',
-            template: "<input type=\"hidden\"\n                attr.data-public-key={{publicKey}}\n                [attr.data-multiple]=\"multiple\"\n                [attr.data-multiple-max]=\"multipleMax\"\n                [attr.data-multiple-min]=\"multipleMin\"\n                [attr.data-images-only]=\"imagesOnly\"\n                [attr.data-preview-step]=\"previewStep\"\n                [attr.data-crop]=\"crop\"\n                [attr.data-image-shrink]=\"imageShrink\"\n                [attr.data-clearable]=\"clearable\"\n                [attr.data-tabs]=\"tabs\"\n                [attr.data-input-accept-types]=\"inputAcceptTypes\"\n                [attr.data-preferred-types]=\"preferredTypes\"\n                [attr.data-system-dialog]=\"systemDialog\"\n                [attr.data-secure-signature]=\"secureSignature\"\n                [attr.data-secure-expire]=\"secureExpire\"\n                [value]=\"cdnUrl\"\n                [attr.data-do-not-store]=\"doNotStore\"\n              />",
+            template: "<input type=\"hidden\"\n                attr.data-public-key={{publicKey}}\n                [attr.data-multiple]=\"multiple\"\n                [attr.data-multiple-max]=\"multipleMax\"\n                [attr.data-multiple-min]=\"multipleMin\"\n                [attr.data-images-only]=\"imagesOnly\"\n                [attr.data-preview-step]=\"previewStep\"\n                [attr.data-crop]=\"crop\"\n                [attr.data-image-shrink]=\"imageShrink\"\n                [attr.data-clearable]=\"clearable\"\n                [attr.data-tabs]=\"tabs\"\n                [attr.data-input-accept-types]=\"inputAcceptTypes\"\n                [attr.data-preferred-types]=\"preferredTypes\"\n                [attr.data-system-dialog]=\"systemDialog\"\n                [attr.data-secure-signature]=\"secureSignature\"\n                [attr.data-secure-expire]=\"secureExpire\"\n                [attr.data-cdn-base]=\"cdnBase\"\n                [value]=\"fileId\"\n                [attr.data-do-not-store]=\"doNotStore\"\n              />",
         }),
         __metadata("design:paramtypes", [ElementRef])
     ], UcWidgetComponent);

@@ -29,7 +29,7 @@ module.exports = function(env) {
     output: {
       path: dir('release'),
       libraryTarget: 'umd',
-      library: 'ngx-charts',
+      library: 'ngx-uploadcare-widget',
       umdNamedDefine: true
     },
     externals: {
@@ -47,22 +47,11 @@ module.exports = function(env) {
       'rxjs/Observable': 'rxjs/Observable',
       'rxjs/add/observable/fromEvent': 'rxjs/add/observable/fromEvent',
       'rxjs/add/operator/debounceTime': 'rxjs/add/operator/debounceTime',
-      'zone.js/dist/zone': 'zone.js/dist/zone'
+      'zone.js/dist/zone': 'zone.js/dist/zone',
+      'uploadcare-widget': 'uploadcare-widget'
     },
     plugins: [
       new CheckerPlugin(),
-      /*
-      new ngtools.AotPlugin({
-        tsConfigPath: 'tsconfig-aot.json',
-        baseDir: dir()
-        entryModule: dir('ngx-charts.ts') + '#NgxChartsModule'
-      }),
-      new CleanWebpackPlugin(['release'], {
-        root: dir(),
-        verbose: false,
-        dry: false
-      })
-      */
     ]
   });
 

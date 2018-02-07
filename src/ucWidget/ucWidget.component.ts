@@ -19,7 +19,8 @@ import uploadcare from 'uploadcare-widget';
                 [attr.data-system-dialog]="systemDialog"
                 [attr.data-secure-signature]="secureSignature"
                 [attr.data-secure-expire]="secureExpire"
-                [value]="cdnUrl"
+                [attr.data-cdn-base]="cdnBase"
+                [value]="fileId"
                 [attr.data-do-not-store]="doNotStore"
               />`,
 })
@@ -39,10 +40,12 @@ export class UcWidgetComponent implements AfterViewInit {
   @Input('system-dialog') systemDialog: boolean;
   @Input('secure-signature') secureSignature: string;
   @Input('secure-expire') secureExpire: string;
-  @Input('cdn-url') cdnUrl = null;
+  @Input('file-id') fileId = null;
+  @Input('cdn-base') cdnBase = null;
   @Input('do-not-store') doNotStore: boolean;
-  @Output('upload-complete') uploadComplete = new EventEmitter<any>(); 
-
+  @Output('on-upload-complete') onUploadComplete = new EventEmitter<any>();
+  @Output('on-change') onChange = new EventEmitter<any>();
+  
   element: ElementRef;
 
   constructor(element: ElementRef) {
@@ -51,10 +54,13 @@ export class UcWidgetComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const inputElement = uploadcare.jQuery(this.element.nativeElement).children('input')[0];
-    const widget = uploadcare.SingleWidget(inputElement);
+    const widget = uploadcare.Widget(inputElement);
     const that = this;
     widget.onUploadComplete(function(fileInfo) {
-       that.uploadComplete.emit(fileInfo);
+       that.onUploadComplete.emit(fileInfo);
     });
+    widget.onChange(function(promise) {
+      that.onChange.emit(promise);
+   });
   }
 }

@@ -7,7 +7,8 @@
         <ngx-uploadcare-widget
         [images-only]="imagesOnly"
         [public-key]="publicKey"
-        (upload-complete)="onUpload($event)">
+        (on-upload-complete)="onUpload($event)"
+        (on-change)="onChange($event)">
       </ngx-uploadcare-widget>
     </div>
   </div>

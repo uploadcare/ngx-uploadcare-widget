@@ -15,9 +15,11 @@ export declare class UcWidgetComponent implements AfterViewInit {
     systemDialog: boolean;
     secureSignature: string;
     secureExpire: string;
-    cdnUrl: any;
+    fileId: any;
+    cdnBase: any;
     doNotStore: boolean;
-    uploadComplete: EventEmitter<any>;
+    onUploadComplete: EventEmitter<any>;
+    onChange: EventEmitter<any>;
     element: ElementRef;
     constructor(element: ElementRef);
     ngAfterViewInit(): void;
