@@ -44,7 +44,7 @@ import { UcWidgetComponent } from 'ngx-uploadcare-widget';
 ```html
 <ngx-uploadcare-widget
   images-only="true"
-  [public-key]="publicKey">
+  public-key="demopublickey">
 </ngx-uploadcare-widget>
 ```
 
@@ -53,7 +53,7 @@ Component support 2 widget events:
 ```html
 <ngx-uploadcare-widget
   images-only="true"
-  [public-key]="publicKey"
+  public-key="demopublickey"
   (on-upload-complete)="yourOnUploadHandler($event)"
   (on-change)="yourOnChangeHandler($event)">
 </ngx-uploadcare-widget>
