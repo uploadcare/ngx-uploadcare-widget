@@ -6,7 +6,7 @@ export declare class UcWidgetComponent implements AfterViewInit {
     multipleMin: number;
     imagesOnly: boolean;
     previewStep: boolean;
-    crop: boolean;
+    crop: any;
     imageShrink: string;
     clearable: boolean;
     tabs: string;
@@ -15,7 +15,7 @@ export declare class UcWidgetComponent implements AfterViewInit {
     systemDialog: boolean;
     secureSignature: string;
     secureExpire: string;
-    fileId: any;
+    value: any;
     cdnBase: any;
     doNotStore: boolean;
     onUploadComplete: EventEmitter<any>;

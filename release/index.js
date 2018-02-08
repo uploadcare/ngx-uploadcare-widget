@@ -125,7 +125,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UcWidgetComponent = /** @class */ (function () {
     function UcWidgetComponent(element) {
         this.publicKey = 'demopublickey';
-        this.fileId = null;
+        this.value = null;
         this.cdnBase = null;
         this.onUploadComplete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.onChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -168,7 +168,7 @@ var UcWidgetComponent = /** @class */ (function () {
     ], UcWidgetComponent.prototype, "previewStep", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('crop'),
-        __metadata("design:type", Boolean)
+        __metadata("design:type", Object)
     ], UcWidgetComponent.prototype, "crop", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('image-shrink'),
@@ -203,9 +203,9 @@ var UcWidgetComponent = /** @class */ (function () {
         __metadata("design:type", String)
     ], UcWidgetComponent.prototype, "secureExpire", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('file-id'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('value'),
         __metadata("design:type", Object)
-    ], UcWidgetComponent.prototype, "fileId", void 0);
+    ], UcWidgetComponent.prototype, "value", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('cdn-base'),
         __metadata("design:type", Object)
@@ -225,7 +225,7 @@ var UcWidgetComponent = /** @class */ (function () {
     UcWidgetComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-uploadcare-widget',
-            template: "<input type=\"hidden\"\n                attr.data-public-key={{publicKey}}\n                [attr.data-multiple]=\"multiple\"\n                [attr.data-multiple-max]=\"multipleMax\"\n                [attr.data-multiple-min]=\"multipleMin\"\n                [attr.data-images-only]=\"imagesOnly\"\n                [attr.data-preview-step]=\"previewStep\"\n                [attr.data-crop]=\"crop\"\n                [attr.data-image-shrink]=\"imageShrink\"\n                [attr.data-clearable]=\"clearable\"\n                [attr.data-tabs]=\"tabs\"\n                [attr.data-input-accept-types]=\"inputAcceptTypes\"\n                [attr.data-preferred-types]=\"preferredTypes\"\n                [attr.data-system-dialog]=\"systemDialog\"\n                [attr.data-secure-signature]=\"secureSignature\"\n                [attr.data-secure-expire]=\"secureExpire\"\n                [attr.data-cdn-base]=\"cdnBase\"\n                [value]=\"fileId\"\n                [attr.data-do-not-store]=\"doNotStore\"\n              />",
+            template: "<input type=\"hidden\"\n                attr.data-public-key={{publicKey}}\n                [attr.data-multiple]=\"multiple\"\n                [attr.data-multiple-max]=\"multipleMax\"\n                [attr.data-multiple-min]=\"multipleMin\"\n                [attr.data-images-only]=\"imagesOnly\"\n                [attr.data-preview-step]=\"previewStep\"\n                [attr.data-crop]=\"crop\"\n                [attr.data-image-shrink]=\"imageShrink\"\n                [attr.data-clearable]=\"clearable\"\n                [attr.data-tabs]=\"tabs\"\n                [attr.data-input-accept-types]=\"inputAcceptTypes\"\n                [attr.data-preferred-types]=\"preferredTypes\"\n                [attr.data-system-dialog]=\"systemDialog\"\n                [attr.data-secure-signature]=\"secureSignature\"\n                [attr.data-secure-expire]=\"secureExpire\"\n                [attr.data-cdn-base]=\"cdnBase\"\n                [value]=\"value\"\n                [attr.data-do-not-store]=\"doNotStore\"\n              />",
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]])
     ], UcWidgetComponent);
