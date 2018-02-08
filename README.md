@@ -48,6 +48,17 @@ import { UcWidgetComponent } from 'ngx-uploadcare-widget';
 </ngx-uploadcare-widget>
 ```
 
+Component support 2 widget events: 
+ `on-change` and `on-upload-complete` so you can handle its as on example below:
+```html
+<ngx-uploadcare-widget
+  images-only="true"
+  [public-key]="publicKey"
+  (on-upload-complete)="yourOnUploadHandler($event)"
+  (on-change)="yourOnChangeHandler($event)">
+</ngx-uploadcare-widget>
+```
+You can read more about this events [here](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change) 
 ## Configuration
 Please note. For now component supports one time initialisation only. If you change any of attributes runtime this will not be affected to widget.
 This behavior is temporary and will fixed in future release.
