@@ -8,8 +8,12 @@
 
 Angular 2+ wrapper for [Uploadcare Widget][widget].
 
-[![Uploadcare stack on StackShare][stack-img]][stack]
+[![NPM version][npm-img]][npm-link] [![Build Status][travis-img]][travis] [![Uploadcare stack on StackShare][stack-img]][stack]
 
+[npm-img]: http://img.shields.io/npm/v/ngx-uploadcare-widget.svg
+[npm-link]: https://www.npmjs.org/package/ngx-uploadcare-widget
+[travis-img]: https://api.travis-ci.org/uploadcare/ngx-uploadcare-widget.svg?branch=master
+[travis]: https://travis-ci.org/uploadcare/ngx-uploadcare-widget
 [stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
 [stack]: https://stackshare.io/uploadcare/stacks/
 
