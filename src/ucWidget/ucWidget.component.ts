@@ -20,7 +20,7 @@ import uploadcare from 'uploadcare-widget';
                 [attr.data-secure-signature]="secureSignature"
                 [attr.data-secure-expire]="secureExpire"
                 [attr.data-cdn-base]="cdnBase"
-                [value]="fileId"
+                [value]="value"
                 [attr.data-do-not-store]="doNotStore"
               />`,
 })
@@ -31,7 +31,7 @@ export class UcWidgetComponent implements AfterViewInit {
   @Input('multiple-min') multipleMin: number;
   @Input('images-only') imagesOnly: boolean;
   @Input('preview-step') previewStep: boolean;
-  @Input('crop') crop: boolean;
+  @Input('crop') crop: any;
   @Input('image-shrink') imageShrink: string;
   @Input('clearable') clearable: boolean;
   @Input('tabs') tabs: string;
@@ -40,7 +40,7 @@ export class UcWidgetComponent implements AfterViewInit {
   @Input('system-dialog') systemDialog: boolean;
   @Input('secure-signature') secureSignature: string;
   @Input('secure-expire') secureExpire: string;
-  @Input('file-id') fileId = null;
+  @Input('value') value = null;
   @Input('cdn-base') cdnBase = null;
   @Input('do-not-store') doNotStore: boolean;
   @Output('on-upload-complete') onUploadComplete = new EventEmitter<any>();
