@@ -23,17 +23,62 @@ npm install ngx-uploadcare-widget
 ```
 
 ## Usage
+1. Import component:
+```typescript
+import { UcWidgetComponent } from 'ngx-uploadcare-widget';
+```
 
+2. Add component to your module:
+```typescript
+@NgModule({
+  declarations: [
+    ...,
+    UcWidgetComponent,
+  ],
+  ...
+})
+...
+```
+
+3. Use it in your template:
 ```html
 <ngx-uploadcare-widget
-  [images-only]="imagesOnly"
-  [public-key]="publicKey"
-  (on-upload-complete)="onUpload($event)"
-  (on-change)="onChange($event)">
+  images-only="true"
+  [public-key]="publicKey">
 </ngx-uploadcare-widget>
 ```
 
 ## Configuration
+Please note. For now component supports one time initialisation only. If you change any of attributes runtime this will not be affected to widget.
+This behavior is temporary and will fixed in future release.
+
+### Supported input attributes:
+Every attribute correspond its name described in [widget documentation](https://uploadcare.com/docs/uploads/widget/config/) but without `data-` prefix.
+
+* [public-key](https://uploadcare.com/docs/uploads/widget/config/#option-public-key)
+* [multiple](https://uploadcare.com/docs/uploads/widget/config/#option-multiple)
+* [multiple-max](https://uploadcare.com/docs/uploads/widget/config/#option-multiple-max)
+* [multiple-min](https://uploadcare.com/docs/uploads/widget/config/#option-multiple-min)
+* [images-only](https://uploadcare.com/docs/uploads/widget/config/#option-images-only)
+* [preview-step](https://uploadcare.com/docs/uploads/widget/config/#option-preview-step)
+* [crop](https://uploadcare.com/docs/uploads/widget/config/#option-crop)
+* [image-shrink](https://uploadcare.com/docs/uploads/widget/config/#option-image-shrink)
+* [clearable](https://uploadcare.com/docs/uploads/widget/config/#option-clearable)
+* [tabs](https://uploadcare.com/docs/uploads/widget/config/#option-tabs)
+* [input-accept-types](https://uploadcare.com/docs/uploads/widget/config/#option-input-accept-types)
+* [preferred-types](https://uploadcare.com/docs/uploads/widget/config/#option-preferred-types)
+* [system-dialog](https://uploadcare.com/docs/uploads/widget/config/#option-system-dialog)
+* [secure-signature](https://uploadcare.com/docs/uploads/widget/config/#option-secure-signature)
+* [secure-expire](https://uploadcare.com/docs/uploads/widget/config/#option-secure-expire)
+* [value](https://uploadcare.com/documentation/widget/v2/#input-value)
+* [cdn-base](https://uploadcare.com/docs/uploads/widget/config/#option-cdn-base)
+* [do-not-store](https://uploadcare.com/docs/uploads/widget/config/#option-do-not-store)
+
+### Events:
+* [on-upload-complete](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-upload-complete)
+* [on-change](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change)
+
+
 
 ## Localization
 
