@@ -8,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.css';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  imagesOnly: boolean;
   publicKey = 'demopublickey';
   onUpload(info) {
     console.log('fired Event "onUpload"');

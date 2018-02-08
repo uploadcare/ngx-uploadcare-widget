@@ -5,8 +5,10 @@
     </div>
     <div class="col-md-12 text-center">
         <ngx-uploadcare-widget
-        [images-only]="imagesOnly"
+        images-only="true"
+        tabs="url file"
         [public-key]="publicKey"
+        preview-step="true"
         (on-upload-complete)="onUpload($event)"
         (on-change)="onChange($event)">
       </ngx-uploadcare-widget>
