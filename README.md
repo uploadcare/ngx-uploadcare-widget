@@ -1,9 +1,9 @@
 # ngx-uploadcare-widget
 
 <a href="https://uploadcare.com/?utm_source=github&utm_campaign=ngx-uploadcare-widget">
-    <img align="right" width="64" height="64"
-         src="https://ucarecdn.com/2f4864b7-ed0e-4411-965b-8148623aa680/uploadcare-logo-mark.svg"
-         alt="">
+  <img align="right" width="64" height="64"
+       src="https://ucarecdn.com/2f4864b7-ed0e-4411-965b-8148623aa680/uploadcare-logo-mark.svg"
+       alt="">
 </a>
 
 Angular 2+ wrapper for [Uploadcare Widget][widget].
@@ -23,12 +23,15 @@ npm install ngx-uploadcare-widget
 ```
 
 ## Usage
-1. Import component:
+
+Import the component,
+
 ```typescript
 import { UcWidgetComponent } from 'ngx-uploadcare-widget';
 ```
 
-2. Add component to your module:
+Add the component to your module,
+
 ```typescript
 @NgModule({
   declarations: [
@@ -40,16 +43,18 @@ import { UcWidgetComponent } from 'ngx-uploadcare-widget';
 ...
 ```
 
-3. Use it in your template:
+Use it in your template,
+
 ```html
 <ngx-uploadcare-widget
   images-only="true"
-  public-key="demopublickey">
+  public-key="YOUR_PUBLIC_KEY">
 </ngx-uploadcare-widget>
 ```
 
-Component support 2 widget events: 
- `on-change` and `on-upload-complete` so you can handle its as on example below:
+The component support two widget events:
+ `on-change` and `on-upload-complete`, you can handle its as on example below,
+ 
 ```html
 <ngx-uploadcare-widget
   images-only="true"
@@ -58,13 +63,19 @@ Component support 2 widget events:
   (on-change)="yourOnChangeHandler($event)">
 </ngx-uploadcare-widget>
 ```
-You can read more about this events [here](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change) 
-## Configuration
-Please note. For now component supports one time initialisation only. If you change any of attributes runtime this will not be affected to widget.
-This behavior is temporary and will fixed in future release.
 
-### Supported input attributes:
-Every attribute corresponds to its name described in [widget documentation](https://uploadcare.com/docs/uploads/widget/config/) but without `data-` prefix.
+You can read more about this events in [docs][docs-widget-js-change].
+ 
+## Configuration
+
+**Please note:** for now the component supports one time initialisation only.
+If you change any of attributes runtime this will not be affected by the widget.
+This behavior is temporary and will be fixed in future release.
+
+### Supported input attributes
+
+Every attribute corresponds its name described in [widget docs][docs-widget-config]
+but without `data-` prefix.
 
 * [public-key](https://uploadcare.com/docs/uploads/widget/config/#option-public-key)
 * [multiple](https://uploadcare.com/docs/uploads/widget/config/#option-multiple)
@@ -85,17 +96,16 @@ Every attribute corresponds to its name described in [widget documentation](http
 * [cdn-base](https://uploadcare.com/docs/uploads/widget/config/#option-cdn-base)
 * [do-not-store](https://uploadcare.com/docs/uploads/widget/config/#option-do-not-store)
 
-### Events:
+### Events
+
 * [on-upload-complete](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-upload-complete)
 * [on-change](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change)
-
-
 
 ## Localization
 
 It’s possible that your locale is not available in the widget yet.
 If that’s the case, contributing your locale might be a good idea.
-This can be done by forking the [main repository](https://github.com/uploadcare/uploadcare-widget)
+This can be done by forking the [main repository][widget]
 and adding a localization file
 [here][widget-locales].
 
@@ -106,3 +116,5 @@ to use your locale immediately.
 [uploadcare]: https://uploadcare.com/?utm_source=github&utm_campaign=ngx-uploadcare-widget
 [widget-locales]: https://github.com/uploadcare/uploadcare-widget/tree/master/app/assets/javascripts/uploadcare/locale
 [docs-widget-locales]: https://uploadcare.com/docs/uploads/widget/locales/
+[docs-widget-js-change]: https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change
+[docs-widget-config]: https://uploadcare.com/docs/uploads/widget/config/
