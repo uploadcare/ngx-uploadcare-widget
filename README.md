@@ -64,7 +64,7 @@ Please note. For now component supports one time initialisation only. If you cha
 This behavior is temporary and will fixed in future release.
 
 ### Supported input attributes:
-Every attribute correspond to its name described in [widget documentation](https://uploadcare.com/docs/uploads/widget/config/) but without `data-` prefix.
+Every attribute corresponds to its name described in [widget documentation](https://uploadcare.com/docs/uploads/widget/config/) but without `data-` prefix.
 
 * [public-key](https://uploadcare.com/docs/uploads/widget/config/#option-public-key)
 * [multiple](https://uploadcare.com/docs/uploads/widget/config/#option-multiple)
