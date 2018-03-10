@@ -46,81 +46,134 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
     this.renderer = renderer;
   }
 
-  @Input('public-key') set publicKey(publicKey: string) {
+  @Input('public-key') 
+  set publicKey(publicKey: string) {
     this._publicKey = publicKey;
     this.setReinitFlag(true);
   }
-  @Input('multiple') set multiple(multiple: boolean) {
+  get publicKey() { return this._publicKey; }
+
+  @Input('multiple')
+  set multiple(multiple: boolean) {
     this._multiple = multiple;
     this.setReinitFlag(true);
   }
-  @Input('multiple-max') set multipleMax(multipleMax: number) {
+  get multiple() { return this._multiple; }
+
+  @Input('multiple-max')
+  set multipleMax(multipleMax: number) {
     this._multipleMax = multipleMax;
     this.setReinitFlag(false);
   }
-  @Input('multiple-min') set multipleMin(multipleMin: number) {
+  get multipleMax() { return this._multipleMax; }
+
+  @Input('multiple-min')
+  set multipleMin(multipleMin: number) {
     this._multipleMin = multipleMin;
     this.setReinitFlag(false);
   }
-  @Input('images-only') set imagesOnly(imagesOnly: boolean) {
+  get multipleMin() { return this._multipleMin; }
+
+  @Input('images-only')
+  set imagesOnly(imagesOnly: boolean) {
     this._imagesOnly = imagesOnly;
     this.setReinitFlag(false);
   }
-  @Input('preview-step') set previewStep(previewStep: boolean) {
+  get imagesOnly() { return this._imagesOnly; }
+
+  @Input('preview-step')
+  set previewStep(previewStep: boolean) {
     this._previewStep = previewStep;
     this.setReinitFlag(false);
   }
-  @Input('crop') set crop(crop: any) {
+  get previewStep() { return this._previewStep; }
+
+  @Input('crop')
+  set crop(crop: any) {
     this._crop = crop;
     this.setReinitFlag(false);
   }
-  @Input('image-shrink') set imageShrink(imageShrink: string) {
+  get crop() { return this._crop; }
+
+  @Input('image-shrink')
+  set imageShrink(imageShrink: string) {
     this._imageShrink = imageShrink;
     this.setReinitFlag(false);
   }
-  @Input('clearable') setclearable(clearable: boolean) {
+  get imageShrink() { return this._imageShrink; }
+
+  @Input('clearable')
+  set clearable(clearable: boolean) {
     this._clearable = clearable;
     this.setReinitFlag(false);
   }
-  @Input('tabs') set tabs(tabs: string) {
+  get clearable() { return this._clearable; }
+
+  @Input('tabs')
+  set tabs(tabs: string) {
     this._tabs = tabs;
     this.setReinitFlag(false);
   }
-  @Input('input-accept-types') set inputAcceptTypes(inputAcceptTypes: string) {
+  get tabs() { return this._tabs; }
+
+  @Input('input-accept-types')
+  set inputAcceptTypes(inputAcceptTypes: string) {
     this._inputAcceptTypes = inputAcceptTypes;
     this.setReinitFlag(false);
   }
-  @Input('preferred-types') set preferredTypes(preferredTypes: string) {
+  get inputAcceptTypes() { return this._inputAcceptTypes; }
+
+  @Input('preferred-types')
+  set preferredTypes(preferredTypes: string) {
     this._preferredTypes = preferredTypes;
     this.setReinitFlag(false);
   }
-  @Input('system-dialog') set systemDialog(systemDialog: boolean) {
+  get preferredTypes() { return this._preferredTypes; }
+
+  @Input('system-dialog')
+  set systemDialog(systemDialog: boolean) {
     this._systemDialog = systemDialog;
     this.setReinitFlag(false);
   }
-  @Input('secure-signature') set secureSignature(secureSignature: string) {
+  get systemDialog() { return this._systemDialog; }
+
+  @Input('secure-signature')
+  set secureSignature(secureSignature: string) {
     this._secureSignature = secureSignature;
     this.setReinitFlag(true);
   }
-  @Input('secure-expire') set secureExpire(secureExpire: string) {
+  get secureSignature() { return this._secureSignature; }
+
+  @Input('secure-expire')
+  set secureExpire(secureExpire: string) {
     this._secureExpire = secureExpire;
     this.setReinitFlag(false);
   }
-  @Input('value') set value(value: string) {
+  get secureExpire() { return this._secureExpire; }
+
+  @Input('value')
+  set value(value: string) {
     this._value = value;
     if(this.widget) {
       this.setReinitFlag(false);
       this.widget.value(value);
     }
   }
-  @Input('cdn-base') set cdnBase(cdnBase: string) {
+  get value() { return this._value; }
+
+  @Input('cdn-base')
+  set cdnBase(cdnBase: string) {
     this._cdnBase = cdnBase;
     this.setReinitFlag(true);
   }
-  @Input('do-not-store') set doNotStore(doNotStore: boolean) {
+  get cdnBase() { return this._cdnBase; }
+
+  @Input('do-not-store')
+  set doNotStore(doNotStore: boolean) {
     this._doNotStore = doNotStore;
     this.setReinitFlag(false);
   }
+  get doNotStore() { return this._doNotStore; }
 
   ngAfterViewInit() {
     this.widget = this.init();
