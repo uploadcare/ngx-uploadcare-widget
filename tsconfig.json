@@ -26,7 +26,8 @@
     "declarationDir": "release"
   },
   "files": [
-    "src/index.ts"
+    "src/index.ts",
+    "demo/main.ts"
   ],
   "exclude": [
     "node_modules"
