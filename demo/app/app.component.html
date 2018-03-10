@@ -66,17 +66,22 @@
       </div>
     </div>
   </div>
+  <div class="row mt20">
+    <div class="col-md-12 text-center">
+      <div class="form-group">
+        <button class="btn btn-info" (click)="clearVal()">Clear upload info</button>
+      </div>
+    </div>
+  </div>
   <div class="row settings">
     <div class="col-md-12 text-center">
       <br/>
-      <h3>Upload results</h3>
+      <h3>Upload file results</h3>
     </div>
-    <div class="col-xs-12">
-      <span>
-        <pre>
-          {{uploadedData | json}}
-        </pre>
-      </span>
+    <div class="col-xs-12 offset-md-2" [class.word-wrap]="uploadedData != null">
+      <pre>
+{{uploadedData | json}} <!-- needed to remove space before json -->
+      </pre>
     </div>
   </div>
 </div>

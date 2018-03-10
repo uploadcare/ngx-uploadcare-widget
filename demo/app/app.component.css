@@ -14,3 +14,13 @@
 .flex-grow-1 {
   flex-grow: 1;
 }
+.mt20 {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .word-wrap {
+    overflow-x: scroll;
+  }
+}
+

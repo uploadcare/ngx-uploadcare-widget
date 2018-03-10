@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import { UcWidgetComponent } from '../../src/index';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +42,10 @@ export class AppComponent {
     { name: 'vk', },
     { name: 'huddle', }, ];
   tabsArr = [ this.tabSelectOptions[0].name ];
-  uploadedData: any;
+  uploadedData: null;
+
+  @ViewChild(UcWidgetComponent)
+    private widgetComponent: UcWidgetComponent;
 
   onUpload(info) {
     console.log('fired Event "onUpload"');
@@ -49,6 +53,9 @@ export class AppComponent {
     this.uploadedData = info;
   }
   onChange(info) {
+    if(!info) {
+      return;
+    }
     console.log('fired Event "onChange"');
     console.log(info);
 //  info contains 2 methods:
@@ -76,5 +83,9 @@ export class AppComponent {
     } else {
       this.tabs = this.tabsArr.join(' ');
     }
+  }
+  clearVal() {
+    this.widgetComponent.clearValue();
+    this.uploadedData = undefined;
   }
 }
