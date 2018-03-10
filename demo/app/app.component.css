@@ -2,3 +2,15 @@
   margin-top: 1.5rem;
   background-color: #f3f3f3;
 }
+.flex-row {
+  flex-grow: 1;
+  display: flex;
+}
+.flex-col {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}

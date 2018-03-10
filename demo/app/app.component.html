@@ -4,38 +4,80 @@
         <h2>Uploadcare widget demo</h2>
     </div>
     <div class="col-md-12 text-center">
-        <ngx-uploadcare-widget
-        images-only="true"
-        public-key="demopublickey"
-        preview-step="true"
-        crop="true"
+      <ngx-uploadcare-widget
+        images-only={{isImageOnly}}
+        public-key={{publicKey}}
+        multiple={{multipleFiles}}
+        multiple-min={{multipleMin}}
+        multiple-max={{multipleMax}}
+        preview-step={{previewStep}}
+        crop={{crop}}
+        image-shrink={{imageShrink}}
+        clearable={{clearable}}
+        tabs={{tabs}}
+        input-accept-types={{inputAcceptTypes}}
+        preferred-types={{preferredTypes}}
+        system-dialog={{systemDialog}}
+        value={{value}}
+        cdn-base={{cdnBase}}
+        do-not-store={{doNotStore}}
         (on-upload-complete)="onUpload($event)"
         (on-change)="onChange($event)">
       </ngx-uploadcare-widget>
     </div>
   </div>
-  <!-- <div class="row settings">
+ <div class="row settings">
     <div class="col-md-12 text-center">
+      <br/>
       <h3>Settings</h3>
     </div>
-    <div class="col-xs-12 col-md-4">
+    <div class="col-xs-12 col-md-4 offset-md-2">
       <div class="form-group">
         <label for="uc-public-key">Uploadcare public key:</label>
         <input type="text" class="form-control" id="uploadcare-public-key" [(ngModel)]="publicKey"/>
       </div>
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="uc-multiple">
-        <label class="form-check-label" for="uc-multiple">Multiple files</label>
+        <input type="checkbox" class="form-check-input" id="uc-previewStep" [(ngModel)]="previewStep">
+        <label class="form-check-label" for="uc-previewStep">Preview Step</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="uc-isImageOnly" [(ngModel)]="isImageOnly">
+        <label class="form-check-label" for="uc-isImageOnly">Upload images only</label>
       </div>
       <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="uc-multiple" [(ngModel)]="multipleFiles">
+          <label class="form-check-label" for="uc-multiple">Multiple files</label>
+        </div>
         <label for="uc-multiple-min">Multiple min:</label>
-        <input type="number" class="form-control" id="uc-multiple-min" disabled/>
+        <input type="number" class="form-control" id="uc-multiple-min" [(ngModel)]="multipleMin" [attr.disabled]="!multipleFiles?'':null"/>
       </div>
       <div class="form-group">
         <label for="uc-multiple-max">Multiple max:</label>
-        <input type="number" class="form-control" id="uc-multiple-max" disabled/>
+        <input type="number" class="form-control" id="uc-multiple-max" [(ngModel)]="multipleMax" [attr.disabled]="!multipleFiles?'':null"/>
       </div>
     </div>
-  </div> -->
+    <div class="col-xs-12 col-md-4 flex-row">
+      <div class="form-group flex-col">
+        <label for="uc-tabs">Widget tab list, multi items select allowed: <br /><small>(for more info you can read <a href="https://uploadcare.com/docs/uploads/widget/upload_sources/" target="_blank">here</a>)</small></label>
+        <select multiple class="form-control flex-grow-1" id="uc-tabs" [(ngModel)]="tabsArr" (change)="onClickAllTab($event.target.selectedIndex)">
+          <option *ngFor="let tab of tabSelectOptions" [value]="tab.name">{{tab.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row settings">
+    <div class="col-md-12 text-center">
+      <br/>
+      <h3>Upload results</h3>
+    </div>
+    <div class="col-xs-12">
+      <span>
+        <pre>
+          {{uploadedData | json}}
+        </pre>
+      </span>
+    </div>
+  </div>
 </div>
 

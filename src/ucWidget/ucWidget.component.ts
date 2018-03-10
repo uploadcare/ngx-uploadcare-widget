@@ -1,66 +1,217 @@
-import { Component, Input, Output, AfterViewInit, ElementRef, EventEmitter } from '@angular/core';
+import { Component,
+          Input,
+          Output,
+          AfterViewInit,
+          AfterViewChecked,
+          ElementRef,
+          EventEmitter,
+          Renderer2 } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
 
 @Component({
   selector: 'ngx-uploadcare-widget',
-  template:  `<input type="hidden"
-                attr.data-public-key={{publicKey}}
-                [attr.data-multiple]="multiple"
-                [attr.data-multiple-max]="multipleMax"
-                [attr.data-multiple-min]="multipleMin"
-                [attr.data-images-only]="imagesOnly"
-                [attr.data-preview-step]="previewStep"
-                [attr.data-crop]="crop"
-                [attr.data-image-shrink]="imageShrink"
-                [attr.data-clearable]="clearable"
-                [attr.data-tabs]="tabs"
-                [attr.data-input-accept-types]="inputAcceptTypes"
-                [attr.data-preferred-types]="preferredTypes"
-                [attr.data-system-dialog]="systemDialog"
-                [attr.data-secure-signature]="secureSignature"
-                [attr.data-secure-expire]="secureExpire"
-                [attr.data-cdn-base]="cdnBase"
-                [value]="value"
-                [attr.data-do-not-store]="doNotStore"
-              />`,
+  template: '',
 })
-export class UcWidgetComponent implements AfterViewInit {
-  @Input('public-key') publicKey = 'demopublickey';
-  @Input('multiple') multiple: boolean;
-  @Input('multiple-max') multipleMax: number;
-  @Input('multiple-min') multipleMin: number;
-  @Input('images-only') imagesOnly: boolean;
-  @Input('preview-step') previewStep: boolean;
-  @Input('crop') crop: any;
-  @Input('image-shrink') imageShrink: string;
-  @Input('clearable') clearable: boolean;
-  @Input('tabs') tabs: string;
-  @Input('input-accept-types') inputAcceptTypes: string;
-  @Input('preferred-types') preferredTypes: string;
-  @Input('system-dialog') systemDialog: boolean;
-  @Input('secure-signature') secureSignature: string;
-  @Input('secure-expire') secureExpire: string;
-  @Input('value') value = null;
-  @Input('cdn-base') cdnBase = null;
-  @Input('do-not-store') doNotStore: boolean;
+export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   @Output('on-upload-complete') onUploadComplete = new EventEmitter<any>();
   @Output('on-change') onChange = new EventEmitter<any>();
-  
-  element: ElementRef;
 
-  constructor(element: ElementRef) {
+  private element: ElementRef;
+  private inputElement: Node;
+  private renderer: Renderer2;
+  private widget: any;
+  private _publicKey = 'demopublickey';
+  private _multiple: boolean;
+  private _multipleMax: number;
+  private _multipleMin: number;
+  private _imagesOnly: boolean;
+  private _previewStep: boolean;
+  private _crop: any;
+  private _imageShrink: string;
+  private _clearable: boolean;
+  private _tabs: string;
+  private _inputAcceptTypes: string;
+  private _preferredTypes: string;
+  private _systemDialog: boolean;
+  private _secureSignature: string;
+  private _secureExpire: string;
+  private _value = null;
+  private _cdnBase = null;
+  private _doNotStore: boolean;
+  private _reinitRequired = false;
+  private _isClearValue = false;
+
+  constructor(renderer: Renderer2, element: ElementRef) {
     this.element = element;
+    this.renderer = renderer;
+  }
+
+  @Input('public-key') set publicKey(publicKey: string) {
+    this._publicKey = publicKey;
+    this.setReinitFlag(true);
+  }
+  @Input('multiple') set multiple(multiple: boolean) {
+    this._multiple = multiple;
+    this.setReinitFlag(true);
+  }
+  @Input('multiple-max') set multipleMax(multipleMax: number) {
+    this._multipleMax = multipleMax;
+    this.setReinitFlag(false);
+  }
+  @Input('multiple-min') set multipleMin(multipleMin: number) {
+    this._multipleMin = multipleMin;
+    this.setReinitFlag(false);
+  }
+  @Input('images-only') set imagesOnly(imagesOnly: boolean) {
+    this._imagesOnly = imagesOnly;
+    this.setReinitFlag(false);
+  }
+  @Input('preview-step') set previewStep(previewStep: boolean) {
+    this._previewStep = previewStep;
+    this.setReinitFlag(false);
+  }
+  @Input('crop') set crop(crop: any) {
+    this._crop = crop;
+    this.setReinitFlag(false);
+  }
+  @Input('image-shrink') set imageShrink(imageShrink: string) {
+    this._imageShrink = imageShrink;
+    this.setReinitFlag(false);
+  }
+  @Input('clearable') setclearable(clearable: boolean) {
+    this._clearable = clearable;
+    this.setReinitFlag(false);
+  }
+  @Input('tabs') set tabs(tabs: string) {
+    this._tabs = tabs;
+    this.setReinitFlag(false);
+  }
+  @Input('input-accept-types') set inputAcceptTypes(inputAcceptTypes: string) {
+    this._inputAcceptTypes = inputAcceptTypes;
+    this.setReinitFlag(false);
+  }
+  @Input('preferred-types') set preferredTypes(preferredTypes: string) {
+    this._preferredTypes = preferredTypes;
+    this.setReinitFlag(false);
+  }
+  @Input('system-dialog') set systemDialog(systemDialog: boolean) {
+    this._systemDialog = systemDialog;
+    this.setReinitFlag(false);
+  }
+  @Input('secure-signature') set secureSignature(secureSignature: string) {
+    this._secureSignature = secureSignature;
+    this.setReinitFlag(true);
+  }
+  @Input('secure-expire') set secureExpire(secureExpire: string) {
+    this._secureExpire = secureExpire;
+    this.setReinitFlag(false);
+  }
+  @Input('value') set value(value: string) {
+    this._value = value;
+    if(this.widget) {
+      this.setReinitFlag(false);
+      this.widget.value(value);
+    }
+  }
+  @Input('cdn-base') set cdnBase(cdnBase: string) {
+    this._cdnBase = cdnBase;
+    this.setReinitFlag(true);
+  }
+  @Input('do-not-store') set doNotStore(doNotStore: boolean) {
+    this._doNotStore = doNotStore;
+    this.setReinitFlag(false);
   }
 
   ngAfterViewInit() {
-    const inputElement = uploadcare.jQuery(this.element.nativeElement).children('input')[0];
-    const widget = uploadcare.Widget(inputElement);
-    const that = this;
-    widget.onUploadComplete(function(fileInfo) {
-       that.onUploadComplete.emit(fileInfo);
+    this.widget = this.init();
+  }
+  
+  ngAfterViewChecked() {
+    if(this._reinitRequired) {
+      this.reset(this._isClearValue);
+    }
+  }
+
+  reset(resetValue = false) {
+    this.destroy();
+    this.widget = this.init(resetValue);
+    this._reinitRequired = false;
+    this._isClearValue = false;
+  }
+
+  clearValue() {
+    this._value = null;
+    if(this.widget) {
+      this.widget.value(null);
+    }
+  }
+  
+  private setReinitFlag(isClearValue: boolean) {
+    if(this.widget) {
+      this._reinitRequired = true;
+      this._isClearValue = isClearValue;
+    }
+  }
+
+  private setInputAttr(key: string, value: any) {
+    if (value) {
+      this.renderer.setAttribute(this.inputElement, key, value);
+    }
+  }
+
+  private initInputElement() {
+    this.setInputAttr('type', 'hidden');
+    this.setInputAttr('data-public-key', this._publicKey);
+    this.setInputAttr('data-multiple', this._multiple);
+    this.setInputAttr('data-multiple-max', this._multipleMax);
+    this.setInputAttr('data-multiple-min', this._multipleMin);
+    this.setInputAttr('data-images-only', this._imagesOnly);
+    this.setInputAttr('data-preview-step', this._previewStep);
+    this.setInputAttr('data-crop', this._crop);
+    this.setInputAttr('data-image-shrink', this._imageShrink);
+    this.setInputAttr('data-clearable', this._clearable);
+    this.setInputAttr('data-tabs', this._tabs);
+    this.setInputAttr('data-input-accept-types', this._inputAcceptTypes);
+    this.setInputAttr('data-preferred-types', this._preferredTypes);
+    this.setInputAttr('data-system-dialog', this._systemDialog);
+    this.setInputAttr('data-secure-signature', this._secureSignature);
+    this.setInputAttr('data-secure-expire', this._secureExpire);
+    this.setInputAttr('data-cdn-base', this._cdnBase);
+    this.setInputAttr('data-do-not-store', this._doNotStore);
+    if(this._value) {
+      this.renderer.setProperty(this.inputElement, 'value', this._value);
+    }
+    
+  }
+
+  private init(resetValue = false) {
+    this.inputElement = this.renderer.createElement('input');
+    this.renderer.appendChild(this.element.nativeElement, this.inputElement);
+    if(resetValue) {
+      this.clearValue();
+    }
+    this.initInputElement();
+    const widget = uploadcare.Widget(this.inputElement);
+    widget.onUploadComplete((fileInfo) => {
+      this.onUploadComplete.emit(fileInfo);
+      this._value = fileInfo.uuid;
     });
-    widget.onChange(function(promise) {
-      that.onChange.emit(promise);
-   });
+    widget.onChange((promise) => {
+      this.onChange.emit(promise);
+    });
+    return widget;
+  }
+
+  private destroy() {
+    try {
+      this.widget.inputElement.nextSibling.remove();
+      uploadcare.jQuery(this.widget.inputElement).clone().appendTo(uploadcare.jQuery(this.element.nativeElement));
+      this.widget.inputElement.remove();
+      this.renderer.destroyNode(this.inputElement);
+      this.renderer.removeChild(this.element.nativeElement, this.element.nativeElement.children[0]);
+      delete this.widget;
+    } catch (ex) {
+      console.error(ex);
+    }
   }
 }

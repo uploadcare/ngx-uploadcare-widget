@@ -86,6 +86,7 @@
     "@swimlane/ngx-ui": "^19.2.0",
     "@types/jasmine": "^2.8.6",
     "@types/node": "^8.5.10",
+    "angular2-prettyjson": "^3.0.1",
     "angular2-template-loader": "^0.6.0",
     "autoprefixer": "^7.2.5",
     "awesome-typescript-loader": "^3.2.3",
@@ -147,6 +148,7 @@
   },
   "dependencies": {
     "@angular/core": "^5.2.3",
+    "@angular/platform-browser": "^5.2.3",
     "uploadcare-widget": "^3.2.2"
   }
 }
