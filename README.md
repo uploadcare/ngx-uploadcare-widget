@@ -17,8 +17,8 @@ Angular 2+ wrapper for [Uploadcare Widget][widget].
 [stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
 [stack]: https://stackshare.io/uploadcare/stacks/
 
-Uploadcare Widget is an HTML5 file uploader
-which itself is a part of [Uploadcare][uploadcare] ecosystem.
+Uploadcare Widget is an HTML5 file uploader, a part of the
+[Uploadcare][uploadcare] ecosystem.
 
 ## Install
 
@@ -28,13 +28,15 @@ npm install ngx-uploadcare-widget
 
 ## Usage
 
-Import the component,
+The basic wrapper usage scenario can be described in four steps.
+
+### Step 1. Import the component
 
 ```typescript
 import { UcWidgetComponent } from 'ngx-uploadcare-widget';
 ```
 
-Add the component to your module,
+### Step 2. Add the component to your module
 
 ```typescript
 @NgModule({
@@ -47,7 +49,7 @@ Add the component to your module,
 ...
 ```
 
-Use it in your template,
+### Step 3. Use the component in your template
 
 ```html
 <ngx-uploadcare-widget
@@ -56,8 +58,14 @@ Use it in your template,
 </ngx-uploadcare-widget>
 ```
 
-The component support two widget events:
- `on-change` and `on-upload-complete`, you can handle its as on example below,
+### Step 4. Have fun with the widget events
+
+The component currently supports two widget events:
+
+* `on-change`
+* `on-upload-complete`
+
+Here is how you can handle those two,
  
 ```html
 <ngx-uploadcare-widget
@@ -68,15 +76,15 @@ The component support two widget events:
 </ngx-uploadcare-widget>
 ```
 
-You can read more about this events in [docs][docs-widget-js-change].
+You can learn more about the two widget events in our
+[docs][docs-widget-js-change].
  
 ## Configuration
 
-
 ### Supported input attributes
 
-Every attribute corresponds its name described in [widget docs][docs-widget-config]
-but without `data-` prefix.
+All the following attributes correspond to the ones listed in the
+[widget docs][docs-widget-config], but without the `data-` prefix.
 
 * [public-key](https://uploadcare.com/docs/uploads/widget/config/#option-public-key)
 * [multiple](https://uploadcare.com/docs/uploads/widget/config/#option-multiple)
@@ -102,7 +110,7 @@ but without `data-` prefix.
 * [on-upload-complete](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-upload-complete)
 * [on-change](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change)
 
-Events usage sample:
+Events usage example:
 ```javascript
   onUpload(info) {
     console.log('fired Event "onUpload"');
@@ -133,24 +141,24 @@ Events usage sample:
     }
   }
 ```
-### Mechods
+### Methods
 
-Component provides 2 public methods:
-* `clearUploads()` - Removes the current uploads of widget. You can use this method to reset your form even user alredy did upload some files.
-* `reset(clearUploads = false)` - Resets the widget, You can also remove current uploads if `clearUploads` set to `true`
+Component provide two public methods:
+* `clearUploads()` - Removes the current uploads of widget. You can use it to reset your form. Even the user alredy uploaded some files.
+* `reset(clearUploads = false)` - Resets the widget, You can also remove current uploads if `clearUploads` is set to `true`
 
 All methods could be accessible via `@ViewChild()` approach from parent component.
 
 ## Localization
 
-It’s possible that your locale is not available in the widget yet.
-If that’s the case, contributing your locale might be a good idea.
-This can be done by forking the [main repository][widget]
-and adding a localization file
+It is possible that your locale is not available in the widget yet. If that’s
+the case, contributing your locale might be a good idea. This can be done by
+forking the [main repository][widget] and adding a localization file
 [here][widget-locales].
 
-Until that you can use [`UPLOADCARE_LOCALE_TRANSLATIONS`][docs-widget-locales] property
-to use your locale immediately.
+The quick way of implementing your locale would be overriding any of the
+existing ones via the [`UPLOADCARE_LOCALE_TRANSLATIONS`][docs-widget-locales]
+property.
 
 [widget]: https://github.com/uploadcare/uploadcare-widget
 [uploadcare]: https://uploadcare.com/?utm_source=github&utm_campaign=ngx-uploadcare-widget
