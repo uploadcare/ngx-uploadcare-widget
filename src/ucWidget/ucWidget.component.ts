@@ -185,14 +185,14 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
     }
   }
 
-  reset(resetValue = false) {
+  reset(clearUploads = false) {
     this.destroy();
-    this.widget = this.init(resetValue);
+    this.widget = this.init(clearUploads);
     this._reinitRequired = false;
     this._isClearValue = false;
   }
 
-  clearValue() {
+  clearUploads() {
     this._value = null;
     if(this.widget) {
       this.widget.value(null);
@@ -237,11 +237,11 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
     
   }
 
-  private init(resetValue = false) {
+  private init(removeUploads = false) {
     this.inputElement = this.renderer.createElement('input');
     this.renderer.appendChild(this.element.nativeElement, this.inputElement);
-    if(resetValue) {
-      this.clearValue();
+    if(removeUploads) {
+      this.clearUploads();
     }
     this.initInputElement();
     const widget = uploadcare.Widget(this.inputElement);

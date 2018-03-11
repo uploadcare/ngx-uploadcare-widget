@@ -85,7 +85,11 @@ export class AppComponent {
     }
   }
   clearVal() {
-    this.widgetComponent.clearValue();
+    this.widgetComponent.clearUploads();
+    this.uploadedData = undefined;
+  }
+  resetWidget() {
+    this.widgetComponent.reset(true);
     this.uploadedData = undefined;
   }
 }

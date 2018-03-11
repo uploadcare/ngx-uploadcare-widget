@@ -72,9 +72,6 @@ You can read more about this events in [docs][docs-widget-js-change].
  
 ## Configuration
 
-**Please note:** for now the component supports one time initialisation only.
-If you change any of attributes runtime this will not be affected by the widget.
-This behavior is temporary and will be fixed in future release.
 
 ### Supported input attributes
 
@@ -104,6 +101,45 @@ but without `data-` prefix.
 
 * [on-upload-complete](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-upload-complete)
 * [on-change](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change)
+
+Events usage sample:
+```javascript
+  onUpload(info) {
+    console.log('fired Event "onUpload"');
+    console.log(info);
+  }
+  onChange(info) {
+    if(!info) { // could be null if cleared current upload
+      return;
+    }
+    console.log('fired Event "onChange"');
+    console.log(info);
+//  info contains 2 methods:
+//  .promise() - returns the general promise for all uploadin files which resolves with the group info of uploaded files
+//  .files() - returns the array of promises for each uploading file. Each promise resolves with uploaded file info
+    if(info.promise) {
+      info.promise().then((groupInfo) => {
+        console.log('resolved general promise from "onChange" with data:');
+        console.log(groupInfo);
+      });
+    }
+    if(info.files) {
+      info.files().forEach((promise) => {
+        promise.then((fileInfo) => {
+          console.log('resolves file promise with file info:');
+          console.log(fileInfo);
+        });
+      });
+    }
+  }
+```
+### Mechods
+
+Component provides 2 public methods:
+* `clearUploads()` - Removes the current uploads of widget. You can use this method to reset your form even user alredy did upload some files.
+* `reset(clearUploads = false)` - Resets the widget, You can also remove current uploads if `clearUploads` set to `true`
+
+All methods could be accessible via `@ViewChild()` approach from parent component.
 
 ## Localization
 
