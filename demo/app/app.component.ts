@@ -52,28 +52,34 @@ export class AppComponent {
     console.log(info);
     this.uploadedData = info;
   }
-  onChange(info) {
-    if(!info) {
+  onChange(file) {
+    if(!file) {
       return;
     }
     console.log('fired Event "onChange"');
-    console.log(info);
-//  info contains 2 methods:
-//  .promise() - returns the general promise for all uploadin files which resolves with the group info of uploaded files
-//  .files() - returns the array of promises for each uploading file. Each promise resolves with uploaded file info
-    if(info.promise) {
-      info.promise().then((groupInfo) => {
-        console.log('resolved general promise from "onChange" with data:');
-        console.log(groupInfo);
-      });
-    }
-    if(info.files) {
-      info.files().forEach((promise) => {
-        promise.then((fileInfo) => {
-          console.log('resolves file promise with file info:');
-          console.log(fileInfo);
+  // input file parameter depends on multiple-files widget attribute
+    if(this.multipleFiles) {
+  //  file contains 2 methods:
+  //  .promise() - returns the general promise for all uploadin files which resolves with the group info of uploaded files
+  //  .files() - returns the array of promises for each uploading file. Each promise resolves with uploaded file info
+      console.log(file);
+      if(file.promise) {
+        file.promise().then((groupInfo) => {
+          console.log('resolved general promise from "onChange" with data:');
+          console.log(groupInfo);
         });
-      });
+      }
+      if(file.files) {
+        file.files().forEach((promise) => {
+          promise.then((fileInfo) => {
+            console.log('resolves file promise with file info:');
+            console.log(fileInfo);
+          });
+        });
+      } else {
+  // file contains uploaded file info
+        console.log(file);
+      }
     }
   }
   onClickAllTab(index) {

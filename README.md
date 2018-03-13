@@ -66,7 +66,7 @@ The component currently supports two widget events:
 * `on-upload-complete`
 
 Here is how you can handle those two,
- 
+
 ```html
 <ngx-uploadcare-widget
   images-only="true"
@@ -78,7 +78,7 @@ Here is how you can handle those two,
 
 You can learn more about the two widget events in our
 [docs][docs-widget-js-change].
- 
+
 ## Configuration
 
 ### Supported input attributes
@@ -111,39 +111,50 @@ All the following attributes correspond to the ones listed in the
 * [on-change](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change)
 
 Events usage example:
+
 ```javascript
   onUpload(info) {
     console.log('fired Event "onUpload"');
     console.log(info);
   }
-  onChange(info) {
-    if(!info) { // could be null if cleared current upload
+
+  onChange(file) {
+    if(!file) {
       return;
     }
     console.log('fired Event "onChange"');
-    console.log(info);
-//  info contains 2 methods:
-//  .promise() - returns the general promise for all uploadin files which resolves with the group info of uploaded files
-//  .files() - returns the array of promises for each uploading file. Each promise resolves with uploaded file info
-    if(info.promise) {
-      info.promise().then((groupInfo) => {
-        console.log('resolved general promise from "onChange" with data:');
-        console.log(groupInfo);
-      });
-    }
-    if(info.files) {
-      info.files().forEach((promise) => {
-        promise.then((fileInfo) => {
-          console.log('resolves file promise with file info:');
-          console.log(fileInfo);
+  // input file parameter depends on multiple-files widget attribute
+    if(this.multipleFiles) {
+  //  file contains 2 methods:
+  //  .promise() - returns the general promise for all uploadin files which resolves with the group info of uploaded files
+  //  .files() - returns the array of promises for each uploading file. Each promise resolves with uploaded file info
+      console.log(file);
+      if(file.promise) {
+        file.promise().then((groupInfo) => {
+          console.log('resolved general promise from "onChange" with data:');
+          console.log(groupInfo);
         });
-      });
+      }
+      if(file.files) {
+        file.files().forEach((promise) => {
+          promise.then((fileInfo) => {
+            console.log('resolves file promise with file info:');
+            console.log(fileInfo);
+          });
+        });
+      } else {
+  // file contains uploaded file info
+        console.log(file);
+      }
     }
   }
+
 ```
+
 ### Methods
 
 Component provide two public methods:
+
 * `clearUploads()` - Removes the current uploads of widget. You can use it to reset your form. Even the user alredy uploaded some files.
 * `reset(clearUploads = false)` - Resets the widget, You can also remove current uploads if `clearUploads` is set to `true`
 
