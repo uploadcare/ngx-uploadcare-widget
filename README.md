@@ -127,7 +127,7 @@ Events usage example:
     if(this.multipleFiles) {
   //  file contains 2 methods:
   //  .promise() - returns the general promise for all uploaded files which resolves into an uploaded file group info
-  //  .files() - returns an array of promises: one per each uploaded file. Each promise resolvesresolves into an uploaded file info
+  //  .files() - returns an array of promises: one per each uploaded file. Each promise resolves into an uploaded file info
       console.log(file);
       if(file.promise) {
         file.promise().then((groupInfo) => {
