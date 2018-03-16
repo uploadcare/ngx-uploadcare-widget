@@ -123,11 +123,11 @@ Events usage example:
       return;
     }
     console.log('fired Event "onChange"');
-  // input file parameter depends on multiple-files widget attribute
+  // input file parameter depends on "multiple-files" widget attribute
     if(this.multipleFiles) {
   //  file contains 2 methods:
-  //  .promise() - returns the general promise for all uploadin files which resolves with the group info of uploaded files
-  //  .files() - returns the array of promises for each uploading file. Each promise resolves with uploaded file info
+  //  .promise() - returns the general promise for all uploaded files which resolves into an uploaded file group info
+  //  .files() - returns an array of promises: one per each uploaded file. Each promise resolvesresolves into an uploaded file info
       console.log(file);
       if(file.promise) {
         file.promise().then((groupInfo) => {
@@ -153,12 +153,12 @@ Events usage example:
 
 ### Methods
 
-Component provide two public methods:
+The component now provides the two following public methods:
 
-* `clearUploads()` - Removes the current uploads of widget. You can use it to reset your form. Even the user alredy uploaded some files.
-* `reset(clearUploads = false)` - Resets the widget, You can also remove current uploads if `clearUploads` is set to `true`
+* `clearUploads()` - Removes all current uploads from the widget. You can use the method to reset a form even if a user has already uploaded some files.
+* `reset(clearUploads = false)` - Resets the widget, You can also remove all the current uploads if `clearUploads` is set to `true`
 
-All methods could be accessible via `@ViewChild()` approach from parent component.
+All methods are accessible from a parent component via the `@ViewChild()` approach.
 
 ## Localization
 

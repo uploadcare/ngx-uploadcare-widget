@@ -59,7 +59,7 @@
     </div>
     <div class="col-xs-12 col-md-4 flex-row">
       <div class="form-group flex-col">
-        <label for="uc-tabs">Widget tab list, multi items select allowed: <br /><small>(for more info you can read <a href="https://uploadcare.com/docs/uploads/widget/upload_sources/" target="_blank">here</a>)</small></label>
+        <label for="uc-tabs">Widget tab list, a multi-item selection is allowed. <br /><small>(Refer to <a href="https://uploadcare.com/docs/uploads/widget/upload_sources/" target="_blank">documentation</a> for more info.)</small></label>
         <select multiple class="form-control flex-grow-1" id="uc-tabs" [(ngModel)]="tabsArr" (change)="onClickAllTab($event.target.selectedIndex)">
           <option *ngFor="let tab of tabSelectOptions" [value]="tab.name">{{tab.name}}</option>
         </select>
@@ -69,7 +69,7 @@
   <div class="row mt20">
     <div class="col-md-12 text-center">
       <div class="form-group">
-        <button class="btn btn-info" (click)="clearVal()">Clear upload info</button>
+        <button class="btn btn-info" (click)="clearVal()">Clear uploads</button>
         <button class="btn btn-info" (click)="resetWidget()">Reset widget</button>
       </div>
     </div>
