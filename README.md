@@ -66,7 +66,7 @@ The component currently supports two widget events:
 * `on-upload-complete`
 
 Here is how you can handle those two,
- 
+
 ```html
 <ngx-uploadcare-widget
   images-only="true"
@@ -78,12 +78,8 @@ Here is how you can handle those two,
 
 You can learn more about the two widget events in our
 [docs][docs-widget-js-change].
- 
-## Configuration
 
-**Please note:** for now, the component only supports one-time initialization.
-If you change any of the attributes at runtime, they will not affect the widget.
-The behavior is temporary and will be fixed in the future release.
+## Configuration
 
 ### Supported input attributes
 
@@ -113,6 +109,56 @@ All the following attributes correspond to the ones listed in the
 
 * [on-upload-complete](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-upload-complete)
 * [on-change](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change)
+
+Events usage example:
+
+```javascript
+  onUpload(info) {
+    console.log('fired Event "onUpload"');
+    console.log(info);
+  }
+
+  onChange(file) {
+    if(!file) {
+      return;
+    }
+    console.log('fired Event "onChange"');
+  // input file parameter depends on "multiple-files" widget attribute
+    if(this.multipleFiles) {
+  //  file contains 2 methods:
+  //  .promise() - returns the general promise for all uploaded files which resolves into an uploaded file group info
+  //  .files() - returns an array of promises: one per each uploaded file. Each promise resolves into an uploaded file info
+      console.log(file);
+      if(file.promise) {
+        file.promise().then((groupInfo) => {
+          console.log('resolved general promise from "onChange" with data:');
+          console.log(groupInfo);
+        });
+      }
+      if(file.files) {
+        file.files().forEach((promise) => {
+          promise.then((fileInfo) => {
+            console.log('resolves file promise with file info:');
+            console.log(fileInfo);
+          });
+        });
+      } else {
+  // file contains uploaded file info
+        console.log(file);
+      }
+    }
+  }
+
+```
+
+### Methods
+
+The component now provides the two following public methods:
+
+* `clearUploads()` - Removes all current uploads from the widget. You can use the method to reset a form even if a user has already uploaded some files.
+* `reset(clearUploads = false)` - Resets the widget, You can also remove all the current uploads if `clearUploads` is set to `true`
+
+All methods are accessible from a parent component via the `@ViewChild()` approach.
 
 ## Localization
 
