@@ -1,6 +1,6 @@
 const testWebpackConfig = require('./webpack.test');
 
-module.exports =  function(config) {
+module.exports = function(config) {
   var configuration = {
     basePath: '',
     singleRun: true,
