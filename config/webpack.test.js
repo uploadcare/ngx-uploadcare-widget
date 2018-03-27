@@ -56,7 +56,8 @@ module.exports = function(env) {
           exclude: [
             /\.(e2e|spec)\.ts$/,
             /node_modules/
-          ]
+          ],
+          options: { esModules: true }
         }
       ]
     },

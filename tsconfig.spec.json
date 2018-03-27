@@ -11,7 +11,7 @@
       "dom"
     ],
     "outDir": "dist/spec",
-    "module": "commonjs",
+    "module": "es2015",
     "target": "es5",
     "baseUrl": "",
     "types": [
