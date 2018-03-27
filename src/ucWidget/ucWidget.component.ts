@@ -257,9 +257,10 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
 
   private destroy() {
     try {
-      this.widget.inputElement.nextSibling.remove();
-      uploadcare.jQuery(this.widget.inputElement).clone().appendTo(uploadcare.jQuery(this.element.nativeElement));
-      this.widget.inputElement.remove();
+      const $ = uploadcare.jQuery;
+      $(this.widget.inputElement.nextSibling).remove();
+      $(this.widget.inputElement).clone().appendTo($(this.element.nativeElement));
+      $(this.widget.inputElement).remove();
       this.renderer.destroyNode(this.inputElement);
       this.renderer.removeChild(this.element.nativeElement, this.element.nativeElement.children[0]);
       delete this.widget;

@@ -65,10 +65,10 @@
         <input type="number" class="form-control" id="uc-multiple-max" [(ngModel)]="multipleMax" [attr.disabled]="!multipleFiles?'':null"/>
       </div>
     </div>
-    <div class="col-xs-12 col-md-3 flex-row">
-      <div class="form-group flex-col">
+    <div class="col-xs-12 col-md-3">
+      <div class="form-group">
         <label for="uc-tabs">Widget tab list:<br /><small>(Multi-item selection is allowed. Refer to <a href="https://uploadcare.com/docs/uploads/widget/upload_sources/" target="_blank">documentation</a> for more info.)</small></label>
-        <select multiple class="form-control flex-grow-1" id="uc-tabs" [(ngModel)]="tabsArr" (change)="onClickAllTab($event.target.selectedIndex)">
+        <select multiple size="15" class="form-control" id="uc-tabs" [(ngModel)]="tabsArr" (change)="onClickAllTab($event.target.selectedIndex)">
           <option *ngFor="let tab of tabSelectOptions" [value]="tab">{{tab}}</option>
         </select>
       </div>
@@ -76,7 +76,7 @@
     <div class="col-xs-12 col-md-3">
       <div class="form-group">
         <label for="uc-crop">Crop: <br /><small>(Multi-item selection is allowed. Refer to <a href="https://uploadcare.com/docs/uploads/widget/crop_options/" target="_blank">documentation</a> for more info.)</small></label>
-        <select multiple  size="7" class="form-control" id="uc-crop" [(ngModel)]="cropSelected" (change)="onClickCrop($event.target.selectedIndex)">
+        <select multiple size="7" class="form-control" id="uc-crop" [(ngModel)]="cropSelected" (change)="onClickCrop($event.target.selectedIndex)">
           <option *ngFor="let c of cropOptions" [value]="c">{{c}}</option>
         </select>
       </div>
