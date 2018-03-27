@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { UcWidgetComponent } from './ucWidget.component';
 describe('Widget Component', () => {
-  const publicKey = 'demopublickey';
+  const publicKey = 'b2a5dd7667f04ddaac62';
   const multiple = false;
   const multipleMax = 1;
   const multipleMin = 10;
@@ -123,7 +123,7 @@ describe('Widget Component', () => {
   it('widget should reinit after attributes has changed', async(() => {
     const fixture = TestBed.createComponent(UcWidgetComponent);
     const component = fixture.debugElement.componentInstance;
-    const newValue = 'd51123dd-fab3-4f65-82c2-3e8377ad9f9e';
+    const newValue = 'd0e9a87e-9204-46a9-bedf-b4719d620c68';
     initComponent(component);
     fixture.detectChanges();
     component.value = newValue;
@@ -135,8 +135,6 @@ describe('Widget Component', () => {
   it('call of "clearUploads()" successfull', async(() => {
     const fixture = TestBed.createComponent(UcWidgetComponent);
     const component = fixture.debugElement.componentInstance;
-    const newValue = 'd51123dd-fab3-4f65-82c2-3e8377ad9f9e';
-    component.value = newValue;
     initComponent(component);
     fixture.detectChanges();
     component.clearUploads();
@@ -147,8 +145,6 @@ describe('Widget Component', () => {
   it('call of "reset(true)" successfull', async(() => {
     const fixture = TestBed.createComponent(UcWidgetComponent);
     const component = fixture.debugElement.componentInstance;
-    const newValue = 'd51123dd-fab3-4f65-82c2-3e8377ad9f9e';
-    component.value = newValue;
     initComponent(component);
     fixture.detectChanges();
     component.reset(true);
@@ -159,8 +155,6 @@ describe('Widget Component', () => {
   it('call of "reset()" successfull', async(() => {
     const fixture = TestBed.createComponent(UcWidgetComponent);
     const component = fixture.debugElement.componentInstance;
-    const newValue = 'd51123dd-fab3-4f65-82c2-3e8377ad9f9e';
-    component.value = newValue;
     initComponent(component);
     fixture.detectChanges();
     component.reset();
