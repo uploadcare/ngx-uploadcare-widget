@@ -374,17 +374,13 @@ var UcWidgetComponent = /** @class */ (function () {
         return widget;
     };
     UcWidgetComponent.prototype.destroy = function () {
-        try {
-            this.widget.inputElement.nextSibling.remove();
-            __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.jQuery(this.widget.inputElement).clone().appendTo(__WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.jQuery(this.element.nativeElement));
-            this.widget.inputElement.remove();
-            this.renderer.destroyNode(this.inputElement);
-            this.renderer.removeChild(this.element.nativeElement, this.element.nativeElement.children[0]);
-            delete this.widget;
-        }
-        catch (ex) {
-            console.error(ex);
-        }
+        var $ = __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.jQuery;
+        $(this.widget.inputElement.nextSibling).remove();
+        $(this.widget.inputElement).clone().appendTo($(this.element.nativeElement));
+        $(this.widget.inputElement).remove();
+        this.renderer.destroyNode(this.inputElement);
+        this.renderer.removeChild(this.element.nativeElement, this.element.nativeElement.children[0]);
+        delete this.widget;
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('on-upload-complete'),

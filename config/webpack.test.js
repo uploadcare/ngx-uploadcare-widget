@@ -27,7 +27,7 @@ module.exports = function(env) {
             {
               loader: 'awesome-typescript-loader',
               query: {
-                configFileName: 'tsconfig.spec.json',
+                tsconfig: 'tsconfig.spec.json',
                 sourceMap: false,
                 inlineSourceMap: true,
                 compilerOptions: {
@@ -56,7 +56,8 @@ module.exports = function(env) {
           exclude: [
             /\.(e2e|spec)\.ts$/,
             /node_modules/
-          ]
+          ],
+          options: { esModules: true }
         }
       ]
     },

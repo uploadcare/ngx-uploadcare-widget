@@ -16,7 +16,7 @@ export class AppComponent {
   previewStep = false;
   isImageOnly = false;
   crop: string; // example: crop = '2:3';
-  imageShrink: string; // example: imageShrink = '1024x1024';
+  imageShrink = null; // example: imageShrink = '1024x1024';
   clearable = false;
   tabs: string;
   inputAcceptTypes: string;
@@ -26,23 +26,25 @@ export class AppComponent {
   cdnBase = null;
   doNotStore = false;
   tabSelectOptions = [
-    { name: 'default', },
-    { name: 'file', },
-    { name: 'url', },
-    { name: 'camera', },
-    { name: 'facebook', },
-    { name: 'gdrive', },
-    { name: 'gphotos', },
-    { name: 'dropbox', },
-    { name: 'instagram', },
-    { name: 'evernote', },
-    { name: 'flickr', },
-    { name: 'skydrive', },
-    { name: 'box', },
-    { name: 'vk', },
-    { name: 'huddle', }, ];
-  tabsArr = [ this.tabSelectOptions[0].name ];
+    'default',
+    'file',
+    'url',
+    'camera',
+    'facebook',
+    'gdrive',
+    'gphotos',
+    'dropbox',
+    'instagram',
+    'evernote',
+    'flickr',
+    'skydrive',
+    'box',
+    'vk',
+    'huddle', ];
+  tabsArr = [ this.tabSelectOptions[0] ];
   uploadedData: null;
+  cropOptions = ['disabled', 'free', '16:9', '4:3', '5:4', '1:1', '300x400 upscale', '300x200 minimum'];
+  cropSelected = [ this.cropOptions[0] ];
 
   @ViewChild(UcWidgetComponent)
     private widgetComponent: UcWidgetComponent;
@@ -85,10 +87,18 @@ export class AppComponent {
   }
   onClickAllTab(index) {
     if(index === 0) {
-      this.tabsArr = [ this.tabSelectOptions[0].name ];
+      this.tabsArr = [ this.tabSelectOptions[0] ];
       this.tabs = null;
     } else {
       this.tabs = this.tabsArr.join(' ');
+    }
+  }
+  onClickCrop(index) {
+    if(index === 0) {
+      this.cropSelected = [ this.cropOptions[0] ];
+      this.crop = null;
+    } else {
+      this.crop = this.cropSelected.join(',');
     }
   }
   clearVal() {
