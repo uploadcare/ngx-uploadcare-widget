@@ -5,17 +5,27 @@ import { Component,
           AfterViewChecked,
           ElementRef,
           EventEmitter,
-          Renderer2 } from '@angular/core';
+          Renderer2,
+          ViewChild } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
+import { UcWidgetDefaultComponent } from '../ucWidgetDefault/ucWidgetDefault.component';
+import { UcWidgetCustomComponent } from '../ucWidgetCustom/ucWidgetCustom.component';
+import { Config } from '../common/config.interface';
+import { CompilerConfig } from '@angular/compiler';
 
 @Component({
   selector: 'ngx-uploadcare-widget',
-  template: '',
+  template:
+  `<ngx-uploadcare-widget-default *ngIf="!hideDefaultButton" [config]="_config"></ngx-uploadcare-widget-default>
+   <ngx-uploadcare-widget-custom *ngIf="hideDefaultButton" [config]="_config"></ngx-uploadcare-widget-custom>`,
 })
-export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
+export class UcWidgetComponent {
   @Output('on-upload-complete') onUploadComplete = new EventEmitter<any>();
   @Output('on-change') onChange = new EventEmitter<any>();
+  @Input() hideDefaultButton = false;
+  @Input() id: string;
 
+  _config: Config;
   private element: ElementRef;
   private inputElement: Node;
   private renderer: Renderer2;
@@ -40,228 +50,188 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   private _doNotStore: boolean;
   private _reinitRequired = false;
   private _isClearValue = false;
+  @ViewChild(UcWidgetDefaultComponent)
+  private widgetComponentDefault: UcWidgetDefaultComponent;
+  @ViewChild(UcWidgetCustomComponent)
+  private widgetCustomComponent: UcWidgetCustomComponent;
 
   constructor(renderer: Renderer2, element: ElementRef) {
     this.element = element;
     this.renderer = renderer;
+    this._config = {};
   }
 
   @Input('public-key') 
   set publicKey(publicKey: string) {
-    this._publicKey = publicKey;
-    this.setReinitFlag(true);
+    this._config = {
+      ...this._config,
+      publicKey
+    };
   }
-  get publicKey() { return this._publicKey; }
+  get publicKey() { return this._config.publicKey; }
 
   @Input('multiple')
   set multiple(multiple: boolean) {
-    this._multiple = multiple;
-    this.setReinitFlag(true);
+    this._config = {
+      ...this._config,
+      multiple
+    };
   }
-  get multiple() { return this._multiple; }
+  get multiple() { return this._config.multiple; }
 
   @Input('multiple-max')
   set multipleMax(multipleMax: number) {
-    this._multipleMax = multipleMax;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      multipleMax
+    };
   }
-  get multipleMax() { return this._multipleMax; }
+  get multipleMax() { return this._config.multipleMax; }
 
   @Input('multiple-min')
   set multipleMin(multipleMin: number) {
-    this._multipleMin = multipleMin;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      multipleMin
+    };
   }
-  get multipleMin() { return this._multipleMin; }
+  get multipleMin() { return this._config.multipleMin; }
 
   @Input('images-only')
   set imagesOnly(imagesOnly: boolean) {
-    this._imagesOnly = imagesOnly;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      imagesOnly
+    };
   }
-  get imagesOnly() { return this._imagesOnly; }
+  get imagesOnly() { return this._config.imagesOnly; }
 
   @Input('preview-step')
   set previewStep(previewStep: boolean) {
-    this._previewStep = previewStep;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      previewStep
+    };
   }
-  get previewStep() { return this._previewStep; }
+  get previewStep() { return this._config.previewStep; }
 
   @Input('crop')
   set crop(crop: any) {
-    this._crop = crop;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      crop
+    };
   }
-  get crop() { return this._crop; }
+  get crop() { return this._config.crop; }
 
   @Input('image-shrink')
   set imageShrink(imageShrink: string) {
-    this._imageShrink = imageShrink;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      imageShrink
+    };
   }
-  get imageShrink() { return this._imageShrink; }
+  get imageShrink() { return this._config.imageShrink; }
 
   @Input('clearable')
   set clearable(clearable: boolean) {
-    this._clearable = clearable;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      clearable
+    };
   }
-  get clearable() { return this._clearable; }
+  get clearable() { return this._config.clearable; }
 
   @Input('tabs')
   set tabs(tabs: string) {
-    this._tabs = tabs;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      tabs
+    };
   }
-  get tabs() { return this._tabs; }
+  get tabs() { return this._config.tabs; }
 
   @Input('input-accept-types')
   set inputAcceptTypes(inputAcceptTypes: string) {
-    this._inputAcceptTypes = inputAcceptTypes;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      inputAcceptTypes
+    };
   }
-  get inputAcceptTypes() { return this._inputAcceptTypes; }
+  get inputAcceptTypes() { return this._config.inputAcceptTypes; }
 
   @Input('preferred-types')
   set preferredTypes(preferredTypes: string) {
-    this._preferredTypes = preferredTypes;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      preferredTypes
+    };
   }
-  get preferredTypes() { return this._preferredTypes; }
+  get preferredTypes() { return this._config.preferredTypes; }
 
   @Input('system-dialog')
   set systemDialog(systemDialog: boolean) {
-    this._systemDialog = systemDialog;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      systemDialog
+    };
   }
-  get systemDialog() { return this._systemDialog; }
+  get systemDialog() { return this._config.systemDialog; }
 
   @Input('secure-signature')
   set secureSignature(secureSignature: string) {
-    this._secureSignature = secureSignature;
-    this.setReinitFlag(true);
+    this._config = {
+      ...this._config,
+      secureSignature
+    };
   }
-  get secureSignature() { return this._secureSignature; }
+  get secureSignature() { return this._config.secureSignature; }
 
   @Input('secure-expire')
   set secureExpire(secureExpire: string) {
-    this._secureExpire = secureExpire;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      secureExpire
+    };
   }
-  get secureExpire() { return this._secureExpire; }
+  get secureExpire() { return this._config.secureExpire; }
 
   @Input('value')
   set value(value: string) {
-    this._value = value;
-    if(this.widget) {
-      this.setReinitFlag(false);
-      this.widget.value(value);
-    }
+    this._config = {
+      ...this._config,
+      value
+    };
   }
-  get value() { return this._value; }
+  get value() { return this._config.value; }
 
   @Input('cdn-base')
   set cdnBase(cdnBase: string) {
-    this._cdnBase = cdnBase;
-    this.setReinitFlag(true);
+    this._config = {
+      ...this._config,
+      cdnBase
+    };
   }
-  get cdnBase() { return this._cdnBase; }
+  get cdnBase() { return this._config.cdnBase; }
 
   @Input('do-not-store')
   set doNotStore(doNotStore: boolean) {
-    this._doNotStore = doNotStore;
-    this.setReinitFlag(false);
+    this._config = {
+      ...this._config,
+      doNotStore
+    };
   }
-  get doNotStore() { return this._doNotStore; }
-
-  ngAfterViewInit() {
-    this.widget = this.init();
-  }
-  
-  ngAfterViewChecked() {
-    if(this._reinitRequired) {
-      this.reset(this._isClearValue);
-    }
-  }
+  get doNotStore() { return this._config.doNotStore; }
 
   reset(clearUploads = false) {
-    this.destroy();
-    this.widget = this.init(clearUploads);
-    this._reinitRequired = false;
-    this._isClearValue = false;
+    this.widgetComponentDefault.reset(clearUploads);
   }
 
   clearUploads() {
-    this._value = null;
-    if(this.widget) {
-      this.widget.value(null);
-    }
-  }
-  
-  private setReinitFlag(isClearValue: boolean) {
-    if(this.widget) {
-      this._reinitRequired = true;
-      this._isClearValue = isClearValue;
-    }
+    this.widgetComponentDefault.clearUploads();
   }
 
-  private setInputAttr(key: string, value: any) {
-    if (value) {
-      this.renderer.setAttribute(this.inputElement, key, value);
-    }
-  }
-
-  private initInputElement() {
-    this.setInputAttr('type', 'hidden');
-    this.setInputAttr('data-public-key', this._publicKey);
-    this.setInputAttr('data-multiple', this._multiple);
-    this.setInputAttr('data-multiple-max', this._multipleMax);
-    this.setInputAttr('data-multiple-min', this._multipleMin);
-    this.setInputAttr('data-images-only', this._imagesOnly);
-    this.setInputAttr('data-preview-step', this._previewStep);
-    this.setInputAttr('data-crop', this._crop);
-    this.setInputAttr('data-image-shrink', this._imageShrink);
-    this.setInputAttr('data-clearable', this._clearable);
-    this.setInputAttr('data-tabs', this._tabs);
-    this.setInputAttr('data-input-accept-types', this._inputAcceptTypes);
-    this.setInputAttr('data-preferred-types', this._preferredTypes);
-    this.setInputAttr('data-system-dialog', this._systemDialog);
-    this.setInputAttr('data-secure-signature', this._secureSignature);
-    this.setInputAttr('data-secure-expire', this._secureExpire);
-    this.setInputAttr('data-cdn-base', this._cdnBase);
-    this.setInputAttr('data-do-not-store', this._doNotStore);
-    if(this._value) {
-      this.renderer.setProperty(this.inputElement, 'value', this._value);
-    }
-    
-  }
-
-  private init(removeUploads = false) {
-    this.inputElement = this.renderer.createElement('input');
-    this.renderer.appendChild(this.element.nativeElement, this.inputElement);
-    if(removeUploads) {
-      this.clearUploads();
-    }
-    this.initInputElement();
-    const widget = uploadcare.Widget(this.inputElement);
-    widget.onUploadComplete((fileInfo) => {
-      this.onUploadComplete.emit(fileInfo);
-      this._value = fileInfo.uuid;
-    });
-    widget.onChange((promise) => {
-      this.onChange.emit(promise);
-    });
-    return widget;
-  }
-
-  private destroy() {
-    const $ = uploadcare.jQuery;
-    $(this.widget.inputElement.nextSibling).remove();
-    $(this.widget.inputElement).clone().appendTo($(this.element.nativeElement));
-    $(this.widget.inputElement).remove();
-    this.renderer.destroyNode(this.inputElement);
-    this.renderer.removeChild(this.element.nativeElement, this.element.nativeElement.children[0]);
-    delete this.widget;
+  openDialog() {
+    this.widgetCustomComponent.openDialog();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { UcWidgetComponent } from '../../src/index';
@@ -8,7 +8,7 @@ import { UcWidgetComponent } from '../../src/index';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   publicKey = 'demopublickey';
   multipleFiles = false;
   multipleMin = 1;
@@ -45,9 +45,22 @@ export class AppComponent {
   uploadedData: null;
   cropOptions = ['disabled', 'free', '16:9', '4:3', '5:4', '1:1', '300x400 upscale', '300x200 minimum'];
   cropSelected = [ this.cropOptions[0] ];
+  defComponent: UcWidgetComponent;
+  custComponent: UcWidgetComponent;
 
-  @ViewChild(UcWidgetComponent)
-    private widgetComponent: UcWidgetComponent;
+  @ViewChildren(UcWidgetComponent) 
+  private widgetComponents: QueryList<UcWidgetComponent>;
+  
+  ngAfterViewInit() {
+    const arr = this.widgetComponents.toArray();
+    if(arr[0].hideDefaultButton) {
+      this.defComponent = arr[1];
+      this.custComponent = arr[0];
+    } else {
+      this.defComponent = arr[0];
+      this.custComponent = arr[1];
+    }
+  }
 
   onUpload(info) {
     console.log('fired Event "onUpload"');
@@ -102,11 +115,15 @@ export class AppComponent {
     }
   }
   clearVal() {
-    this.widgetComponent.clearUploads();
+    this.defComponent.clearUploads();
     this.uploadedData = undefined;
   }
   resetWidget() {
-    this.widgetComponent.reset(true);
+    this.defComponent.reset(true);
     this.uploadedData = undefined;
+  }
+  openDialog() {
+    debugger;
+    this.custComponent.openDialog();
   }
 }

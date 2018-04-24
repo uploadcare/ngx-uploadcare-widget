@@ -5,6 +5,7 @@
     </div>
     <div class="col-md-12 text-center">
       <ngx-uploadcare-widget
+        id="1"
         images-only={{isImageOnly}}
         public-key={{publicKey}}
         multiple={{multipleFiles}}
@@ -24,6 +25,29 @@
         (on-upload-complete)="onUpload($event)"
         (on-change)="onChange($event)">
       </ngx-uploadcare-widget>
+      <ngx-uploadcare-widget
+        id="2"
+        images-only={{isImageOnly}}
+        public-key={{publicKey}}
+        multiple={{multipleFiles}}
+        multiple-min={{multipleMin}}
+        multiple-max={{multipleMax}}
+        preview-step={{previewStep}}
+        crop={{crop}}
+        image-shrink={{imageShrink}}
+        clearable={{clearable}}
+        tabs={{tabs}}
+        input-accept-types={{inputAcceptTypes}}
+        preferred-types={{preferredTypes}}
+        system-dialog={{systemDialog}}
+        value={{value}}
+        cdn-base={{cdnBase}}
+        do-not-store={{doNotStore}}
+        (on-upload-complete)="onUpload($event)"
+        (on-change)="onChange($event)"
+        [hideDefaultButton]="true">
+      </ngx-uploadcare-widget>
+      <button class="btn btn-info" (click)="openDialog()">Open dialog</button>
     </div>
   </div>
  <div class="row settings">
