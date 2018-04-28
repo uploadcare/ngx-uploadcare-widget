@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { UcWidgetComponent } from './ucWidget.component';
-import { UcWidgetDefaultModule } from '../ucWidgetDefault/ucWidgetDefault.module';
+import { UcWidgetCustomComponent } from '../ucWidgetCustom/ucWidgetCustom.component';
 import { UcWidgetCustomModule } from '../ucWidgetCustom/ucWidgetCustom.module';
 
 @NgModule({
@@ -11,11 +11,13 @@ import { UcWidgetCustomModule } from '../ucWidgetCustom/ucWidgetCustom.module';
   ],
   imports: [
     BrowserModule,
-    UcWidgetDefaultModule,
     UcWidgetCustomModule,
   ],
   providers: [],
   bootstrap: [],
-  exports: [UcWidgetComponent],
+  exports: [
+    UcWidgetComponent,
+    UcWidgetCustomComponent,
+  ],
 })
 export class UcWidgetModule { }

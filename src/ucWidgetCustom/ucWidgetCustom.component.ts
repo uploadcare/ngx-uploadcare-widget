@@ -1,17 +1,9 @@
 import { Component,
           Input,
           Output,
-          AfterViewInit,
-          AfterViewChecked,
-          ElementRef,
           EventEmitter,
-          Renderer2,
-          // ContentChildren, 
-          // QueryList,
-          // Directive,
           } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
-import { Config } from '../common/config.interface';
 
 @Component({
   selector: 'ngx-uploadcare-widget-custom',
@@ -20,33 +12,68 @@ import { Config } from '../common/config.interface';
 export class UcWidgetCustomComponent {
   @Output('on-upload-complete') onUploadComplete = new EventEmitter<any>();
   @Output('on-change') onChange = new EventEmitter<any>();
-  private _config: Config;
-  private element: ElementRef;
-  private inputElement: Node;
-  private renderer: Renderer2;
-  private widget: any;
-  private _reinitRequired: boolean;
-  private _isClearValue: boolean;
+  @Output('on-progress') onProgress = new EventEmitter<any>();
 
-  constructor(renderer: Renderer2, element: ElementRef) {
-    this.element = element;
-    this.renderer = renderer;
-    this._config = {};
-  }
-
-  @Input('config')
-  set config(_config: Config) {
-    if (!_config.tabs) {
-      _config.tabs = 'file camera url facebook gdrive gphotos dropbox instagram evernote flickr skydrive';
-    }
-    if (!_config.crop) {
-      _config.crop = null;
-    }
-    this._config = { ..._config };
-  }
-  get config() { return this._config; }
+  @Input('public-key') publicKey = 'demopublickey';
+  @Input('multiple') multiple: boolean;
+  @Input('multiple-max') multipleMax: number;
+  @Input('multiple-min') multipleMin: number;
+  @Input('images-only') imagesOnly: boolean;
+  @Input('preview-step') previewStep: boolean;
+  @Input('crop') crop: any;
+  @Input('image-shrink') imageShrink: string;
+  @Input('clearable') clearable: boolean;
+  @Input('tabs') tabs: string;
+  @Input('input-accept-types') inputAcceptTypes: string;
+  @Input('preferred-types') preferredTypes: string;
+  @Input('system-dialog') systemDialog: boolean;
+  @Input('secure-signature') secureSignature: string;
+  @Input('secure-expire') secureExpire: string;
+  @Input('value') value: string;
+  @Input('cdn-base') cdnBase: string;
+  @Input('do-not-store') doNotStore: boolean;
 
   openDialog() {
-    const dialog = uploadcare.openDialog(null, null, this._config);
+    const config = {
+      publicKey: this.publicKey ? this.publicKey : undefined,
+      multiple: this.multiple,
+      multipleMax: this.multipleMax,
+      multipleMin: this.multipleMin,
+      imagesOnly: this.imagesOnly,
+      previewStep: this.previewStep,
+      crop: this.crop ? this.crop : undefined,
+      imageShrink: this.imageShrink ? this.imageShrink : undefined,
+      clearable: this.clearable,
+      tabs: this.tabs ? this.tabs : undefined,
+      inputAcceptTypes: this.inputAcceptTypes ? this.inputAcceptTypes : undefined,
+      preferredTypes: this.preferredTypes,
+      systemDialog: this.systemDialog,
+      secureSignature: this.secureSignature,
+      secureExpire: this.secureExpire,
+      value: this.value ? this.value : undefined,
+      cdnBase: this.cdnBase ? this.cdnBase : undefined,
+      doNotStore: this.doNotStore
+    };
+    const dialog = uploadcare.openDialog(this.value, null, config);
+    dialog.done((selectionPromise) => {
+      this.onChange.emit(selectionPromise);
+      if(typeof selectionPromise.promise === 'function') {
+        selectionPromise.promise()
+          .then((groupInfo) => {
+            this.onUploadComplete.emit(groupInfo);
+          })
+          .progress((progress) => {
+            this.onProgress.emit(progress);
+          });
+      } else {
+        selectionPromise
+          .then((fileInfo) => {
+            this.onUploadComplete.emit(fileInfo);
+          })
+          .progress((progress) => {
+            this.onProgress.emit(progress);
+          });
+      }
+    });
   }
 }

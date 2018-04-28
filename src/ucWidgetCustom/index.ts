@@ -1,2 +1,2 @@
 export * from './ucWidgetCustom.component';
-export * from './ucWidgetCustom.module';
+// export * from './ucWidgetCustom.module';

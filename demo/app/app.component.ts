@@ -1,14 +1,14 @@
-import { Component, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
+import { Component, QueryList, ViewChild } from '@angular/core';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import { UcWidgetComponent } from '../../src/index';
+import { UcWidgetComponent, UcWidgetCustomComponent } from '../../src/index';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   publicKey = 'demopublickey';
   multipleFiles = false;
   multipleMin = 1;
@@ -45,33 +45,30 @@ export class AppComponent implements AfterViewInit {
   uploadedData: null;
   cropOptions = ['disabled', 'free', '16:9', '4:3', '5:4', '1:1', '300x400 upscale', '300x200 minimum'];
   cropSelected = [ this.cropOptions[0] ];
-  defComponent: UcWidgetComponent;
-  custComponent: UcWidgetComponent;
 
-  @ViewChildren(UcWidgetComponent) 
-  private widgetComponents: QueryList<UcWidgetComponent>;
+  @ViewChild(UcWidgetComponent) 
+  private widgetComponent: UcWidgetComponent;
   
-  ngAfterViewInit() {
-    const arr = this.widgetComponents.toArray();
-    if(arr[0].hideDefaultButton) {
-      this.defComponent = arr[1];
-      this.custComponent = arr[0];
-    } else {
-      this.defComponent = arr[0];
-      this.custComponent = arr[1];
-    }
-  }
+  @ViewChild(UcWidgetCustomComponent) 
+  private widgetCustomComponent: UcWidgetCustomComponent;
 
   onUpload(info) {
     console.log('fired Event "onUpload"');
     console.log(info);
     this.uploadedData = info;
   }
+  
+  onProgress(progress) {
+    console.log('fired Event "onProgress with data:"');
+    console.log(progress);
+  }
+  
   onChange(file) {
     if(!file) {
       return;
     }
     console.log('fired Event "onChange"');
+    console.log(file);
   // input file parameter depends on "multiple-files" widget attribute
     if(this.multipleFiles) {
   //  file contains 2 methods:
@@ -115,15 +112,14 @@ export class AppComponent implements AfterViewInit {
     }
   }
   clearVal() {
-    this.defComponent.clearUploads();
+    this.widgetComponent.clearUploads();
     this.uploadedData = undefined;
   }
   resetWidget() {
-    this.defComponent.reset(true);
+    this.widgetComponent.reset(true);
     this.uploadedData = undefined;
   }
   openDialog() {
-    debugger;
-    this.custComponent.openDialog();
+    this.widgetCustomComponent.openDialog();
   }
 }
