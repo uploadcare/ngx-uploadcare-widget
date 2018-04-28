@@ -10,7 +10,7 @@ describe('Custom Widget Component', () => {
   const crop = '100x100';
   const imageShrink = '1000x1000';
   const clearable = true;
-  const tabs = 'files url';
+  const tabs = 'url';
   const inputAcceptTypes = 'jpg';
   const preferredTypes = 'jpg';
   const systemDialog = true;
@@ -60,4 +60,14 @@ describe('Custom Widget Component', () => {
     const comp = fixture.debugElement.componentInstance;
     expect(comp.publicKey).toEqual('demopublickey');
   }));
+
+  it('call of "openDialog()" successfull', async(() => {
+    const fixture = TestBed.createComponent(UcWidgetCustomComponent);
+    const component = fixture.debugElement.componentInstance;
+    initComponent(component);
+    fixture.detectChanges();
+    component.openDialog();
+    expect(1).toBe(1);
+  }));
+
 });

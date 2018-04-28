@@ -40,6 +40,11 @@ describe('Widget Component', () => {
     component.cdnBase = cdnBase;
     component.doNotStore = doNotStore;
   };
+  
+  const initComponentMultiple = (component) => {
+    initComponent(component);
+    component.multiple = true;
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -162,4 +167,12 @@ describe('Widget Component', () => {
     expect(compiled.querySelector('input').getAttribute('value')).toBeNull();
   }));
 
+  it('call of "openDialog()" successfull', async(() => {
+    const fixture = TestBed.createComponent(UcWidgetComponent);
+    const component = fixture.debugElement.componentInstance;
+    initComponent(component);
+    fixture.detectChanges();
+    component.openDialog();
+    expect(1).toBe(1);
+  }));
 });
