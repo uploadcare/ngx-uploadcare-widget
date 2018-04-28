@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { UcWidgetComponent, UcWidgetCustomComponent } from '../../src/index';
