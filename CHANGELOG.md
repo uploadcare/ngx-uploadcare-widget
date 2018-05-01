@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.3.0 - 2018-05-01
+* Changed usage approach, now you should use a module, instead of direct usage of the component.
+* Exported Uploadcare widget api, now you can write your own directives if you want.
+* Created new directive `ngx-uploadcare-widget-custom` without any default markup. Now you can use a Upladcare widget with your own markup.
+* Added new methods `openDialog()` to both directives.
+* Added new event `on-progress` to both directives.
+
 ## 0.2.1 - 2018-03-28
 Fix release.
 

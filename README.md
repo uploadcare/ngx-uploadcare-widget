@@ -30,19 +30,19 @@ npm install ngx-uploadcare-widget
 
 The basic wrapper usage scenario can be described in four steps.
 
-### Step 1. Import the component
+### Step 1. Import the module
 
 ```typescript
-import { UcWidgetComponent } from 'ngx-uploadcare-widget';
+import { UcWidgetModule } from 'ngx-uploadcare-widget';
 ```
 
-### Step 2. Add the component to your module
+### Step 2. Import the module to yours
 
 ```typescript
 @NgModule({
-  declarations: [
+  imports: [
     ...,
-    UcWidgetComponent,
+    UcWidgetModule,
   ],
   ...
 })
@@ -52,31 +52,41 @@ import { UcWidgetComponent } from 'ngx-uploadcare-widget';
 ### Step 3. Use the component in your template
 
 ```html
+<!- with default markup->
 <ngx-uploadcare-widget
   images-only="true"
   public-key="YOUR_PUBLIC_KEY">
 </ngx-uploadcare-widget>
+
+<!- without any markup->
+<ngx-uploadcare-widget-custom
+  images-only="true"
+  public-key="YOUR_PUBLIC_KEY">
+</ngx-uploadcare-widget-custom>
+
 ```
 
 ### Step 4. Have fun with the widget events
 
-The component currently supports two widget events:
+The component currently supports three widget events:
 
 * `on-change`
 * `on-upload-complete`
+* `on-progress`
 
-Here is how you can handle those two,
+Here is how you can handle those three,
 
 ```html
 <ngx-uploadcare-widget
   images-only="true"
   public-key="demopublickey"
   (on-upload-complete)="yourOnUploadHandler($event)"
-  (on-change)="yourOnChangeHandler($event)">
+  (on-change)="yourOnChangeHandler($event)"
+  (on-progress)="yourOnProgressHandler($event)">
 </ngx-uploadcare-widget>
 ```
 
-You can learn more about the two widget events in our
+You can learn more about this widget events in our
 [docs][docs-widget-js-change].
 
 ## Configuration
@@ -109,6 +119,7 @@ All the following attributes correspond to the ones listed in the
 
 * [on-upload-complete](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-upload-complete)
 * [on-change](https://uploadcare.com/docs/api_reference/javascript/widget/#widget-on-change)
+* on-progress - fired several times while upload with progress data.
 
 Events usage example:
 
@@ -116,6 +127,11 @@ Events usage example:
   onUpload(info) {
     console.log('fired Event "onUpload"');
     console.log(info);
+  }
+
+  onProgress(progress) {
+    console.log('fired Event "onProgress with data:"');
+    console.log(progress);
   }
 
   onChange(file) {
@@ -153,10 +169,11 @@ Events usage example:
 
 ### Methods
 
-The component now provides the two following public methods:
+The components provides following public methods:
 
 * `clearUploads()` - Removes all current uploads from the widget. You can use the method to reset a form even if a user has already uploaded some files.
 * `reset(clearUploads = false)` - Resets the widget, You can also remove all the current uploads if `clearUploads` is set to `true`
+* `openDilaog()` - Opens Uploadcare widget dialog with current configuration.
 
 All methods are accessible from a parent component via the `@ViewChild()` approach.
 
