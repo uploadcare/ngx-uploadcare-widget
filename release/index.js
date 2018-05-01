@@ -83,6 +83,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ucWidget__ = __webpack_require__("./src/ucWidget/index.ts");
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "UcWidgetComponent", function() { return __WEBPACK_IMPORTED_MODULE_0__ucWidget__["a"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "UcWidgetModule", function() { return __WEBPACK_IMPORTED_MODULE_0__ucWidget__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ucWidgetCustom__ = __webpack_require__("./src/ucWidgetCustom/index.ts");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "UcWidgetCustomComponent", function() { return __WEBPACK_IMPORTED_MODULE_1__ucWidgetCustom__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uploadcare_widget__ = __webpack_require__("uploadcare-widget");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uploadcare_widget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_uploadcare_widget__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_2_uploadcare_widget__) if(["UcWidgetComponent","UcWidgetModule","UcWidgetCustomComponent","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_2_uploadcare_widget__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
 
 
 
@@ -126,6 +133,7 @@ var UcWidgetComponent = /** @class */ (function () {
     function UcWidgetComponent(renderer, element) {
         this.onUploadComplete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.onChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.onProgress = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this._publicKey = 'demopublickey';
         this._value = null;
         this._cdnBase = null;
@@ -320,6 +328,11 @@ var UcWidgetComponent = /** @class */ (function () {
             this.widget.value(null);
         }
     };
+    UcWidgetComponent.prototype.openDialog = function () {
+        if (this.widget) {
+            this.widget.openDialog();
+        }
+    };
     UcWidgetComponent.prototype.setReinitFlag = function (isClearValue) {
         if (this.widget) {
             this._reinitRequired = true;
@@ -368,8 +381,20 @@ var UcWidgetComponent = /** @class */ (function () {
             _this.onUploadComplete.emit(fileInfo);
             _this._value = fileInfo.uuid;
         });
-        widget.onChange(function (promise) {
-            _this.onChange.emit(promise);
+        widget.onChange(function (selectionPromise) {
+            _this.onChange.emit(selectionPromise);
+            if (typeof selectionPromise.promise === 'function') {
+                selectionPromise.promise()
+                    .progress(function (progress) {
+                    _this.onProgress.emit(progress);
+                });
+            }
+            else {
+                selectionPromise
+                    .progress(function (progress) {
+                    _this.onProgress.emit(progress);
+                });
+            }
         });
         return widget;
     };
@@ -390,6 +415,10 @@ var UcWidgetComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('on-change'),
         __metadata("design:type", Object)
     ], UcWidgetComponent.prototype, "onChange", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('on-progress'),
+        __metadata("design:type", Object)
+    ], UcWidgetComponent.prototype, "onProgress", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('public-key'),
         __metadata("design:type", String),
@@ -504,12 +533,16 @@ var UcWidgetComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ucWidget_component__ = __webpack_require__("./src/ucWidget/ucWidget.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ucWidgetCustom_ucWidgetCustom_component__ = __webpack_require__("./src/ucWidgetCustom/ucWidgetCustom.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ucWidgetCustom_ucWidgetCustom_module__ = __webpack_require__("./src/ucWidgetCustom/ucWidgetCustom.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -522,13 +555,241 @@ var UcWidgetModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__ucWidget_component__["a" /* UcWidgetComponent */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"]
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
+                __WEBPACK_IMPORTED_MODULE_4__ucWidgetCustom_ucWidgetCustom_module__["a" /* UcWidgetCustomModule */],
             ],
             providers: [],
-            bootstrap: []
+            bootstrap: [],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_2__ucWidget_component__["a" /* UcWidgetComponent */],
+                __WEBPACK_IMPORTED_MODULE_3__ucWidgetCustom_ucWidgetCustom_component__["a" /* UcWidgetCustomComponent */],
+            ],
         })
     ], UcWidgetModule);
     return UcWidgetModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/ucWidgetCustom/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ucWidgetCustom_component__ = __webpack_require__("./src/ucWidgetCustom/ucWidgetCustom.component.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__ucWidgetCustom_component__["a"]; });
+
+// export * from './ucWidgetCustom.module';
+
+
+/***/ }),
+
+/***/ "./src/ucWidgetCustom/ucWidgetCustom.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UcWidgetCustomComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget__ = __webpack_require__("uploadcare-widget");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uploadcare_widget__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var UcWidgetCustomComponent = /** @class */ (function () {
+    function UcWidgetCustomComponent() {
+        this.onUploadComplete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.onChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.onProgress = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.publicKey = 'demopublickey';
+    }
+    UcWidgetCustomComponent.prototype.openDialog = function () {
+        var _this = this;
+        var config = {
+            publicKey: this.publicKey ? this.publicKey : undefined,
+            multiple: this.multiple,
+            multipleMax: this.multipleMax,
+            multipleMin: this.multipleMin,
+            imagesOnly: this.imagesOnly,
+            previewStep: this.previewStep,
+            crop: this.crop ? this.crop : undefined,
+            imageShrink: this.imageShrink ? this.imageShrink : undefined,
+            clearable: this.clearable,
+            tabs: this.tabs ? this.tabs : undefined,
+            inputAcceptTypes: this.inputAcceptTypes ? this.inputAcceptTypes : undefined,
+            preferredTypes: this.preferredTypes,
+            systemDialog: this.systemDialog,
+            secureSignature: this.secureSignature,
+            secureExpire: this.secureExpire,
+            value: this.value ? this.value : undefined,
+            cdnBase: this.cdnBase ? this.cdnBase : undefined,
+            doNotStore: this.doNotStore
+        };
+        var dialog = __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.openDialog(this.value, null, config);
+        dialog.done(function (selectionPromise) {
+            _this.onChange.emit(selectionPromise);
+            if (typeof selectionPromise.promise === 'function') {
+                selectionPromise.promise()
+                    .then(function (groupInfo) {
+                    _this.onUploadComplete.emit(groupInfo);
+                })
+                    .progress(function (progress) {
+                    _this.onProgress.emit(progress);
+                });
+            }
+            else {
+                selectionPromise
+                    .then(function (fileInfo) {
+                    _this.onUploadComplete.emit(fileInfo);
+                })
+                    .progress(function (progress) {
+                    _this.onProgress.emit(progress);
+                });
+            }
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('on-upload-complete'),
+        __metadata("design:type", Object)
+    ], UcWidgetCustomComponent.prototype, "onUploadComplete", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('on-change'),
+        __metadata("design:type", Object)
+    ], UcWidgetCustomComponent.prototype, "onChange", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('on-progress'),
+        __metadata("design:type", Object)
+    ], UcWidgetCustomComponent.prototype, "onProgress", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('public-key'),
+        __metadata("design:type", Object)
+    ], UcWidgetCustomComponent.prototype, "publicKey", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('multiple'),
+        __metadata("design:type", Boolean)
+    ], UcWidgetCustomComponent.prototype, "multiple", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('multiple-max'),
+        __metadata("design:type", Number)
+    ], UcWidgetCustomComponent.prototype, "multipleMax", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('multiple-min'),
+        __metadata("design:type", Number)
+    ], UcWidgetCustomComponent.prototype, "multipleMin", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('images-only'),
+        __metadata("design:type", Boolean)
+    ], UcWidgetCustomComponent.prototype, "imagesOnly", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('preview-step'),
+        __metadata("design:type", Boolean)
+    ], UcWidgetCustomComponent.prototype, "previewStep", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('crop'),
+        __metadata("design:type", Object)
+    ], UcWidgetCustomComponent.prototype, "crop", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('image-shrink'),
+        __metadata("design:type", String)
+    ], UcWidgetCustomComponent.prototype, "imageShrink", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('clearable'),
+        __metadata("design:type", Boolean)
+    ], UcWidgetCustomComponent.prototype, "clearable", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('tabs'),
+        __metadata("design:type", String)
+    ], UcWidgetCustomComponent.prototype, "tabs", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('input-accept-types'),
+        __metadata("design:type", String)
+    ], UcWidgetCustomComponent.prototype, "inputAcceptTypes", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('preferred-types'),
+        __metadata("design:type", String)
+    ], UcWidgetCustomComponent.prototype, "preferredTypes", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('system-dialog'),
+        __metadata("design:type", Boolean)
+    ], UcWidgetCustomComponent.prototype, "systemDialog", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('secure-signature'),
+        __metadata("design:type", String)
+    ], UcWidgetCustomComponent.prototype, "secureSignature", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('secure-expire'),
+        __metadata("design:type", String)
+    ], UcWidgetCustomComponent.prototype, "secureExpire", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('value'),
+        __metadata("design:type", String)
+    ], UcWidgetCustomComponent.prototype, "value", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('cdn-base'),
+        __metadata("design:type", String)
+    ], UcWidgetCustomComponent.prototype, "cdnBase", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('do-not-store'),
+        __metadata("design:type", Boolean)
+    ], UcWidgetCustomComponent.prototype, "doNotStore", void 0);
+    UcWidgetCustomComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'ngx-uploadcare-widget-custom',
+            template: '',
+        })
+    ], UcWidgetCustomComponent);
+    return UcWidgetCustomComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/ucWidgetCustom/ucWidgetCustom.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UcWidgetCustomModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("@angular/platform-browser");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("@angular/core");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ucWidgetCustom_component__ = __webpack_require__("./src/ucWidgetCustom/ucWidgetCustom.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var UcWidgetCustomModule = /** @class */ (function () {
+    function UcWidgetCustomModule() {
+    }
+    UcWidgetCustomModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__ucWidgetCustom_component__["a" /* UcWidgetCustomComponent */]
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"]
+            ],
+            providers: [],
+            bootstrap: [],
+            exports: [__WEBPACK_IMPORTED_MODULE_2__ucWidgetCustom_component__["a" /* UcWidgetCustomComponent */]],
+        })
+    ], UcWidgetCustomModule);
+    return UcWidgetCustomModule;
 }());
 
 
