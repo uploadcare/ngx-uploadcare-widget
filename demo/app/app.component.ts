@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import { UcWidgetComponent } from '../../src/index';
+import { UcWidgetComponent, UcWidgetCustomComponent } from '../../src/index';
 
 @Component({
   selector: 'app-root',
@@ -46,19 +46,29 @@ export class AppComponent {
   cropOptions = ['disabled', 'free', '16:9', '4:3', '5:4', '1:1', '300x400 upscale', '300x200 minimum'];
   cropSelected = [ this.cropOptions[0] ];
 
-  @ViewChild(UcWidgetComponent)
-    private widgetComponent: UcWidgetComponent;
+  @ViewChild(UcWidgetComponent) 
+  private widgetComponent: UcWidgetComponent;
+  
+  @ViewChild(UcWidgetCustomComponent) 
+  private widgetCustomComponent: UcWidgetCustomComponent;
 
   onUpload(info) {
     console.log('fired Event "onUpload"');
     console.log(info);
     this.uploadedData = info;
   }
+  
+  onProgress(progress) {
+    console.log('fired Event "onProgress with data:"');
+    console.log(progress);
+  }
+  
   onChange(file) {
     if(!file) {
       return;
     }
     console.log('fired Event "onChange"');
+    console.log(file);
   // input file parameter depends on "multiple-files" widget attribute
     if(this.multipleFiles) {
   //  file contains 2 methods:
@@ -108,5 +118,8 @@ export class AppComponent {
   resetWidget() {
     this.widgetComponent.reset(true);
     this.uploadedData = undefined;
+  }
+  openDialog() {
+    this.widgetCustomComponent.openDialog();
   }
 }

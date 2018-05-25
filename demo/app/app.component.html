@@ -22,8 +22,31 @@
         cdn-base={{cdnBase}}
         do-not-store={{doNotStore}}
         (on-upload-complete)="onUpload($event)"
-        (on-change)="onChange($event)">
+        (on-change)="onChange($event)"
+        (on-progress)="onProgress($event)">
       </ngx-uploadcare-widget>
+      <ngx-uploadcare-widget-custom
+        images-only={{isImageOnly}}
+        public-key={{publicKey}}
+        multiple={{multipleFiles}}
+        multiple-min={{multipleMin}}
+        multiple-max={{multipleMax}}
+        preview-step={{previewStep}}
+        crop={{crop}}
+        image-shrink={{imageShrink}}
+        clearable={{clearable}}
+        tabs={{tabs}}
+        input-accept-types={{inputAcceptTypes}}
+        preferred-types={{preferredTypes}}
+        system-dialog={{systemDialog}}
+        value={{value}}
+        cdn-base={{cdnBase}}
+        do-not-store={{doNotStore}}
+        (on-upload-complete)="onUpload($event)"
+        (on-change)="onChange($event)"
+        (on-progress)="onProgress($event)">
+      </ngx-uploadcare-widget-custom>
+      <button class="btn btn-info" (click)="openDialog()">Open dialog</button>
     </div>
   </div>
  <div class="row settings">

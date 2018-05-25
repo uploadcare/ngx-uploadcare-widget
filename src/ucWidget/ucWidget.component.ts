@@ -1,12 +1,17 @@
 import { Component,
-          Input,
-          Output,
-          AfterViewInit,
-          AfterViewChecked,
-          ElementRef,
-          EventEmitter,
-          Renderer2 } from '@angular/core';
+  Input,
+  Output,
+  AfterViewInit,
+  AfterViewChecked,
+  ElementRef,
+  EventEmitter,
+  Renderer2,
+  VERSION } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
+
+declare const APP_VERSION: string;
+
+uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
 
 @Component({
   selector: 'ngx-uploadcare-widget',
@@ -15,6 +20,7 @@ import uploadcare from 'uploadcare-widget';
 export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   @Output('on-upload-complete') onUploadComplete = new EventEmitter<any>();
   @Output('on-change') onChange = new EventEmitter<any>();
+  @Output('on-progress') onProgress = new EventEmitter<any>();
 
   private element: ElementRef;
   private inputElement: Node;
@@ -47,112 +53,112 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   }
 
   @Input('public-key') 
-  set publicKey(publicKey: string) {
+    set publicKey(publicKey: string) {
     this._publicKey = publicKey;
     this.setReinitFlag(true);
   }
   get publicKey() { return this._publicKey; }
 
   @Input('multiple')
-  set multiple(multiple: boolean) {
+    set multiple(multiple: boolean) {
     this._multiple = multiple;
     this.setReinitFlag(true);
   }
   get multiple() { return this._multiple; }
 
   @Input('multiple-max')
-  set multipleMax(multipleMax: number) {
+    set multipleMax(multipleMax: number) {
     this._multipleMax = multipleMax;
     this.setReinitFlag(false);
   }
   get multipleMax() { return this._multipleMax; }
 
   @Input('multiple-min')
-  set multipleMin(multipleMin: number) {
+    set multipleMin(multipleMin: number) {
     this._multipleMin = multipleMin;
     this.setReinitFlag(false);
   }
   get multipleMin() { return this._multipleMin; }
 
   @Input('images-only')
-  set imagesOnly(imagesOnly: boolean) {
+    set imagesOnly(imagesOnly: boolean) {
     this._imagesOnly = imagesOnly;
     this.setReinitFlag(false);
   }
   get imagesOnly() { return this._imagesOnly; }
 
   @Input('preview-step')
-  set previewStep(previewStep: boolean) {
+    set previewStep(previewStep: boolean) {
     this._previewStep = previewStep;
     this.setReinitFlag(false);
   }
   get previewStep() { return this._previewStep; }
 
   @Input('crop')
-  set crop(crop: any) {
+    set crop(crop: any) {
     this._crop = crop;
     this.setReinitFlag(false);
   }
   get crop() { return this._crop; }
 
   @Input('image-shrink')
-  set imageShrink(imageShrink: string) {
+    set imageShrink(imageShrink: string) {
     this._imageShrink = imageShrink;
     this.setReinitFlag(false);
   }
   get imageShrink() { return this._imageShrink; }
 
   @Input('clearable')
-  set clearable(clearable: boolean) {
+    set clearable(clearable: boolean) {
     this._clearable = clearable;
     this.setReinitFlag(false);
   }
   get clearable() { return this._clearable; }
 
   @Input('tabs')
-  set tabs(tabs: string) {
+    set tabs(tabs: string) {
     this._tabs = tabs;
     this.setReinitFlag(false);
   }
   get tabs() { return this._tabs; }
 
   @Input('input-accept-types')
-  set inputAcceptTypes(inputAcceptTypes: string) {
+    set inputAcceptTypes(inputAcceptTypes: string) {
     this._inputAcceptTypes = inputAcceptTypes;
     this.setReinitFlag(false);
   }
   get inputAcceptTypes() { return this._inputAcceptTypes; }
 
   @Input('preferred-types')
-  set preferredTypes(preferredTypes: string) {
+    set preferredTypes(preferredTypes: string) {
     this._preferredTypes = preferredTypes;
     this.setReinitFlag(false);
   }
   get preferredTypes() { return this._preferredTypes; }
 
   @Input('system-dialog')
-  set systemDialog(systemDialog: boolean) {
+    set systemDialog(systemDialog: boolean) {
     this._systemDialog = systemDialog;
     this.setReinitFlag(false);
   }
   get systemDialog() { return this._systemDialog; }
 
   @Input('secure-signature')
-  set secureSignature(secureSignature: string) {
+    set secureSignature(secureSignature: string) {
     this._secureSignature = secureSignature;
     this.setReinitFlag(true);
   }
   get secureSignature() { return this._secureSignature; }
 
   @Input('secure-expire')
-  set secureExpire(secureExpire: string) {
+    set secureExpire(secureExpire: string) {
     this._secureExpire = secureExpire;
     this.setReinitFlag(false);
   }
   get secureExpire() { return this._secureExpire; }
 
   @Input('value')
-  set value(value: string) {
+    set value(value: string) {
     this._value = value;
     if(this.widget) {
       this.setReinitFlag(false);
@@ -162,14 +168,14 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   get value() { return this._value; }
 
   @Input('cdn-base')
-  set cdnBase(cdnBase: string) {
+    set cdnBase(cdnBase: string) {
     this._cdnBase = cdnBase;
     this.setReinitFlag(true);
   }
   get cdnBase() { return this._cdnBase; }
 
   @Input('do-not-store')
-  set doNotStore(doNotStore: boolean) {
+    set doNotStore(doNotStore: boolean) {
     this._doNotStore = doNotStore;
     this.setReinitFlag(false);
   }
@@ -178,7 +184,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   ngAfterViewInit() {
     this.widget = this.init();
   }
-  
+
   ngAfterViewChecked() {
     if(this._reinitRequired) {
       this.reset(this._isClearValue);
@@ -198,7 +204,13 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
       this.widget.value(null);
     }
   }
-  
+
+  openDialog() {
+    if(this.widget) {
+      this.widget.openDialog();
+    }
+  }
+
   private setReinitFlag(isClearValue: boolean) {
     if(this.widget) {
       this._reinitRequired = true;
@@ -234,7 +246,6 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
     if(this._value) {
       this.renderer.setProperty(this.inputElement, 'value', this._value);
     }
-    
   }
 
   private init(removeUploads = false) {
@@ -249,8 +260,19 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
       this.onUploadComplete.emit(fileInfo);
       this._value = fileInfo.uuid;
     });
-    widget.onChange((promise) => {
-      this.onChange.emit(promise);
+    widget.onChange((selectionPromise) => {
+      this.onChange.emit(selectionPromise);
+      if(typeof selectionPromise.promise === 'function') {
+        selectionPromise.promise()
+          .progress((progress) => {
+            this.onProgress.emit(progress);
+          });
+      } else {
+        selectionPromise
+          .progress((progress) => {
+            this.onProgress.emit(progress);
+          });
+      }
     });
     return widget;
   }
