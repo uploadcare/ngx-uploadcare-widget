@@ -15,6 +15,17 @@ Angular 2+ wrapper for [Uploadcare Widget][uc-features-widget].
 Uploadcare Widget is an HTML5 file uploader, a part of the
 [Uploadcare][uc-home] ecosystem.
 
+<!-- toc -->
+
+* [Install](#install)
+* [Usage](#usage)
+* [Configuration](#configuration)
+* [Localization](#localization)
+* [Security issues](#security-issues)
+* [Feedback](#feedback)
+
+<!-- tocstop -->
+
 ## Install
 
 ```bash
