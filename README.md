@@ -17,7 +17,7 @@ Uploadcare Widget is an HTML5 file uploader, a part of the
 
 ## Install
 
-```
+```bash
 npm install ngx-uploadcare-widget
 ```
 
@@ -183,6 +183,20 @@ The quick way of implementing your locale would be overriding any of the
 existing ones via the [`UPLOADCARE_LOCALE_TRANSLATIONS`][uc-docs-widget-locales]
 property.
 
+## Security issues
+
+If you think you ran into something in Uploadcare libraries which might have
+security implications, please hit us up at [bugbounty@uploadcare.com][uc-email-bounty]
+or Hackerone.
+
+We'll contact you personally in a short time to fix an issue through co-op and
+prior to any public disclosure.
+
+## Feedback
+
+Issues and PRs are welcome. You can provide your feedback or drop us a support
+request at [hello@uploadcare.com][uc-email-hello].
+
 [npm-img]: http://img.shields.io/npm/v/ngx-uploadcare-widget.svg
 [npm-url]: https://www.npmjs.org/package/ngx-uploadcare-widget
 [travis-img]: https://api.travis-ci.org/uploadcare/ngx-uploadcare-widget.svg?branch=master
@@ -191,6 +205,8 @@ property.
 [stack-url]: https://stackshare.io/uploadcare/stacks/
 [github-widget]: https://github.com/uploadcare/uploadcare-widget
 [github-widget-files-locales]: https://github.com/uploadcare/uploadcare-widget/tree/master/app/assets/javascripts/uploadcare/locale
+[uc-email-bounty]: mailto:bugbounty@uploadcare.com
+[uc-email-hello]: mailto:hello@uploadcare.com
 [uc-home]: https://uploadcare.com/?utm_source=github&utm_campaign=ngx-uploadcare-widget
 [uc-features-widget]: https://uploadcare.com/features/widget/?utm_source=github&utm_campaign=ngx-uploadcare-widget
 [uc-docs-widget-locales]: https://uploadcare.com/docs/uploads/widget/locales/?utm_source=github&utm_campaign=ngx-uploadcare-widget
