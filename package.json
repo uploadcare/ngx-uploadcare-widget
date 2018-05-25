@@ -1,6 +1,6 @@
 {
   "name": "ngx-uploadcare-widget",
-  "version": "0.3.0",
+  "version": "0.2.1",
   "description": "Angular 2+ wrapper for Uploadcare Widget",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
