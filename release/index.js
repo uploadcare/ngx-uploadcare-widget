@@ -129,6 +129,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+__WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.start({ integration: "Angular/" + __WEBPACK_IMPORTED_MODULE_0__angular_core__["VERSION"].full + "; Ngx-Uploadcare-Widget/" + "1.0.1" });
 var UcWidgetComponent = /** @class */ (function () {
     function UcWidgetComponent(renderer, element) {
         this.onUploadComplete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -605,6 +606,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+__WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.start({ integration: "Angular/" + __WEBPACK_IMPORTED_MODULE_0__angular_core__["VERSION"].full + "; Ngx-Uploadcare-Widget/" + "1.0.1" });
 var UcWidgetCustomComponent = /** @class */ (function () {
     function UcWidgetCustomComponent() {
         this.onUploadComplete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();

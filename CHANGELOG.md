@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
-## 1.0.0 - 2018-05-25
+## 1.0.1 - 2018-05-25
 
 ### Changed
 
@@ -29,6 +29,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * New `on-progress` event to both directives.
 * The `AUTHORS.txt` file to the repo to give credit to those contributing to
   the project. Yoo-hoo, thanks folks 💛
+  
+## 1.0.0 - 2018-05-25
+
+Failed npm release. Please, don't use it.
 
 ## 0.2.1 - 2018-03-28
 
