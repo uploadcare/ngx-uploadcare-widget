@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Implemented a new usage approach: you should now use a module, not a component directly.
 * Updated README, added Table of Contents and new sections, “Security issues” and “Feedback”.
 * The version of the widget in dependencies is `3.x` now.
+* Added `integration` to the default widget config to provide info
+  on the Angular version and wrapper version for User Agent with requests
+  to [Uploadcare Upload API](https://uploadcare.com/docs/api_reference/upload/).
 
 ### Added
 

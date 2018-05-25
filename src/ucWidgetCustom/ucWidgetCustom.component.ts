@@ -2,8 +2,13 @@ import { Component,
           Input,
           Output,
           EventEmitter,
-          } from '@angular/core';
+          VERSION,
+} from '@angular/core';
 import uploadcare from 'uploadcare-widget';
+
+declare const APP_VERSION: string;
+
+uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
 
 @Component({
   selector: 'ngx-uploadcare-widget-custom',
