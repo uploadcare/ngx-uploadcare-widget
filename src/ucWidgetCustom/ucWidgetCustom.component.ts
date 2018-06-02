@@ -4,11 +4,11 @@ import { Component,
           EventEmitter,
           VERSION,
 } from '@angular/core';
-import uploadcare from 'uploadcare-widget';
 
 declare const APP_VERSION: string;
 
-uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
+
+
 
 @Component({
   selector: 'ngx-uploadcare-widget-custom',
@@ -38,6 +38,10 @@ export class UcWidgetCustomComponent {
   @Input('cdn-base') cdnBase: string;
   @Input('do-not-store') doNotStore: boolean;
 
+  //
+  // static instance for lazyLoading
+  private static uploadcare:any;
+
   openDialog() {
     const config = {
       publicKey: this.publicKey ? this.publicKey : undefined,
@@ -59,26 +63,40 @@ export class UcWidgetCustomComponent {
       cdnBase: this.cdnBase ? this.cdnBase : undefined,
       doNotStore: this.doNotStore
     };
-    const dialog = uploadcare.openDialog(this.value, null, config);
-    dialog.done((selectionPromise) => {
-      this.onChange.emit(selectionPromise);
-      if(typeof selectionPromise.promise === 'function') {
-        selectionPromise.promise()
-          .then((groupInfo) => {
-            this.onUploadComplete.emit(groupInfo);
-          })
-          .progress((progress) => {
-            this.onProgress.emit(progress);
-          });
-      } else {
-        selectionPromise
-          .then((fileInfo) => {
-            this.onUploadComplete.emit(fileInfo);
-          })
-          .progress((progress) => {
-            this.onProgress.emit(progress);
-          });
-      }
+
+    //
+    // lazy loading / initial start
+    if(!UcWidgetCustomComponent.uploadcare){
+      UcWidgetCustomComponent.uploadcare=import("uploadcare-widget").then(uploadcare => {    
+        uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
+        return uploadcare;
+      });  
+    }
+
+    //
+    // uploadcare promise 
+    UcWidgetCustomComponent.uploadcare.then(uploadcare=>{
+      const dialog = uploadcare.openDialog(this.value, null, config);
+      dialog.done((selectionPromise) => {
+        this.onChange.emit(selectionPromise);
+        if(typeof selectionPromise.promise === 'function') {
+          selectionPromise.promise()
+            .then((groupInfo) => {
+              this.onUploadComplete.emit(groupInfo);
+            })
+            .progress((progress) => {
+              this.onProgress.emit(progress);
+            });
+        } else {
+          selectionPromise
+            .then((fileInfo) => {
+              this.onUploadComplete.emit(fileInfo);
+            })
+            .progress((progress) => {
+              this.onProgress.emit(progress);
+            });
+        }
+      });  
     });
   }
 }

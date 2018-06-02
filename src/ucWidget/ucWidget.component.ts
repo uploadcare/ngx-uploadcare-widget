@@ -7,11 +7,9 @@ import { Component,
   EventEmitter,
   Renderer2,
   VERSION } from '@angular/core';
-import uploadcare from 'uploadcare-widget';
 
 declare const APP_VERSION: string;
 
-uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
 
 @Component({
   selector: 'ngx-uploadcare-widget',
@@ -22,6 +20,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   @Output('on-change') onChange = new EventEmitter<any>();
   @Output('on-progress') onProgress = new EventEmitter<any>();
 
+  private static uploadcare:any;
   private element: ElementRef;
   private inputElement: Node;
   private renderer: Renderer2;
@@ -49,7 +48,16 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
 
   constructor(renderer: Renderer2, element: ElementRef) {
     this.element = element;
-    this.renderer = renderer;
+    this.renderer = renderer;    
+
+    //
+    // lazy loading
+    if(!UcWidgetComponent.uploadcare){
+      UcWidgetComponent.uploadcare=import("uploadcare-widget").then(uploadcare => {    
+        uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
+        return uploadcare;
+      });  
+    }
   }
 
   @Input('public-key') 
@@ -182,7 +190,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   get doNotStore() { return this._doNotStore; }
 
   ngAfterViewInit() {
-    this.widget = this.init();
+    this.init();
   }
 
   ngAfterViewChecked() {
@@ -255,35 +263,42 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
       this.clearUploads();
     }
     this.initInputElement();
-    const widget = uploadcare.Widget(this.inputElement);
-    widget.onUploadComplete((fileInfo) => {
-      this.onUploadComplete.emit(fileInfo);
-      this._value = fileInfo.uuid;
+    return UcWidgetComponent.uploadcare.then(uploadcare=>{
+      const widget=this.widget=uploadcare.Widget(this.inputElement);      
+      widget.onUploadComplete((fileInfo) => {
+        this.onUploadComplete.emit(fileInfo);
+        this._value = fileInfo.uuid;
+      });
+      widget.onChange((selectionPromise) => {
+        this.onChange.emit(selectionPromise);
+        if(typeof selectionPromise.promise === 'function') {
+          selectionPromise.promise()
+            .progress((progress) => {
+              this.onProgress.emit(progress);
+            });
+        } else {
+          selectionPromise
+            .progress((progress) => {
+              this.onProgress.emit(progress);
+            });
+        }
+      });
+      return widget;              
     });
-    widget.onChange((selectionPromise) => {
-      this.onChange.emit(selectionPromise);
-      if(typeof selectionPromise.promise === 'function') {
-        selectionPromise.promise()
-          .progress((progress) => {
-            this.onProgress.emit(progress);
-          });
-      } else {
-        selectionPromise
-          .progress((progress) => {
-            this.onProgress.emit(progress);
-          });
-      }
-    });
-    return widget;
   }
 
   private destroy() {
-    const $ = uploadcare.jQuery;
-    $(this.widget.inputElement.nextSibling).remove();
-    $(this.widget.inputElement).clone().appendTo($(this.element.nativeElement));
-    $(this.widget.inputElement).remove();
-    this.renderer.destroyNode(this.inputElement);
-    this.renderer.removeChild(this.element.nativeElement, this.element.nativeElement.children[0]);
-    delete this.widget;
+    const widget=this.widget;
+    const element=this.element;
+    return UcWidgetComponent.uploadcare.then(uploadcare=>{
+        const $ = uploadcare.jQuery;
+        $(widget.inputElement.nextSibling).remove();
+        $(widget.inputElement).clone().appendTo($(element.nativeElement));
+        $(widget.inputElement).remove();
+        this.renderer.destroyNode(this.inputElement);
+        this.renderer.removeChild(element.nativeElement, element.nativeElement.children[0]);
+        delete this.widget;
+
+      });    
   }
 }
