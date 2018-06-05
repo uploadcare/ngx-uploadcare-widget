@@ -16,10 +16,10 @@ import { CommonModule } from '@angular/common';
     UcWidgetCustomComponent,
   ],
 })
-export class ngxUploadcareModule {
+export class UploadcareModule {
   public static forRoot(): ModuleWithProviders {
     return {
-      ngModule: ngxUploadcareModule,
+      ngModule: UploadcareModule,
       providers: []
     };
   }

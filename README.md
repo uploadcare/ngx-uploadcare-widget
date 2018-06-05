@@ -39,7 +39,7 @@ The basic wrapper usage scenario can be described in four steps.
 ### Step 1. Import the module
 
 ```typescript
-import { ngxUploadcareModule } from 'ngx-uploadcare-widget';
+import { UploadcareModule } from 'ngx-uploadcare-widget';
 ```
 
 ### Step 2. Import the module to yours
@@ -48,7 +48,7 @@ import { ngxUploadcareModule } from 'ngx-uploadcare-widget';
 @NgModule({
   imports: [
     ...,
-    ngxUploadcareModule.forRoot(),
+    UploadcareModule.forRoot(),
   ],
   ...
 })

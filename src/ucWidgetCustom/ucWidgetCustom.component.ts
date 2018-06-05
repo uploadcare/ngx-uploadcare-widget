@@ -7,14 +7,14 @@ import { Component,
 
 declare const APP_VERSION: string;
 
-
-
-
 @Component({
   selector: 'ngx-uploadcare-widget-custom',
   template: '',
 })
 export class UcWidgetCustomComponent {
+  //
+  // static instance for lazyLoading
+  private static uploadcare: any;
   @Output('on-upload-complete') onUploadComplete = new EventEmitter<any>();
   @Output('on-change') onChange = new EventEmitter<any>();
   @Output('on-progress') onProgress = new EventEmitter<any>();
@@ -37,10 +37,6 @@ export class UcWidgetCustomComponent {
   @Input('value') value: string;
   @Input('cdn-base') cdnBase: string;
   @Input('do-not-store') doNotStore: boolean;
-
-  //
-  // static instance for lazyLoading
-  private static uploadcare:any;
 
   openDialog() {
     const config = {
@@ -66,8 +62,8 @@ export class UcWidgetCustomComponent {
 
     //
     // lazy loading / initial start
-    if(!UcWidgetCustomComponent.uploadcare){
-      UcWidgetCustomComponent.uploadcare=import("uploadcare-widget").then(uploadcare => {    
+    if(!UcWidgetCustomComponent.uploadcare) {
+      UcWidgetCustomComponent.uploadcare = import('uploadcare-widget').then(uploadcare => {    
         uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
         return uploadcare;
       });  
@@ -75,7 +71,7 @@ export class UcWidgetCustomComponent {
 
     //
     // uploadcare promise 
-    UcWidgetCustomComponent.uploadcare.then(uploadcare=>{
+    UcWidgetCustomComponent.uploadcare.then(uploadcare => {
       const dialog = uploadcare.openDialog(this.value, null, config);
       dialog.done((selectionPromise) => {
         this.onChange.emit(selectionPromise);

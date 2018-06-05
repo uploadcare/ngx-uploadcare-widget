@@ -7,20 +7,19 @@ import { Component,
   EventEmitter,
   Renderer2,
   VERSION } from '@angular/core';
-
+  
 declare const APP_VERSION: string;
-
 
 @Component({
   selector: 'ngx-uploadcare-widget',
   template: '',
 })
 export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
+  private static uploadcare: any;
   @Output('on-upload-complete') onUploadComplete = new EventEmitter<any>();
   @Output('on-change') onChange = new EventEmitter<any>();
   @Output('on-progress') onProgress = new EventEmitter<any>();
 
-  private static uploadcare:any;
   private element: ElementRef;
   private inputElement: Node;
   private renderer: Renderer2;
@@ -52,8 +51,8 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
 
     //
     // lazy loading
-    if(!UcWidgetComponent.uploadcare){
-      UcWidgetComponent.uploadcare=import("uploadcare-widget").then(uploadcare => {    
+    if(!UcWidgetComponent.uploadcare) {
+      UcWidgetComponent.uploadcare = import('uploadcare-widget').then(uploadcare => {    
         uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
         return uploadcare;
       });  
@@ -263,8 +262,8 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
       this.clearUploads();
     }
     this.initInputElement();
-    return UcWidgetComponent.uploadcare.then(uploadcare=>{
-      const widget=this.widget=uploadcare.Widget(this.inputElement);      
+    return UcWidgetComponent.uploadcare.then(uploadcare => {
+      const widget = this.widget = uploadcare.Widget(this.inputElement);      
       widget.onUploadComplete((fileInfo) => {
         this.onUploadComplete.emit(fileInfo);
         this._value = fileInfo.uuid;
@@ -288,9 +287,9 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   }
 
   private destroy() {
-    const widget=this.widget;
-    const element=this.element;
-    return UcWidgetComponent.uploadcare.then(uploadcare=>{
+    const widget = this.widget;
+    const element = this.element;
+    return UcWidgetComponent.uploadcare.then(uploadcare => {
         const $ = uploadcare.jQuery;
         $(widget.inputElement.nextSibling).remove();
         $(widget.inputElement).clone().appendTo($(element.nativeElement));
