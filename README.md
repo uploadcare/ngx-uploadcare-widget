@@ -58,13 +58,13 @@ import { UcWidgetModule } from 'ngx-uploadcare-widget';
 ### Step 3. Use the component in your template
 
 ```html
-<!- with default markup->
+<!-- with default markup -->
 <ngx-uploadcare-widget
   images-only="true"
   public-key="YOUR_PUBLIC_KEY">
 </ngx-uploadcare-widget>
 
-<!- without any markup->
+<!-- without any markup -->
 <ngx-uploadcare-widget-custom
   images-only="true"
   public-key="YOUR_PUBLIC_KEY">
