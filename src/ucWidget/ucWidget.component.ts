@@ -9,8 +9,8 @@ import { Component,
   VERSION } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
 
-declare const APP_VERSION: string;
-
+const pkg = require('../../package.json');
+const APP_VERSION = JSON.stringify(pkg.version);
 uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
 
 @Component({
