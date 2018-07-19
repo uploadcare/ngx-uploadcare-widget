@@ -9,6 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, Input, Output, ElementRef, EventEmitter, Renderer2, VERSION } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
+var pkg = require('../../package.json');
+var APP_VERSION = JSON.stringify(pkg.version);
 uploadcare.start({ integration: "Angular/" + VERSION.full + "; Ngx-Uploadcare-Widget/" + APP_VERSION });
 var UcWidgetComponent = /** @class */ (function () {
     function UcWidgetComponent(renderer, element) {
