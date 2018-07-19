@@ -1,6 +1,6 @@
 //
 // module 
-export { UploadcareModule } from './ngxUploadcare.module';
+export { UcWidgetModule } from './ucWidget.module';
 //
 // components
 export { UcWidgetComponent } from './ucWidget/ucWidget.component';

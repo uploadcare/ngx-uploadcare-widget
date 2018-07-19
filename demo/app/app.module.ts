@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PrettyJsonModule } from 'angular2-prettyjson';
-import { UploadcareModule } from '../../src/index';
+import { UcWidgetModule } from '../../src/index';
 
 import { AppComponent } from './app.component';
 
@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     PrettyJsonModule,
-    UploadcareModule.forRoot(),
+    UcWidgetModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
