@@ -48,7 +48,7 @@ import { UcWidgetModule } from 'ngx-uploadcare-widget';
 @NgModule({
   imports: [
     ...,
-    UcWidgetModule,
+    UcWidgetModule.forRoot(),
   ],
   ...
 })

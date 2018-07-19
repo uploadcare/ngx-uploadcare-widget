@@ -1,1 +1,1 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./ucWidget"},{"from":"./ucWidgetCustom"},{"from":"uploadcare-widget"}]}]
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./ucWidget.module","export":["UcWidgetModule"]},{"from":"./ucWidget/ucWidget.component","export":["UcWidgetComponent"]},{"from":"./ucWidgetCustom/ucWidgetCustom.component","export":["UcWidgetCustomComponent"]}]}]

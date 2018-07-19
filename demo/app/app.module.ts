@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     PrettyJsonModule,
-    UcWidgetModule,
+    UcWidgetModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

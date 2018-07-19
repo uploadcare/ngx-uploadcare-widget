@@ -1,3 +1,3 @@
-export * from './ucWidget';
-export * from './ucWidgetCustom';
-export * from 'uploadcare-widget';
+export { UcWidgetModule } from './ucWidget.module';
+export { UcWidgetComponent } from './ucWidget/ucWidget.component';
+export { UcWidgetCustomComponent } from './ucWidgetCustom/ucWidgetCustom.component';

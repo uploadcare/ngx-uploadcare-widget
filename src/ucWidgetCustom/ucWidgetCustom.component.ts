@@ -1,14 +1,15 @@
-import { Component,
-          Input,
-          Output,
-          EventEmitter,
-          VERSION,
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  VERSION,
 } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
 
-declare const APP_VERSION: string;
-
-uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
+const pkg = require('../../package.json');
+const APP_VERSION = JSON.stringify(pkg.version);
+uploadcare.start({ integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}` });
 
 @Component({
   selector: 'ngx-uploadcare-widget-custom',
@@ -62,7 +63,7 @@ export class UcWidgetCustomComponent {
     const dialog = uploadcare.openDialog(this.value, null, config);
     dialog.done((selectionPromise) => {
       this.onChange.emit(selectionPromise);
-      if(typeof selectionPromise.promise === 'function') {
+      if (typeof selectionPromise.promise === 'function') {
         selectionPromise.promise()
           .then((groupInfo) => {
             this.onUploadComplete.emit(groupInfo);
