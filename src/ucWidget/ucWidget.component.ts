@@ -1,4 +1,5 @@
-import { Component,
+import {
+  Component,
   Input,
   Output,
   AfterViewInit,
@@ -6,16 +7,19 @@ import { Component,
   ElementRef,
   EventEmitter,
   Renderer2,
-  VERSION } from '@angular/core';
-  
-declare const APP_VERSION: string;
+  VERSION
+} from '@angular/core';
+import uploadcare from 'uploadcare-widget';
+
+const pkg = require('../../package.json');
+const APP_VERSION = JSON.stringify(pkg.version);
+uploadcare.start({ integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}` });
 
 @Component({
   selector: 'ngx-uploadcare-widget',
   template: '',
 })
 export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
-  private static uploadcare: any;
   @Output('on-upload-complete') onUploadComplete = new EventEmitter<any>();
   @Output('on-change') onChange = new EventEmitter<any>();
   @Output('on-progress') onProgress = new EventEmitter<any>();
@@ -47,127 +51,118 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
 
   constructor(renderer: Renderer2, element: ElementRef) {
     this.element = element;
-    this.renderer = renderer;    
-
-    //
-    // lazy loading
-    if(!UcWidgetComponent.uploadcare) {
-      UcWidgetComponent.uploadcare = import('uploadcare-widget').then(uploadcare => {    
-        uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
-        return uploadcare;
-      });  
-    }
+    this.renderer = renderer;
   }
 
-  @Input('public-key') 
-    set publicKey(publicKey: string) {
+  @Input('public-key')
+  set publicKey(publicKey: string) {
     this._publicKey = publicKey;
     this.setReinitFlag(true);
   }
   get publicKey() { return this._publicKey; }
 
   @Input('multiple')
-    set multiple(multiple: boolean) {
+  set multiple(multiple: boolean) {
     this._multiple = multiple;
     this.setReinitFlag(true);
   }
   get multiple() { return this._multiple; }
 
   @Input('multiple-max')
-    set multipleMax(multipleMax: number) {
+  set multipleMax(multipleMax: number) {
     this._multipleMax = multipleMax;
     this.setReinitFlag(false);
   }
   get multipleMax() { return this._multipleMax; }
 
   @Input('multiple-min')
-    set multipleMin(multipleMin: number) {
+  set multipleMin(multipleMin: number) {
     this._multipleMin = multipleMin;
     this.setReinitFlag(false);
   }
   get multipleMin() { return this._multipleMin; }
 
   @Input('images-only')
-    set imagesOnly(imagesOnly: boolean) {
+  set imagesOnly(imagesOnly: boolean) {
     this._imagesOnly = imagesOnly;
     this.setReinitFlag(false);
   }
   get imagesOnly() { return this._imagesOnly; }
 
   @Input('preview-step')
-    set previewStep(previewStep: boolean) {
+  set previewStep(previewStep: boolean) {
     this._previewStep = previewStep;
     this.setReinitFlag(false);
   }
   get previewStep() { return this._previewStep; }
 
   @Input('crop')
-    set crop(crop: any) {
+  set crop(crop: any) {
     this._crop = crop;
     this.setReinitFlag(false);
   }
   get crop() { return this._crop; }
 
   @Input('image-shrink')
-    set imageShrink(imageShrink: string) {
+  set imageShrink(imageShrink: string) {
     this._imageShrink = imageShrink;
     this.setReinitFlag(false);
   }
   get imageShrink() { return this._imageShrink; }
 
   @Input('clearable')
-    set clearable(clearable: boolean) {
+  set clearable(clearable: boolean) {
     this._clearable = clearable;
     this.setReinitFlag(false);
   }
   get clearable() { return this._clearable; }
 
   @Input('tabs')
-    set tabs(tabs: string) {
+  set tabs(tabs: string) {
     this._tabs = tabs;
     this.setReinitFlag(false);
   }
   get tabs() { return this._tabs; }
 
   @Input('input-accept-types')
-    set inputAcceptTypes(inputAcceptTypes: string) {
+  set inputAcceptTypes(inputAcceptTypes: string) {
     this._inputAcceptTypes = inputAcceptTypes;
     this.setReinitFlag(false);
   }
   get inputAcceptTypes() { return this._inputAcceptTypes; }
 
   @Input('preferred-types')
-    set preferredTypes(preferredTypes: string) {
+  set preferredTypes(preferredTypes: string) {
     this._preferredTypes = preferredTypes;
     this.setReinitFlag(false);
   }
   get preferredTypes() { return this._preferredTypes; }
 
   @Input('system-dialog')
-    set systemDialog(systemDialog: boolean) {
+  set systemDialog(systemDialog: boolean) {
     this._systemDialog = systemDialog;
     this.setReinitFlag(false);
   }
   get systemDialog() { return this._systemDialog; }
 
   @Input('secure-signature')
-    set secureSignature(secureSignature: string) {
+  set secureSignature(secureSignature: string) {
     this._secureSignature = secureSignature;
     this.setReinitFlag(true);
   }
   get secureSignature() { return this._secureSignature; }
 
   @Input('secure-expire')
-    set secureExpire(secureExpire: string) {
+  set secureExpire(secureExpire: string) {
     this._secureExpire = secureExpire;
     this.setReinitFlag(false);
   }
   get secureExpire() { return this._secureExpire; }
 
   @Input('value')
-    set value(value: string) {
+  set value(value: string) {
     this._value = value;
-    if(this.widget) {
+    if (this.widget) {
       this.setReinitFlag(false);
       this.widget.value(value);
     }
@@ -175,25 +170,25 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   get value() { return this._value; }
 
   @Input('cdn-base')
-    set cdnBase(cdnBase: string) {
+  set cdnBase(cdnBase: string) {
     this._cdnBase = cdnBase;
     this.setReinitFlag(true);
   }
   get cdnBase() { return this._cdnBase; }
 
   @Input('do-not-store')
-    set doNotStore(doNotStore: boolean) {
+  set doNotStore(doNotStore: boolean) {
     this._doNotStore = doNotStore;
     this.setReinitFlag(false);
   }
   get doNotStore() { return this._doNotStore; }
 
   ngAfterViewInit() {
-    this.init();
+    this.widget = this.init();
   }
 
   ngAfterViewChecked() {
-    if(this._reinitRequired) {
+    if (this._reinitRequired) {
       this.reset(this._isClearValue);
     }
   }
@@ -207,19 +202,19 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
 
   clearUploads() {
     this._value = null;
-    if(this.widget) {
+    if (this.widget) {
       this.widget.value(null);
     }
   }
 
   openDialog() {
-    if(this.widget) {
+    if (this.widget) {
       this.widget.openDialog();
     }
   }
 
   private setReinitFlag(isClearValue: boolean) {
-    if(this.widget) {
+    if (this.widget) {
       this._reinitRequired = true;
       this._isClearValue = isClearValue;
     }
@@ -250,7 +245,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
     this.setInputAttr('data-secure-expire', this._secureExpire);
     this.setInputAttr('data-cdn-base', this._cdnBase);
     this.setInputAttr('data-do-not-store', this._doNotStore);
-    if(this._value) {
+    if (this._value) {
       this.renderer.setProperty(this.inputElement, 'value', this._value);
     }
   }
@@ -258,46 +253,39 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   private init(removeUploads = false) {
     this.inputElement = this.renderer.createElement('input');
     this.renderer.appendChild(this.element.nativeElement, this.inputElement);
-    if(removeUploads) {
+    if (removeUploads) {
       this.clearUploads();
     }
     this.initInputElement();
-    return UcWidgetComponent.uploadcare.then(uploadcare => {
-      const widget = this.widget = uploadcare.Widget(this.inputElement);      
-      widget.onUploadComplete((fileInfo) => {
-        this.onUploadComplete.emit(fileInfo);
-        this._value = fileInfo.uuid;
-      });
-      widget.onChange((selectionPromise) => {
-        this.onChange.emit(selectionPromise);
-        if(typeof selectionPromise.promise === 'function') {
-          selectionPromise.promise()
-            .progress((progress) => {
-              this.onProgress.emit(progress);
-            });
-        } else {
-          selectionPromise
-            .progress((progress) => {
-              this.onProgress.emit(progress);
-            });
-        }
-      });
-      return widget;              
+    const widget = uploadcare.Widget(this.inputElement);
+    widget.onUploadComplete((fileInfo) => {
+      this.onUploadComplete.emit(fileInfo);
+      this._value = fileInfo.uuid;
     });
+    widget.onChange((selectionPromise) => {
+      this.onChange.emit(selectionPromise);
+      if (typeof selectionPromise.promise === 'function') {
+        selectionPromise.promise()
+          .progress((progress) => {
+            this.onProgress.emit(progress);
+          });
+      } else {
+        selectionPromise
+          .progress((progress) => {
+            this.onProgress.emit(progress);
+          });
+      }
+    });
+    return widget;
   }
 
   private destroy() {
-    const widget = this.widget;
-    const element = this.element;
-    return UcWidgetComponent.uploadcare.then(uploadcare => {
-        const $ = uploadcare.jQuery;
-        $(widget.inputElement.nextSibling).remove();
-        $(widget.inputElement).clone().appendTo($(element.nativeElement));
-        $(widget.inputElement).remove();
-        this.renderer.destroyNode(this.inputElement);
-        this.renderer.removeChild(element.nativeElement, element.nativeElement.children[0]);
-        delete this.widget;
-
-      });    
+    const $ = uploadcare.jQuery;
+    $(this.widget.inputElement.nextSibling).remove();
+    $(this.widget.inputElement).clone().appendTo($(this.element.nativeElement));
+    $(this.widget.inputElement).remove();
+    this.renderer.destroyNode(this.inputElement);
+    this.renderer.removeChild(this.element.nativeElement, this.element.nativeElement.children[0]);
+    delete this.widget;
   }
 }
