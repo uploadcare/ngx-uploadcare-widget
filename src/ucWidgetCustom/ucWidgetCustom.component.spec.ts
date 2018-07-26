@@ -19,6 +19,7 @@ describe('Custom Widget Component', () => {
   const value = null;
   const cdnBase = null;
   const doNotStore = true;
+  const validators = [];
 
   const initComponent = (component) => {
     component.publicKey = publicKey;
@@ -39,6 +40,7 @@ describe('Custom Widget Component', () => {
     component.value = value;
     component.cdnBase = cdnBase;
     component.doNotStore = doNotStore;
+    component.validators = validators;
   };
 
   beforeEach(async(() => {
@@ -69,5 +71,4 @@ describe('Custom Widget Component', () => {
     component.openDialog();
     expect(1).toBe(1);
   }));
-
 });

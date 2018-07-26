@@ -37,6 +37,7 @@ export class UcWidgetCustomComponent {
   @Input('value') value: string;
   @Input('cdn-base') cdnBase: string;
   @Input('do-not-store') doNotStore: boolean;
+  @Input('validators') validators: any[] = [];
 
   openDialog() {
     const config = {
@@ -57,7 +58,13 @@ export class UcWidgetCustomComponent {
       secureExpire: this.secureExpire,
       value: this.value ? this.value : undefined,
       cdnBase: this.cdnBase ? this.cdnBase : undefined,
-      doNotStore: this.doNotStore
+      doNotStore: this.doNotStore,
+      validators: this.validators.filter(v => {
+        if (typeof v !== 'function') {
+          throw new Error('Only functions allowed in validadators array');
+        }
+        return v;
+      }),
     };
     const dialog = uploadcare.openDialog(this.value, null, config);
     dialog.done((selectionPromise) => {

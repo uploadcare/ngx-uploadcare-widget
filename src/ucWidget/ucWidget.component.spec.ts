@@ -19,6 +19,7 @@ describe('Widget Component', () => {
   const value = null;
   const cdnBase = null;
   const doNotStore = true;
+  const validators = [];
 
   const initComponent = (component) => {
     component.publicKey = publicKey;
@@ -39,6 +40,7 @@ describe('Widget Component', () => {
     component.value = value;
     component.cdnBase = cdnBase;
     component.doNotStore = doNotStore;
+    component.validators = validators;
   };
   
   const initComponentMultiple = (component) => {
@@ -123,6 +125,7 @@ describe('Widget Component', () => {
     expect(component.cdnBase).toBeNull();
     expect(component.doNotStore).toBe(doNotStore);
     expect(component.value).toBeNull();
+    expect(component.validators).toBe(validators);
   }));
 
   it('widget should reinit after attributes has changed', async(() => {

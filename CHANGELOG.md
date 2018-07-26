@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## 1.1.0 - 2018-07-27
+
+### Changed
+
+* Fixed AOT compilation for production build.
+
+### Added
+
+* Added new `validators` widget attribute, now you can abort uploads mannualy by your decicion with validators.
+
 ## 1.0.1 - 2018-05-25
 
 ### Changed
