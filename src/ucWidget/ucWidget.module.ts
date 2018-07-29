@@ -1,23 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { UcWidgetComponent } from './ucWidget.component';
 import { UcWidgetCustomComponent } from '../ucWidgetCustom/ucWidgetCustom.component';
-import { UcWidgetCustomModule } from '../ucWidgetCustom/ucWidgetCustom.module';
 
 @NgModule({
   declarations: [
+    UcWidgetCustomComponent,
     UcWidgetComponent
   ],
   imports: [
-    BrowserModule,
-    UcWidgetCustomModule,
   ],
   providers: [],
   bootstrap: [],
   exports: [
-    UcWidgetComponent,
     UcWidgetCustomComponent,
+    UcWidgetComponent
   ],
 })
 export class UcWidgetModule { }
