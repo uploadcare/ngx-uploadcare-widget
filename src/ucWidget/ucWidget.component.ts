@@ -9,8 +9,8 @@ import { Component,
   VERSION } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
 
-declare const APP_VERSION: string;
-
+const pkg = require('../../package.json');
+const APP_VERSION = JSON.stringify(pkg.version);
 uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
 
 @Component({
@@ -46,6 +46,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   private _doNotStore: boolean;
   private _reinitRequired = false;
   private _isClearValue = false;
+  private _validators = [];
 
   constructor(renderer: Renderer2, element: ElementRef) {
     this.element = element;
@@ -167,6 +168,13 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   }
   get value() { return this._value; }
 
+  @Input('validators')
+  set validators(validatorsArr: any[]) {
+    this._validators = validatorsArr;
+    this.setReinitFlag(false);
+  }
+  get validators() { return this._validators; }
+
   @Input('cdn-base')
     set cdnBase(cdnBase: string) {
     this._cdnBase = cdnBase;
@@ -256,6 +264,13 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
     }
     this.initInputElement();
     const widget = uploadcare.Widget(this.inputElement);
+    this._validators.forEach(v => {
+      if (typeof v === 'function') {
+        widget.validators.push(v);
+      } else {
+        throw new Error('Only functions allowed in validadators array');
+      }
+    }); 
     widget.onUploadComplete((fileInfo) => {
       this.onUploadComplete.emit(fileInfo);
       this._value = fileInfo.uuid;

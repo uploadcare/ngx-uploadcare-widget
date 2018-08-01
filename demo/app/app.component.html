@@ -21,6 +21,7 @@
         value={{value}}
         cdn-base={{cdnBase}}
         do-not-store={{doNotStore}}
+        [validators] = "validators"
         (on-upload-complete)="onUpload($event)"
         (on-change)="onChange($event)"
         (on-progress)="onProgress($event)">
@@ -42,6 +43,7 @@
         value={{value}}
         cdn-base={{cdnBase}}
         do-not-store={{doNotStore}}
+        [validators] = "validators"
         (on-upload-complete)="onUpload($event)"
         (on-change)="onChange($event)"
         (on-progress)="onProgress($event)">

@@ -120,6 +120,7 @@ All the following attributes correspond to the ones listed in the
 * [value][uc-docs-widget-predefined]
 * [cdn-base][uc-docs-widget-options-cdn-base]
 * [do-not-store][uc-docs-widget-options-do-not-store]
+* [validators][uc-docs-widget-validators]
 
 ### Events
 
@@ -240,5 +241,6 @@ request at [hello@uploadcare.com][uc-email-hello].
 [uc-docs-widget-options-secure-expire]: https://uploadcare.com/docs/uploads/widget/config/?utm_source=github&utm_campaign=ngx-uploadcare-widget#option-secure-expire
 [uc-docs-widget-options-cdn-base]: https://uploadcare.com/docs/uploads/widget/config/?utm_source=github&utm_campaign=ngx-uploadcare-widget#option-cdn-base
 [uc-docs-widget-options-do-not-store]: https://uploadcare.com/docs/uploads/widget/config/?utm_source=github&utm_campaign=ngx-uploadcare-widget#option-do-not-store
+[uc-docs-widget-validators]: https://uploadcare.com/docs/api_reference/javascript/file_validation/
 [uc-docs-js-api-widget-on-upload-complete]: https://uploadcare.com/docs/api_reference/javascript/widget/?utm_source=github&utm_campaign=ngx-uploadcare-widget#widget-on-upload-complete
 [uc-docs-js-api-widget-on-change]: https://uploadcare.com/docs/api_reference/javascript/widget/?utm_source=github&utm_campaign=ngx-uploadcare-widget#widget-on-change

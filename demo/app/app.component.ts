@@ -45,6 +45,18 @@ export class AppComponent {
   uploadedData: null;
   cropOptions = ['disabled', 'free', '16:9', '4:3', '5:4', '1:1', '300x400 upscale', '300x200 minimum'];
   cropSelected = [ this.cropOptions[0] ];
+  validators = [
+    (fileInfo) => {
+      console.log('validator 1 - fired'); 
+      // Throw error here to drop the uploading e.g.
+      // if (fileInfo.isImage) throw new Error('Not Images Only'); 
+    },
+    (fileInfo) => {
+      console.log('validator 2 - fired');
+        // Throw error here to drop the uploading e.g.
+        // if (!fileInfo.isImage) throw new Error('Images Only'); 
+    },
+  ];
 
   @ViewChild(UcWidgetComponent) 
   private widgetComponent: UcWidgetComponent;
