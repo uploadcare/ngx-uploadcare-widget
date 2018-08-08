@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+* Fixed typings link
+* Removed unused files
 * Fixed AOT compilation for production build.
 
 ### Added
