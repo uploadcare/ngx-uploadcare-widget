@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## 1.1.2 - 2018-08-09
+
+### Changed
+
+* Fixed .gitignore
+* Added missed typings folder to release
+
 ## 1.1.1 - 2018-08-09
 
 ### Changed

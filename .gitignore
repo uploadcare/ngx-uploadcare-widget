@@ -7,7 +7,6 @@ build/
 coverage/
 .idea
 yarn.lock
-release/src/
 release/demo/
 release/app/
 .vscode/
