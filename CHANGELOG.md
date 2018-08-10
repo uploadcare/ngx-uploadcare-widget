@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## 1.1.3 - 2018-08-10
+
+### Changed
+
+* Fixed .gitignore
+* Rebuilded typings for --prod builds
+
 ## 1.1.2 - 2018-08-09
 
 ### Changed
