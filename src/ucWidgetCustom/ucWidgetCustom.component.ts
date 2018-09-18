@@ -38,6 +38,7 @@ export class UcWidgetCustomComponent {
   @Input('cdn-base') cdnBase: string;
   @Input('do-not-store') doNotStore: boolean;
   @Input('validators') validators: any[] = [];
+  private dialog: any;
 
   openDialog() {
     const config = {
@@ -66,8 +67,8 @@ export class UcWidgetCustomComponent {
         return v;
       }),
     };
-    const dialog = uploadcare.openDialog(this.value, null, config);
-    dialog.done((selectionPromise) => {
+    this.dialog = uploadcare.openDialog(this.value, null, config);
+    this.dialog.done((selectionPromise) => {
       this.onChange.emit(selectionPromise);
       if(typeof selectionPromise.promise === 'function') {
         selectionPromise.promise()
@@ -88,4 +89,12 @@ export class UcWidgetCustomComponent {
       }
     });
   }
+
+  reject() {
+    if(this.dialog) {
+      this.dialog.reject();
+      this.dialog = null;
+    }
+  }
+
 }

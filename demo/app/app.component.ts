@@ -57,6 +57,7 @@ export class AppComponent {
         // if (!fileInfo.isImage) throw new Error('Images Only'); 
     },
   ];
+  closeInTwoSec = false;
 
   @ViewChild(UcWidgetComponent) 
   private widgetComponent: UcWidgetComponent;
@@ -133,5 +134,8 @@ export class AppComponent {
   }
   openDialog() {
     this.widgetCustomComponent.openDialog();
+    if(this.closeInTwoSec) {
+      setTimeout(() => this.widgetCustomComponent.reject(), 2000);
+    }
   }
 }

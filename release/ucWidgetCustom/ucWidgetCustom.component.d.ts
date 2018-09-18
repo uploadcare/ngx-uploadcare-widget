@@ -22,5 +22,7 @@ export declare class UcWidgetCustomComponent {
     cdnBase: string;
     doNotStore: boolean;
     validators: any[];
+    private dialog;
     openDialog(): void;
+    reject(): void;
 }

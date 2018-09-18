@@ -180,7 +180,8 @@ The components provides following public methods:
 
 * `clearUploads()` - Removes all current uploads from the widget. You can use the method to reset a form even if a user has already uploaded some files.
 * `reset(clearUploads = false)` - Resets the widget, You can also remove all the current uploads if `clearUploads` is set to `true`
-* `openDilaog()` - Opens Uploadcare widget dialog with current configuration.
+* `openDialog()` - Opens Uploadcare widget dialog with current configuration.
+* `reject()` - Closes the dialog opened with `openDialog()` method only and discards any file selection.
 
 All methods are accessible from a parent component via the `@ViewChild()` approach.
 

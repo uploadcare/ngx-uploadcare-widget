@@ -26,6 +26,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   private inputElement: Node;
   private renderer: Renderer2;
   private widget: any;
+  private dialog: any;
   private _publicKey = 'demopublickey';
   private _multiple: boolean;
   private _multipleMax: number;
@@ -215,7 +216,14 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
 
   openDialog() {
     if(this.widget) {
-      this.widget.openDialog();
+      this.dialog = this.widget.openDialog();
+    }
+  }
+
+  reject() {
+    if(this.dialog) {
+      this.dialog.reject();
+      this.dialog = null;
     }
   }
 

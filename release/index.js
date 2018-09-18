@@ -350,7 +350,13 @@ var UcWidgetComponent = /** @class */ (function () {
     };
     UcWidgetComponent.prototype.openDialog = function () {
         if (this.widget) {
-            this.widget.openDialog();
+            this.dialog = this.widget.openDialog();
+        }
+    };
+    UcWidgetComponent.prototype.reject = function () {
+        if (this.dialog) {
+            this.dialog.reject();
+            this.dialog = null;
         }
     };
     UcWidgetComponent.prototype.setReinitFlag = function (isClearValue) {
@@ -669,8 +675,8 @@ var UcWidgetCustomComponent = /** @class */ (function () {
                 return v;
             }),
         };
-        var dialog = __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.openDialog(this.value, null, config);
-        dialog.done(function (selectionPromise) {
+        this.dialog = __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.openDialog(this.value, null, config);
+        this.dialog.done(function (selectionPromise) {
             _this.onChange.emit(selectionPromise);
             if (typeof selectionPromise.promise === 'function') {
                 selectionPromise.promise()
@@ -691,6 +697,12 @@ var UcWidgetCustomComponent = /** @class */ (function () {
                 });
             }
         });
+    };
+    UcWidgetCustomComponent.prototype.reject = function () {
+        if (this.dialog) {
+            this.dialog.reject();
+            this.dialog = null;
+        }
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('on-upload-complete'),
