@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## 1.2.0 - 2018-09-19
+
+### Changed
+
+* Added reject method
+
 ## 1.1.3 - 2018-08-10
 
 ### Changed

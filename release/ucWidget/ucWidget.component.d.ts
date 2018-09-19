@@ -7,6 +7,7 @@ export declare class UcWidgetComponent implements AfterViewInit, AfterViewChecke
     private inputElement;
     private renderer;
     private widget;
+    private dialog;
     private _publicKey;
     private _multiple;
     private _multipleMax;
@@ -53,6 +54,7 @@ export declare class UcWidgetComponent implements AfterViewInit, AfterViewChecke
     reset(clearUploads?: boolean): void;
     clearUploads(): void;
     openDialog(): void;
+    reject(): void;
     private setReinitFlag(isClearValue);
     private setInputAttr(key, value);
     private initInputElement();

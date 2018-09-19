@@ -49,6 +49,10 @@
         (on-progress)="onProgress($event)">
       </ngx-uploadcare-widget-custom>
       <button class="btn btn-info" (click)="openDialog()">Open dialog</button>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="uc-autoclose" [(ngModel)]="closeInTwoSec">
+        <label class="form-check-label" for="uc-autoclose">Close dialog in two seconds</label>
+      </div>
     </div>
   </div>
  <div class="row settings">

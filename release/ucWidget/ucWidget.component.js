@@ -223,7 +223,13 @@ var UcWidgetComponent = /** @class */ (function () {
     };
     UcWidgetComponent.prototype.openDialog = function () {
         if (this.widget) {
-            this.widget.openDialog();
+            this.dialog = this.widget.openDialog();
+        }
+    };
+    UcWidgetComponent.prototype.reject = function () {
+        if (this.dialog) {
+            this.dialog.reject();
+            this.dialog = null;
         }
     };
     UcWidgetComponent.prototype.setReinitFlag = function (isClearValue) {
