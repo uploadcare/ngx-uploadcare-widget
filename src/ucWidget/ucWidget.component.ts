@@ -297,6 +297,9 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
           });
       }
     });
+    widget.onDialogOpen((dialogApi) => {
+      this.dialog = dialogApi;
+    });
     return widget;
   }
 
