@@ -303,6 +303,9 @@ var UcWidgetComponent = /** @class */ (function () {
                 });
             }
         });
+        widget.onDialogOpen(function (dialogApi) {
+            _this.dialog = dialogApi;
+        });
         return widget;
     };
     UcWidgetComponent.prototype.destroy = function () {

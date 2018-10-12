@@ -1,14 +1,16 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { UcWidgetComponent, UcWidgetCustomComponent } from '../../src/index';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   publicKey = 'demopublickey';
   multipleFiles = false;
   multipleMin = 1;
@@ -64,6 +66,15 @@ export class AppComponent {
   
   @ViewChild(UcWidgetCustomComponent) 
   private widgetCustomComponent: UcWidgetCustomComponent;
+  
+  ngOnInit() {
+    Observable.interval(2000)
+      .subscribe(() => {
+        if (this.closeInTwoSec && this.widgetComponent) {
+          this.widgetComponent.reject();
+        }
+      });
+  }
 
   onUpload(info) {
     console.log('fired Event "onUpload"');
