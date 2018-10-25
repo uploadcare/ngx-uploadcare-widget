@@ -313,7 +313,6 @@ var UcWidgetComponent = /** @class */ (function () {
         $(this.widget.inputElement.nextSibling).remove();
         $(this.widget.inputElement).clone().appendTo($(this.element.nativeElement));
         $(this.widget.inputElement).remove();
-        this.renderer.destroyNode(this.inputElement);
         this.renderer.removeChild(this.element.nativeElement, this.element.nativeElement.children[0]);
         delete this.widget;
     };
