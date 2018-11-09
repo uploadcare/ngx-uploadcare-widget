@@ -11,7 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-* Removed call of `Renderer2.destroyNode()` now no errors in production build about that
+* GitHub [issue #26](https://github.com/uploadcare/ngx-uploadcare-widget/issues/26),
+  `Renderer2.destroyNode()` was called in production thus firing the
+  `this.renderer.destroyNode is not a function` error.
 
 ## 1.2.1 - 2018-10-12
 
