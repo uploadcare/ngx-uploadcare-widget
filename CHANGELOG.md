@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 1.2.2 - 2018-10-23
 
-### Changed
+### Fixed
 
 * Removed call of `Renderer2.destroyNode()` now no errors in production build about that
 
