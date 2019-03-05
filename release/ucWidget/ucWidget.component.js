@@ -290,6 +290,9 @@ var UcWidgetComponent = /** @class */ (function () {
         });
         widget.onChange(function (selectionPromise) {
             _this.onChange.emit(selectionPromise);
+            if (!selectionPromise) {
+                return;
+            }
             if (typeof selectionPromise.promise === 'function') {
                 selectionPromise.promise()
                     .progress(function (progress) {
