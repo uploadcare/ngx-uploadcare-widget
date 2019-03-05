@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 1.2.3 - 2019-03-06
+
+### Fixed
+
+* GitHub [issue #30](https://github.com/uploadcare/ngx-uploadcare-widget/issues/30),
+  `selectionPromise` on `widget.onChange()` was not defined when upload is canceled.
+
 ## 1.2.2 - 2018-10-23
 
 ### Fixed

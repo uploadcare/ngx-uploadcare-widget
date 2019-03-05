@@ -285,6 +285,9 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
     });
     widget.onChange((selectionPromise) => {
       this.onChange.emit(selectionPromise);
+      if (!selectionPromise) {
+        return;
+      }
       if(typeof selectionPromise.promise === 'function') {
         selectionPromise.promise()
           .progress((progress) => {
