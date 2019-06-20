@@ -1,6 +1,6 @@
 {
   "name": "ngx-uploadcare-widget",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Angular 2+ wrapper for Uploadcare Widget",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
@@ -65,11 +65,11 @@
   },
   "homepage": "https://github.com/uploadcare/ngx-uploadcare-widget#readme",
   "peerDependencies": {
-    "@angular/common": "5.x",
-    "@angular/core": "5.x",
-    "@angular/animations": "5.x",
-    "@angular/platform-browser": "5.x",
-    "rxjs": "5.x"
+    "@angular/common": "5.x || 6.x || 7.x || 8.x",
+    "@angular/core": "5.x || 6.x || 7.x || 8.x",
+    "@angular/animations": "5.x || 6.x || 7.x || 8.x",
+    "@angular/platform-browser": "5.x || 6.x || 7.x || 8.x",
+    "rxjs": "5.x || 6.x"
   },
   "devDependencies": {
     "@angular/animations": "^5.2.11",
