@@ -29,7 +29,8 @@ export declare class UcWidgetComponent implements AfterViewInit, AfterViewChecke
     private _reinitRequired;
     private _isClearValue;
     private _validators;
-    constructor(renderer: Renderer2, element: ElementRef);
+    private isInBrowser;
+    constructor(renderer: Renderer2, element: ElementRef, platformId: string);
     publicKey: string;
     multiple: boolean;
     multipleMax: number;

@@ -7,13 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, Output, ElementRef, EventEmitter, Renderer2, VERSION } from '@angular/core';
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+import { Component, Input, Output, ElementRef, EventEmitter, Renderer2, VERSION, PLATFORM_ID, Inject } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
+import { isPlatformBrowser } from '@angular/common';
 var pkg = require('../../package.json');
 var APP_VERSION = JSON.stringify(pkg.version);
-uploadcare.start({ integration: "Angular/" + VERSION.full + "; Ngx-Uploadcare-Widget/" + APP_VERSION });
 var UcWidgetComponent = /** @class */ (function () {
-    function UcWidgetComponent(renderer, element) {
+    function UcWidgetComponent(renderer, element, platformId) {
         this.onUploadComplete = new EventEmitter();
         this.onChange = new EventEmitter();
         this.onProgress = new EventEmitter();
@@ -25,6 +28,10 @@ var UcWidgetComponent = /** @class */ (function () {
         this._validators = [];
         this.element = element;
         this.renderer = renderer;
+        this.isInBrowser = isPlatformBrowser(platformId);
+        if (this.isInBrowser) {
+            uploadcare.start({ integration: "Angular/" + VERSION.full + "; Ngx-Uploadcare-Widget/" + APP_VERSION });
+        }
     }
     Object.defineProperty(UcWidgetComponent.prototype, "publicKey", {
         get: function () { return this._publicKey; },
@@ -201,7 +208,9 @@ var UcWidgetComponent = /** @class */ (function () {
         configurable: true
     });
     UcWidgetComponent.prototype.ngAfterViewInit = function () {
-        this.widget = this.init();
+        if (this.isInBrowser) {
+            this.widget = this.init();
+        }
     };
     UcWidgetComponent.prototype.ngAfterViewChecked = function () {
         if (this._reinitRequired) {
@@ -431,7 +440,8 @@ var UcWidgetComponent = /** @class */ (function () {
             selector: 'ngx-uploadcare-widget',
             template: '',
         }),
-        __metadata("design:paramtypes", [Renderer2, ElementRef])
+        __param(2, Inject(PLATFORM_ID)),
+        __metadata("design:paramtypes", [Renderer2, ElementRef, String])
     ], UcWidgetComponent);
     return UcWidgetComponent;
 }());

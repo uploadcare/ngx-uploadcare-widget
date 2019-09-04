@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@angular/core"), require("uploadcare-widget"));
+		module.exports = factory(require("@angular/common"), require("@angular/core"), require("uploadcare-widget"));
 	else if(typeof define === 'function' && define.amd)
-		define("ngx-uploadcare-widget", ["@angular/core", "uploadcare-widget"], factory);
+		define("ngx-uploadcare-widget", ["@angular/common", "@angular/core", "uploadcare-widget"], factory);
 	else if(typeof exports === 'object')
-		exports["ngx-uploadcare-widget"] = factory(require("@angular/core"), require("uploadcare-widget"));
+		exports["ngx-uploadcare-widget"] = factory(require("@angular/common"), require("@angular/core"), require("uploadcare-widget"));
 	else
-		root["ngx-uploadcare-widget"] = factory(root["@angular/core"], root["uploadcare-widget"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE__angular_core__, __WEBPACK_EXTERNAL_MODULE_uploadcare_widget__) {
+		root["ngx-uploadcare-widget"] = factory(root["@angular/common"], root["@angular/core"], root["uploadcare-widget"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE__angular_common__, __WEBPACK_EXTERNAL_MODULE__angular_core__, __WEBPACK_EXTERNAL_MODULE_uploadcare_widget__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -78,7 +78,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ "./package.json":
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ngx-uploadcare-widget","version":"1.2.4","description":"Angular 2+ wrapper for Uploadcare Widget","main":"release/index.js","typings":"release/index.d.ts","scripts":{"check":"npm-check --skip-unused","test":"npm run lint && karma start","test:watch":"npm run test -- --auto-watch --no-single-run","watch:test":"npm run test -- --auto-watch --no-single-run","lint":"tslint --project tsconfig.json --config tslint.json","version":"npm run package","preversion":"npm test","clean":"npm-run-all -p clean:*","clean:build":"rimraf build","clean:dist":"rimraf dist","clean:release":"rimraf release","build":"webpack --display-error-details","build:release":"cross-env NODE_ENV=production npm run build","build:package":"cross-env NODE_ENV=package npm run build","build:ts":"tsc","build:aot":"ngc","build:sass":"node-sass -r build/ -o build/","build:css":"postcss --use autoprefixer dist/*.css -d dist/","copy:build":"cpx \"src/**/*\" build","copy:styles":"cpx \"build/**/*.css\" release","watch":"webpack --display-error-details --watch","start":"webpack-dev-server","start:host":"webpack-dev-server --host 0.0.0.0","start:hmr":"webpack-dev-server --env.HMR","release":"npm-run-all build:release","package":"npm-run-all -s clean copy:build package:aot build:package package:minify clean:build","package:ts":"tsc --outDir release","package:aot":"ngc -p tsconfig-aot.json","package:replace-scss":"node ./config/replace-scss.js","package:minify":"uglifyjs release/index.js --source-map --compress --mangle --screw-ie8 --output release/index.min.js","profile":"NODE_ENV=production webpack --profile --json > dist/stats.json"},"repository":{"type":"git","url":"git+https://github.com/uploadcare/ngx-uploadcare-widget.git"},"keywords":["angular","ngx","uploadcare","widget","uploader","filepicker","dialog","upload","store","file","files","image","images"],"authors":["Nikolay Zherdev"],"license":"MIT","bugs":{"url":"https://github.com/uploadcare/ngx-uploadcare-widget/issues"},"homepage":"https://github.com/uploadcare/ngx-uploadcare-widget#readme","peerDependencies":{"@angular/common":"5.x || 6.x || 7.x || 8.x","@angular/core":"5.x || 6.x || 7.x || 8.x","@angular/animations":"5.x || 6.x || 7.x || 8.x","@angular/platform-browser":"5.x || 6.x || 7.x || 8.x","rxjs":"5.x || 6.x"},"devDependencies":{"@angular/animations":"^5.2.11","@angular/common":"^5.2.11","@angular/compiler":"^5.2.11","@angular/compiler-cli":"^5.2.11","@angular/core":"^5.2.11","@angular/forms":"^5.2.11","@angular/http":"^5.2.11","@angular/platform-browser":"^5.2.11","@angular/platform-browser-dynamic":"^5.2.11","@angular/platform-server":"^5.2.11","@swimlane/ngx-ui":"^19.2.0","@types/jasmine":"^2.8.8","@types/node":"^8.10.21","angular2-prettyjson":"^3.0.1","angular2-template-loader":"^0.6.0","autoprefixer":"^7.2.6","awesome-typescript-loader":"^3.5.0","bootstrap":"^4.1.3","clean-webpack-plugin":"^0.1.19","codelyzer":"^3.0.0-beta.4","copy-webpack-plugin":"^4.5.2","core-js":"^2.5.7","cpx":"^1.5.0","cross-env":"^5.2.0","css-loader":"^0.28.11","emoji-flags":"^1.2.0","extract-text-webpack-plugin":"2.0.0-beta.4","file-loader":"^0.11.2","flexboxgrid":"^6.3.1","fs-extra":"^4.0.1","gh-pages":"^1.2.0","html-loader":"^0.5.5","html-webpack-plugin":"^2.26.0","istanbul-instrumenter-loader":"^3.0.1","jasmine-core":"^2.99.1","jquery":"^3.3.1","karma":"^1.7.1","karma-chrome-launcher":"^2.0.0","karma-coverage":"^1.1.2","karma-jasmine":"^1.1.2","karma-mocha-reporter":"^2.2.4","karma-remap-coverage":"^0.1.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^2.0.13","node-sass":"^4.9.2","npm-run-all":"^4.1.3","popper.js":"^1.14.3","postcss":"^5.2.11","postcss-loader":"^1.2.2","raw-loader":"^0.5.1","replace":"^0.3.0","rimraf":"^2.5.2","rxjs":"^5.5.11","sass-loader":"^6.0.7","source-map-loader":"^0.2.0","style-loader":"^0.18.2","to-string-loader":"^1.1.5","ts-helpers":"1.1.2","tslint":"^5.11.0","tslint-config-swimlane":"^3.0.3","tslint-loader":"^3.6.0","typescript":"2.5.2","uglify-js":"^3.4.5","url-loader":"^0.5.7","web-animations-js":"^2.2.2","webpack":"^3.12.0","webpack-combine-loaders":"^2.0.3","webpack-dev-server":"^2.11.2","webpack-merge":"^4.1.3","webpack-notifier":"^1.6.0","zone.js":"^0.8.26"},"dependencies":{"uploadcare-widget":"^3.5.1"}}
+module.exports = {"name":"ngx-uploadcare-widget","version":"1.2.5","description":"Angular 2+ wrapper for Uploadcare Widget","main":"release/index.js","typings":"release/index.d.ts","scripts":{"check":"npm-check --skip-unused","test":"npm run lint && karma start","test:watch":"npm run test -- --auto-watch --no-single-run","watch:test":"npm run test -- --auto-watch --no-single-run","lint":"tslint --project tsconfig.json --config tslint.json","version":"npm run package","preversion":"npm test","clean":"npm-run-all -p clean:*","clean:build":"rimraf build","clean:dist":"rimraf dist","clean:release":"rimraf release","build":"webpack --display-error-details","build:release":"cross-env NODE_ENV=production npm run build","build:package":"cross-env NODE_ENV=package npm run build","build:ts":"tsc","build:aot":"ngc","build:sass":"node-sass -r build/ -o build/","build:css":"postcss --use autoprefixer dist/*.css -d dist/","copy:build":"cpx \"src/**/*\" build","copy:styles":"cpx \"build/**/*.css\" release","watch":"webpack --display-error-details --watch","start":"webpack-dev-server","start:host":"webpack-dev-server --host 0.0.0.0","start:hmr":"webpack-dev-server --env.HMR","release":"npm-run-all build:release","package":"npm-run-all -s clean copy:build package:aot build:package package:minify clean:build","package:ts":"tsc --outDir release","package:aot":"ngc -p tsconfig-aot.json","package:replace-scss":"node ./config/replace-scss.js","package:minify":"uglifyjs release/index.js --source-map --compress --mangle --screw-ie8 --output release/index.min.js","profile":"NODE_ENV=production webpack --profile --json > dist/stats.json"},"repository":{"type":"git","url":"git+https://github.com/uploadcare/ngx-uploadcare-widget.git"},"keywords":["angular","ngx","uploadcare","widget","uploader","filepicker","dialog","upload","store","file","files","image","images"],"authors":["Nikolay Zherdev"],"license":"MIT","bugs":{"url":"https://github.com/uploadcare/ngx-uploadcare-widget/issues"},"homepage":"https://github.com/uploadcare/ngx-uploadcare-widget#readme","peerDependencies":{"@angular/common":"5.x || 6.x || 7.x || 8.x","@angular/core":"5.x || 6.x || 7.x || 8.x","@angular/animations":"5.x || 6.x || 7.x || 8.x","@angular/platform-browser":"5.x || 6.x || 7.x || 8.x","rxjs":"5.x || 6.x"},"devDependencies":{"@angular/animations":"^5.2.11","@angular/common":"^5.2.11","@angular/compiler":"^5.2.11","@angular/compiler-cli":"^5.2.11","@angular/core":"^5.2.11","@angular/forms":"^5.2.11","@angular/http":"^5.2.11","@angular/platform-browser":"^5.2.11","@angular/platform-browser-dynamic":"^5.2.11","@angular/platform-server":"^5.2.11","@swimlane/ngx-ui":"^19.2.0","@types/jasmine":"^2.8.8","@types/node":"^8.10.21","angular2-prettyjson":"^3.0.1","angular2-template-loader":"^0.6.0","autoprefixer":"^7.2.6","awesome-typescript-loader":"^3.5.0","bootstrap":"^4.1.3","clean-webpack-plugin":"^0.1.19","codelyzer":"^3.0.0-beta.4","copy-webpack-plugin":"^4.5.2","core-js":"^2.5.7","cpx":"^1.5.0","cross-env":"^5.2.0","css-loader":"^0.28.11","emoji-flags":"^1.2.0","extract-text-webpack-plugin":"2.0.0-beta.4","file-loader":"^0.11.2","flexboxgrid":"^6.3.1","fs-extra":"^4.0.1","gh-pages":"^1.2.0","html-loader":"^0.5.5","html-webpack-plugin":"^2.26.0","istanbul-instrumenter-loader":"^3.0.1","jasmine-core":"^2.99.1","jquery":"^3.3.1","karma":"^1.7.1","karma-chrome-launcher":"^2.0.0","karma-coverage":"^1.1.2","karma-jasmine":"^1.1.2","karma-mocha-reporter":"^2.2.4","karma-remap-coverage":"^0.1.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^2.0.13","node-sass":"^4.9.2","npm-run-all":"^4.1.3","popper.js":"^1.14.3","postcss":"^5.2.11","postcss-loader":"^1.2.2","raw-loader":"^0.5.1","replace":"^0.3.0","rimraf":"^2.5.2","rxjs":"^5.5.11","sass-loader":"^6.0.7","source-map-loader":"^0.2.0","style-loader":"^0.18.2","to-string-loader":"^1.1.5","ts-helpers":"1.1.2","tslint":"^5.11.0","tslint-config-swimlane":"^3.0.3","tslint-loader":"^3.6.0","typescript":"2.5.2","uglify-js":"^3.4.5","url-loader":"^0.5.7","web-animations-js":"^2.2.2","webpack":"^3.12.0","webpack-combine-loaders":"^2.0.3","webpack-dev-server":"^2.11.2","webpack-merge":"^4.1.3","webpack-notifier":"^1.6.0","zone.js":"^0.8.26"},"dependencies":{"uploadcare-widget":"^3.5.1"}}
 
 /***/ }),
 
@@ -125,6 +125,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget__ = __webpack_require__("uploadcare-widget");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uploadcare_widget__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("@angular/common");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__angular_common__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -134,13 +136,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 var pkg = __webpack_require__("./package.json");
 var APP_VERSION = JSON.stringify(pkg.version);
-__WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.start({ integration: "Angular/" + __WEBPACK_IMPORTED_MODULE_0__angular_core__["VERSION"].full + "; Ngx-Uploadcare-Widget/" + APP_VERSION });
 var UcWidgetComponent = /** @class */ (function () {
-    function UcWidgetComponent(renderer, element) {
+    function UcWidgetComponent(renderer, element, platformId) {
         this.onUploadComplete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.onChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.onProgress = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -152,6 +157,10 @@ var UcWidgetComponent = /** @class */ (function () {
         this._validators = [];
         this.element = element;
         this.renderer = renderer;
+        this.isInBrowser = Object(__WEBPACK_IMPORTED_MODULE_2__angular_common__["isPlatformBrowser"])(platformId);
+        if (this.isInBrowser) {
+            __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.start({ integration: "Angular/" + __WEBPACK_IMPORTED_MODULE_0__angular_core__["VERSION"].full + "; Ngx-Uploadcare-Widget/" + APP_VERSION });
+        }
     }
     Object.defineProperty(UcWidgetComponent.prototype, "publicKey", {
         get: function () { return this._publicKey; },
@@ -328,7 +337,9 @@ var UcWidgetComponent = /** @class */ (function () {
         configurable: true
     });
     UcWidgetComponent.prototype.ngAfterViewInit = function () {
-        this.widget = this.init();
+        if (this.isInBrowser) {
+            this.widget = this.init();
+        }
     };
     UcWidgetComponent.prototype.ngAfterViewChecked = function () {
         if (this._reinitRequired) {
@@ -558,7 +569,8 @@ var UcWidgetComponent = /** @class */ (function () {
             selector: 'ngx-uploadcare-widget',
             template: '',
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]])
+        __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_0__angular_core__["PLATFORM_ID"])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], String])
     ], UcWidgetComponent);
     return UcWidgetComponent;
 }());
@@ -630,6 +642,8 @@ var UcWidgetModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget__ = __webpack_require__("uploadcare-widget");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uploadcare_widget__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("@angular/common");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__angular_common__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -639,18 +653,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 var pkg = __webpack_require__("./package.json");
 var APP_VERSION = JSON.stringify(pkg.version);
-__WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.start({ integration: "Angular/" + __WEBPACK_IMPORTED_MODULE_0__angular_core__["VERSION"].full + "; Ngx-Uploadcare-Widget/" + APP_VERSION });
 var UcWidgetCustomComponent = /** @class */ (function () {
-    function UcWidgetCustomComponent() {
+    function UcWidgetCustomComponent(platformId) {
         this.onUploadComplete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.onChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.onProgress = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.publicKey = 'demopublickey';
         this.validators = [];
+        var isInBrowser = Object(__WEBPACK_IMPORTED_MODULE_2__angular_common__["isPlatformBrowser"])(platformId);
+        if (isInBrowser) {
+            __WEBPACK_IMPORTED_MODULE_1_uploadcare_widget___default.a.start({ integration: "Angular/" + __WEBPACK_IMPORTED_MODULE_0__angular_core__["VERSION"].full + "; Ngx-Uploadcare-Widget/" + APP_VERSION });
+        }
     }
     UcWidgetCustomComponent.prototype.openDialog = function () {
         var _this = this;
@@ -801,12 +822,21 @@ var UcWidgetCustomComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-uploadcare-widget-custom',
             template: '',
-        })
+        }),
+        __param(0, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_0__angular_core__["PLATFORM_ID"])),
+        __metadata("design:paramtypes", [String])
     ], UcWidgetCustomComponent);
     return UcWidgetCustomComponent;
 }());
 
 
+
+/***/ }),
+
+/***/ "@angular/common":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__angular_common__;
 
 /***/ }),
 
