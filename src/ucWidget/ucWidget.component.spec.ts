@@ -1,4 +1,5 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, } from '@angular/core/testing';
+import { PLATFORM_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { UcWidgetComponent } from './ucWidget.component';
 describe('Widget Component', () => {
   const publicKey = 'b2a5dd7667f04ddaac62';
@@ -53,14 +54,21 @@ describe('Widget Component', () => {
       declarations: [
         UcWidgetComponent
       ],
+      providers: [
+        { 
+          provide: PLATFORM_ID,
+          useValue: 'browser' 
+        },
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));
 
-  it('should initialize the component', async(() => {
+  it('should initialize the component', () => {
     const fixture = TestBed.createComponent(UcWidgetComponent);
     const comp = fixture.debugElement.componentInstance;
-    expect(comp).toBeTruthy();
-  }));
+    expect(comp).toBeTruthy();    
+  });
 
   it(`should have as default value of publickey`, async(() => {
     const fixture = TestBed.createComponent(UcWidgetComponent);
