@@ -23,6 +23,7 @@ export declare class UcWidgetCustomComponent {
     doNotStore: boolean;
     validators: any[];
     private dialog;
+    constructor(platformId: string);
     openDialog(): void;
     reject(): void;
 }

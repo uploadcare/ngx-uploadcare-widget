@@ -6,12 +6,12 @@ import { Component,
   ElementRef,
   EventEmitter,
   Renderer2,
-  VERSION } from '@angular/core';
+  VERSION, PLATFORM_ID, Inject } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
+import { isPlatformBrowser} from '@angular/common';
 
 const pkg = require('../../package.json');
 const APP_VERSION = JSON.stringify(pkg.version);
-uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
 
 @Component({
   selector: 'ngx-uploadcare-widget',
@@ -48,10 +48,15 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   private _reinitRequired = false;
   private _isClearValue = false;
   private _validators = [];
+  private isInBrowser: boolean;
 
-  constructor(renderer: Renderer2, element: ElementRef) {
+  constructor(renderer: Renderer2, element: ElementRef, @Inject(PLATFORM_ID) platformId: string) {
     this.element = element;
     this.renderer = renderer;
+    this.isInBrowser = isPlatformBrowser(platformId);
+    if (this.isInBrowser) {
+      uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
+    }
   }
 
   @Input('public-key') 
@@ -191,7 +196,9 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   get doNotStore() { return this._doNotStore; }
 
   ngAfterViewInit() {
-    this.widget = this.init();
+    if(this.isInBrowser) {
+      this.widget = this.init();
+    }
   }
 
   ngAfterViewChecked() {

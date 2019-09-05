@@ -7,18 +7,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, Output, EventEmitter, VERSION, } from '@angular/core';
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+import { Component, Input, Output, EventEmitter, VERSION, PLATFORM_ID, Inject } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
+import { isPlatformBrowser } from '@angular/common';
 var pkg = require('../../package.json');
 var APP_VERSION = JSON.stringify(pkg.version);
-uploadcare.start({ integration: "Angular/" + VERSION.full + "; Ngx-Uploadcare-Widget/" + APP_VERSION });
 var UcWidgetCustomComponent = /** @class */ (function () {
-    function UcWidgetCustomComponent() {
+    function UcWidgetCustomComponent(platformId) {
         this.onUploadComplete = new EventEmitter();
         this.onChange = new EventEmitter();
         this.onProgress = new EventEmitter();
         this.publicKey = 'demopublickey';
         this.validators = [];
+        var isInBrowser = isPlatformBrowser(platformId);
+        if (isInBrowser) {
+            uploadcare.start({ integration: "Angular/" + VERSION.full + "; Ngx-Uploadcare-Widget/" + APP_VERSION });
+        }
     }
     UcWidgetCustomComponent.prototype.openDialog = function () {
         var _this = this;
@@ -169,7 +176,9 @@ var UcWidgetCustomComponent = /** @class */ (function () {
         Component({
             selector: 'ngx-uploadcare-widget-custom',
             template: '',
-        })
+        }),
+        __param(0, Inject(PLATFORM_ID)),
+        __metadata("design:paramtypes", [String])
     ], UcWidgetCustomComponent);
     return UcWidgetCustomComponent;
 }());

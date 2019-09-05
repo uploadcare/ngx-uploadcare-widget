@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 1.2.5 - 2019-09-04
+
+### Added
+
+* GitHub [issue #35](https://github.com/uploadcare/ngx-uploadcare-widget/issues/35),
+  Added Angular Universal support.
+
 ## 1.2.4 - 2019-06-14
 
 ### Fixed

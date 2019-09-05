@@ -3,13 +3,14 @@ import { Component,
           Output,
           EventEmitter,
           VERSION,
+          PLATFORM_ID,
+          Inject
 } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
+import { isPlatformBrowser} from '@angular/common';
 
 const pkg = require('../../package.json');
 const APP_VERSION = JSON.stringify(pkg.version);
-uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
-
 @Component({
   selector: 'ngx-uploadcare-widget-custom',
   template: '',
@@ -39,6 +40,13 @@ export class UcWidgetCustomComponent {
   @Input('do-not-store') doNotStore: boolean;
   @Input('validators') validators: any[] = [];
   private dialog: any;
+
+  constructor(@Inject(PLATFORM_ID) platformId: string) {
+    const isInBrowser = isPlatformBrowser(platformId);
+    if (isInBrowser) {
+      uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
+    }
+  }
 
   openDialog() {
     const config = {
