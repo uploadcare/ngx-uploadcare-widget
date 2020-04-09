@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-uploadcare-widget": [
+        "dist/ngx-uploadcare-widget/ngx-uploadcare-widget",
+        "dist/ngx-uploadcare-widget"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

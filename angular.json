@@ -2,5 +2,46 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ngx-uploadcare-widget": {
+      "projectType": "library",
+      "root": "projects/ngx-uploadcare-widget",
+      "sourceRoot": "projects/ngx-uploadcare-widget/src",
+      "prefix": "ngx-uploadcare",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-uploadcare-widget/tsconfig.lib.json",
+            "project": "projects/ngx-uploadcare-widget/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-uploadcare-widget/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-uploadcare-widget/src/test.ts",
+            "tsConfig": "projects/ngx-uploadcare-widget/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-uploadcare-widget/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-uploadcare-widget/tsconfig.lib.json",
+              "projects/ngx-uploadcare-widget/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "ngx-uploadcare-widget"
 }
