@@ -9,7 +9,8 @@ import { Component,
   VERSION, PLATFORM_ID, Inject } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
 import { isPlatformBrowser} from '@angular/common';
-import { APP_VERSION } from '../version';
+
+import { APP_VERSION } from '../../version';
 
 @Component({
   selector: 'ngx-uploadcare-widget',
