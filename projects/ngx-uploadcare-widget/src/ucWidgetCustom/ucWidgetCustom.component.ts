@@ -8,9 +8,8 @@ import { Component,
 } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
 import { isPlatformBrowser} from '@angular/common';
+import { APP_VERSION } from '../version';
 
-const pkg = require('../../package.json');
-const APP_VERSION = JSON.stringify(pkg.version);
 @Component({
   selector: 'ngx-uploadcare-widget-custom',
   template: '',

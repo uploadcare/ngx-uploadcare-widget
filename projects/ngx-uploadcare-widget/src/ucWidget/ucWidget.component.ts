@@ -9,9 +9,7 @@ import { Component,
   VERSION, PLATFORM_ID, Inject } from '@angular/core';
 import uploadcare from 'uploadcare-widget';
 import { isPlatformBrowser} from '@angular/common';
-
-const pkg = require('../../package.json');
-const APP_VERSION = JSON.stringify(pkg.version);
+import { APP_VERSION } from '../version';
 
 @Component({
   selector: 'ngx-uploadcare-widget',
@@ -59,7 +57,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
     }
   }
 
-  @Input('public-key') 
+  @Input('public-key')
     set publicKey(publicKey: string) {
     this._publicKey = publicKey;
     this.setReinitFlag(true);
@@ -285,7 +283,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
       } else {
         throw new Error('Only functions allowed in validadators array');
       }
-    }); 
+    });
     widget.onUploadComplete((fileInfo) => {
       this.onUploadComplete.emit(fileInfo);
       this._value = fileInfo.uuid;
