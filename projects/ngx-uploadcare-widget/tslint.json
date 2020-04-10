@@ -13,5 +13,10 @@
       "ngx-uploadcare",
       "kebab-case"
     ]
-  }
+  },
+  "linterOptions": {
+    "exclude": [
+      "src/_versions.ts"
+    ]
+}
 }
