@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "ts-appversion": "ts-appversion --root ../../../../projects/ngx-uploadcare-widget",
+    "prebuild": "npm run ts-appversion",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -19,6 +21,7 @@
     "@angular/platform-browser": "~9.1.1",
     "@angular/platform-browser-dynamic": "~9.1.1",
     "@angular/router": "~9.1.1",
+    "@saithodev/ts-appversion": "^2.1.1",
     "angular2-prettyjson": "^3.0.1",
     "bootstrap": "^4.4.1",
     "popper.js": "^1.16.1",

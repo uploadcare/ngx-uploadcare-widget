@@ -1,1 +1,3 @@
-export const APP_VERSION = '2.0.0';
+import versions from './_versions';
+
+export const APP_VERSION = versions.version;

@@ -44,3 +44,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# @saithodev/ts-appversion output versions
+projects/ngx-uploadcare-widget/src/_versions.ts
