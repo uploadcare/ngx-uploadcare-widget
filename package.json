@@ -4,12 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "ts-appversion": "ts-appversion --root ../../../../projects/ngx-uploadcare-widget",
-    "prebuild": "npm run ts-appversion",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "ts-appversion": "ts-appversion --root ../../../../projects/ngx-uploadcare-widget"
   },
   "private": true,
   "dependencies": {
