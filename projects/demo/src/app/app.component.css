@@ -1,0 +1,14 @@
+.settings {
+  margin-top: 1.5rem;
+  background-color: #f3f3f3;
+}
+.mt20 {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .word-wrap {
+    overflow-x: scroll;
+  }
+}
+
