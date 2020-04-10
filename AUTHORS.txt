@@ -1,5 +1,0 @@
-# This list of authors is based on the git history of this repo.
-
-Elijah <ilya@uploadcare.com>
-Nikolay Zherdev <nickzherdev@gmail.com>
-Zarema Khalilova <zarema.khalilova@gmail.com>
