@@ -86,25 +86,25 @@ export class AppComponent implements OnInit {
   }
 
   onChange(file) {
-    if(!file) {
+    if (!file) {
       return;
     }
     console.log('fired Event "onChange"');
     console.log(file);
   // input file parameter depends on "multiple-files" widget attribute
-    if(this.multipleFiles) {
+    if (this.multipleFiles) {
   //  file contains 2 methods:
   //  .promise() - returns the general promise for all uploaded files which resolves into an uploaded file group info
   //  .files() - returns an array of promises: one per each uploaded file.
   //   Each promise resolves into an uploaded file info
       console.log(file);
-      if(file.promise) {
+      if (file.promise) {
         file.promise().then((groupInfo) => {
           console.log('resolved general promise from "onChange" with data:');
           console.log(groupInfo);
         });
       }
-      if(file.files) {
+      if (file.files) {
         file.files().forEach((promise) => {
           promise.then((fileInfo) => {
             console.log('resolves file promise with file info:');
@@ -118,7 +118,7 @@ export class AppComponent implements OnInit {
     }
   }
   onClickAllTab(index) {
-    if(index === 0) {
+    if (index === 0) {
       this.tabsArr = [ this.tabSelectOptions[0] ];
       this.tabs = null;
     } else {
@@ -126,7 +126,7 @@ export class AppComponent implements OnInit {
     }
   }
   onClickCrop(index) {
-    if(index === 0) {
+    if (index === 0) {
       this.cropSelected = [ this.cropOptions[0] ];
       this.crop = null;
     } else {
@@ -143,7 +143,7 @@ export class AppComponent implements OnInit {
   }
   openDialog() {
     this.widgetCustomComponent.openDialog();
-    if(this.closeInTwoSec) {
+    if (this.closeInTwoSec) {
       setTimeout(() => this.widgetCustomComponent.reject(), 2000);
     }
   }

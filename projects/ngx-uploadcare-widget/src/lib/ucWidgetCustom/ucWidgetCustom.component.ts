@@ -1,3 +1,5 @@
+/* tslint:disable:no-output-rename no-input-rename no-output-on-prefix */
+
 import { Component,
           Input,
           Output,
@@ -78,7 +80,7 @@ export class UcWidgetCustomComponent {
     this.dialog = uploadcare.openDialog(this.value, null, config);
     this.dialog.done((selectionPromise) => {
       this.onChange.emit(selectionPromise);
-      if(typeof selectionPromise.promise === 'function') {
+      if (typeof selectionPromise.promise === 'function') {
         selectionPromise.promise()
           .then((groupInfo) => {
             this.onUploadComplete.emit(groupInfo);
@@ -99,7 +101,7 @@ export class UcWidgetCustomComponent {
   }
 
   reject() {
-    if(this.dialog) {
+    if (this.dialog) {
       this.dialog.reject();
       this.dialog = null;
     }

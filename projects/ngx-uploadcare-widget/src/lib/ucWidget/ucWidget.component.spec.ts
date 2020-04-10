@@ -43,7 +43,7 @@ describe('Widget Component', () => {
     component.doNotStore = doNotStore;
     component.validators = validators;
   };
-  
+
   const initComponentMultiple = (component) => {
     initComponent(component);
     component.multiple = true;
@@ -55,9 +55,9 @@ describe('Widget Component', () => {
         UcWidgetComponent
       ],
       providers: [
-        { 
+        {
           provide: PLATFORM_ID,
-          useValue: 'browser' 
+          useValue: 'browser'
         },
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
@@ -67,7 +67,7 @@ describe('Widget Component', () => {
   it('should initialize the component', () => {
     const fixture = TestBed.createComponent(UcWidgetComponent);
     const comp = fixture.debugElement.componentInstance;
-    expect(comp).toBeTruthy();    
+    expect(comp).toBeTruthy();
   });
 
   it(`should have as default value of publickey`, async(() => {

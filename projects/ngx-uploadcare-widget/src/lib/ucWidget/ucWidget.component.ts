@@ -1,3 +1,5 @@
+/* tslint:disable:no-output-rename no-input-rename no-output-on-prefix variable-name */
+
 import { Component,
   Input,
   Output,
@@ -166,7 +168,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   @Input('value')
     set value(value: string) {
     this._value = value;
-    if(this.widget) {
+    if (this.widget) {
       this.setReinitFlag(false);
       this.widget.value(value);
     }
@@ -195,13 +197,13 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   get doNotStore() { return this._doNotStore; }
 
   ngAfterViewInit() {
-    if(this.isInBrowser) {
+    if (this.isInBrowser) {
       this.widget = this.init();
     }
   }
 
   ngAfterViewChecked() {
-    if(this._reinitRequired) {
+    if (this._reinitRequired) {
       this.reset(this._isClearValue);
     }
   }
@@ -215,26 +217,26 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
 
   clearUploads() {
     this._value = null;
-    if(this.widget) {
+    if (this.widget) {
       this.widget.value(null);
     }
   }
 
   openDialog() {
-    if(this.widget) {
+    if (this.widget) {
       this.dialog = this.widget.openDialog();
     }
   }
 
   reject() {
-    if(this.dialog) {
+    if (this.dialog) {
       this.dialog.reject();
       this.dialog = null;
     }
   }
 
   private setReinitFlag(isClearValue: boolean) {
-    if(this.widget) {
+    if (this.widget) {
       this._reinitRequired = true;
       this._isClearValue = isClearValue;
     }
@@ -265,7 +267,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
     this.setInputAttr('data-secure-expire', this._secureExpire);
     this.setInputAttr('data-cdn-base', this._cdnBase);
     this.setInputAttr('data-do-not-store', this._doNotStore);
-    if(this._value) {
+    if (this._value) {
       this.renderer.setProperty(this.inputElement, 'value', this._value);
     }
   }
@@ -273,7 +275,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
   private init(removeUploads = false) {
     this.inputElement = this.renderer.createElement('input');
     this.renderer.appendChild(this.element.nativeElement, this.inputElement);
-    if(removeUploads) {
+    if (removeUploads) {
       this.clearUploads();
     }
     this.initInputElement();
@@ -294,7 +296,7 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
       if (!selectionPromise) {
         return;
       }
-      if(typeof selectionPromise.promise === 'function') {
+      if (typeof selectionPromise.promise === 'function') {
         selectionPromise.promise()
           .progress((progress) => {
             this.onProgress.emit(progress);
