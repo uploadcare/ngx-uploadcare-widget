@@ -1,10 +1,10 @@
 ## Publishing to npm
-Angular guide: https://angular.io/guide/creating-libraries#publishing-your-library
+
+We use [ShipJS](https://github.com/algolia/shipjs) to release this package.
 
 ```
-ng build ngx-uploadcare-widget --prod
-cd dist/ngx-uploadcare-widget
-npm publish
+npm run release:prepare
+npm run release:trigger
 ```
 
 ## Running demo Application
