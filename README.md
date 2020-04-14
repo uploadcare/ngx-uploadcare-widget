@@ -35,7 +35,7 @@ npm install ngx-uploadcare-widget
 For Angular v8 and lower — install widget v1.2.5.
 
 ```bash
-npm install ngx-uploadcare-widget@1.2.5
+npm install ngx-uploadcare-widget@^1.0.0
 ```
 
 ## Usage
