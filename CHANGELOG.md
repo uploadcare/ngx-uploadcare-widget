@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+
+## 2.0.0 - 2020-04-14
+
+### Changed
+
+* Completely replace custom build with the default Angular one (`ng build`) to support Ivy compiler.
+  See [issue #37](https://github.com/uploadcare/ngx-uploadcare-widget/issues/37)
+
 ## 1.2.5 - 2019-09-04
 
 ### Added
@@ -99,7 +107,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * New `on-progress` event to both directives.
 * The `AUTHORS.txt` file to the repo to give credit to those contributing to
   the project. Yoo-hoo, thanks folks 💛
-  
+
 ## 1.0.0 - 2018-05-25
 
 Failed npm release. Please, don't use it.

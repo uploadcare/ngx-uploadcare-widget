@@ -1,0 +1,22 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "ngxUploadcare",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "ngx-uploadcare",
+      "kebab-case"
+    ]
+  },
+  "linterOptions": {
+    "exclude": [
+      "src/_versions.ts"
+    ]
+}
+}

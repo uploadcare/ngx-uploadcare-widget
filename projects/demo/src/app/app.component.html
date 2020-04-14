@@ -1,0 +1,150 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <h2>Uploadcare widget demo</h2>
+    </div>
+    <div class="col-md-12 text-center">
+      <ngx-uploadcare-widget
+        images-only={{isImageOnly}}
+        public-key={{publicKey}}
+        multiple={{multipleFiles}}
+        multiple-min={{multipleMin}}
+        multiple-max={{multipleMax}}
+        preview-step={{previewStep}}
+        crop={{crop}}
+        image-shrink={{imageShrink}}
+        clearable={{clearable}}
+        tabs={{tabs}}
+        input-accept-types={{inputAcceptTypes}}
+        preferred-types={{preferredTypes}}
+        system-dialog={{systemDialog}}
+        value={{value}}
+        cdn-base={{cdnBase}}
+        do-not-store={{doNotStore}}
+        [validators] = "validators"
+        (on-upload-complete)="onUpload($event)"
+        (on-change)="onChange($event)"
+        (on-progress)="onProgress($event)">
+      </ngx-uploadcare-widget>
+      <ngx-uploadcare-widget-custom
+        images-only={{isImageOnly}}
+        public-key={{publicKey}}
+        multiple={{multipleFiles}}
+        multiple-min={{multipleMin}}
+        multiple-max={{multipleMax}}
+        preview-step={{previewStep}}
+        crop={{crop}}
+        image-shrink={{imageShrink}}
+        clearable={{clearable}}
+        tabs={{tabs}}
+        input-accept-types={{inputAcceptTypes}}
+        preferred-types={{preferredTypes}}
+        system-dialog={{systemDialog}}
+        value={{value}}
+        cdn-base={{cdnBase}}
+        do-not-store={{doNotStore}}
+        [validators] = "validators"
+        (on-upload-complete)="onUpload($event)"
+        (on-change)="onChange($event)"
+        (on-progress)="onProgress($event)">
+      </ngx-uploadcare-widget-custom>
+      <button class="btn btn-info" (click)="openDialog()">Open dialog</button>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="uc-autoclose" [(ngModel)]="closeInTwoSec">
+        <label class="form-check-label" for="uc-autoclose">Close dialog in two seconds</label>
+      </div>
+    </div>
+  </div>
+ <div class="row settings">
+    <div class="col-md-12 text-center">
+      <br/>
+      <h3>Settings</h3>
+    </div>
+    <div class="col-xs-12 col-md-3 offset-md-1">
+      <div class="form-group">
+        <label for="uc-public-key">Uploadcare public key:</label>
+        <input type="text" class="form-control" id="uploadcare-public-key" [(ngModel)]="publicKey"/>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="uc-previewStep" [(ngModel)]="previewStep">
+        <label class="form-check-label" for="uc-previewStep">Preview Step</label>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="uc-isImageOnly" [(ngModel)]="isImageOnly">
+          <label class="form-check-label" for="uc-isImageOnly">Upload images only</label>
+        </div>
+        <label for="uc-image-shrink">Image shrink:</label>
+        <select class="form-control" id="uc-image-shrink" [(ngModel)]="imageShrink" [attr.disabled]="!isImageOnly?'':null">
+          <option [value]="null">disabled</option>
+          <option value="400x300">400x300</option>
+          <option value="800x600">800x600</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="uc-multiple" [(ngModel)]="multipleFiles">
+          <label class="form-check-label" for="uc-multiple">Multiple files</label>
+        </div>
+        <label for="uc-multiple-min">Multiple min:</label>
+        <input type="number" class="form-control" id="uc-multiple-min" [(ngModel)]="multipleMin" [attr.disabled]="!multipleFiles?'':null"/>
+      </div>
+      <div class="form-group">
+        <label for="uc-multiple-max">Multiple max:</label>
+        <input type="number" class="form-control" id="uc-multiple-max" [(ngModel)]="multipleMax" [attr.disabled]="!multipleFiles?'':null"/>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="form-group">
+        <label for="uc-tabs">Widget tab list:<br /><small>(Multi-item selection is allowed. Refer to <a href="https://uploadcare.com/docs/uploads/widget/upload_sources/" target="_blank">documentation</a> for more info.)</small></label>
+        <select multiple size="15" class="form-control" id="uc-tabs" [(ngModel)]="tabsArr" (change)="onClickAllTab($event.target.selectedIndex)">
+          <option *ngFor="let tab of tabSelectOptions" [value]="tab">{{tab}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="form-group">
+        <label for="uc-crop">Crop: <br /><small>(Multi-item selection is allowed. Refer to <a href="https://uploadcare.com/docs/uploads/widget/crop_options/" target="_blank">documentation</a> for more info.)</small></label>
+        <select multiple size="7" class="form-control" id="uc-crop" [(ngModel)]="cropSelected" (change)="onClickCrop($event.target.selectedIndex)">
+          <option *ngFor="let c of cropOptions" [value]="c">{{c}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="uc-public-key">Init widget with file UUID:</label>
+        <input type="text" class="form-control" id="uploadcare-uuid" [(ngModel)]="value"/>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="uc-clearable" [(ngModel)]="clearable">
+        <label class="form-check-label" for="uc-clearable">Clearable</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="uc-system-dialog" [(ngModel)]="systemDialog">
+        <label class="form-check-label" for="uc-system-dialog">Use system dialog</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="uc-not-store" [(ngModel)]="doNotStore">
+        <label class="form-check-label" for="uc-not-store">Do not store</label>
+      </div>
+    </div>
+  </div>
+  <div class="row mt20">
+    <div class="col-md-12 text-center">
+      <div class="form-group">
+        <button class="btn btn-info" (click)="clearVal()">Clear uploads</button>
+        <button class="btn btn-info" (click)="resetWidget()">Reset widget</button>
+      </div>
+    </div>
+  </div>
+  <div class="row settings">
+    <div class="col-md-12 text-center">
+      <br/>
+      <h3>Upload file results</h3>
+    </div>
+    <div class="col-xs-12 offset-md-2" [class.word-wrap]="uploadedData != null">
+      <pre>
+{{uploadedData | json}} <!-- needed to remove space before json -->
+      </pre>
+    </div>
+  </div>
+</div>
+

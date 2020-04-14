@@ -1,0 +1,38 @@
+{
+  "name": "ngx-uploadcare-widget",
+  "description": "Angular 2+ wrapper for Uploadcare Widget",
+  "version": "2.0.0-alpha.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uploadcare/ngx-uploadcare-widget.git"
+  },
+  "keywords": [
+    "angular",
+    "ngx",
+    "uploadcare",
+    "widget",
+    "uploader",
+    "filepicker",
+    "dialog",
+    "upload",
+    "store",
+    "file",
+    "files",
+    "image",
+    "images"
+  ],
+  "authors": [
+    "Nikolay Zherdev"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uploadcare/ngx-uploadcare-widget/issues"
+  },
+  "homepage": "https://github.com/uploadcare/ngx-uploadcare-widget#readme",
+  "peerDependencies": {
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "tslib": "^1.10.0",
+    "uploadcare-widget": "^3.5.1"
+  }
+}
