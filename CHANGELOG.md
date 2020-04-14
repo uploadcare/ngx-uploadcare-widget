@@ -1,3 +1,7 @@
+## [2.0.1](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v2.0.0...v2.0.1) (2020-04-14)
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
