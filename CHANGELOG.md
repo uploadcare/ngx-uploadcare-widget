@@ -1,6 +1,9 @@
 ## [2.0.1](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v2.0.0...v2.0.1) (2020-04-14)
 
+### Changed
 
+* Bump `uploadcare-widget` package
+* Setup ShipJS config
 
 ## 2.0.0 - 2020-04-14
 
