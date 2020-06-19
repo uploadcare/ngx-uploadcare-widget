@@ -46,7 +46,7 @@ export class UcWidgetCustomComponent {
   constructor(@Inject(PLATFORM_ID) platformId: string) {
     const isInBrowser = isPlatformBrowser(platformId);
     if (isInBrowser) {
-      uploadcare.start({integration: `Angular/${VERSION.full}; Ngx-Uploadcare-Widget/${APP_VERSION}`});
+      uploadcare.start({integration: `Ngx-Uploadcare-Widget`});
     }
   }
 
