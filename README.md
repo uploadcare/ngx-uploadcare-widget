@@ -218,8 +218,8 @@ request at [hello@uploadcare.com][uc-email-hello].
 
 [npm-img]: http://img.shields.io/npm/v/ngx-uploadcare-widget.svg
 [npm-url]: https://www.npmjs.org/package/ngx-uploadcare-widget
-[travis-img]: https://api.travis-ci.org/uploadcare/ngx-uploadcare-widget.svg?branch=master
-[travis-url]: https://travis-ci.org/uploadcare/ngx-uploadcare-widget
+[travis-img]: https://api.travis-ci.com/uploadcare/ngx-uploadcare-widget.svg?branch=master
+[travis-url]: https://travis-ci.com/uploadcare/ngx-uploadcare-widget
 [stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
 [stack-url]: https://stackshare.io/uploadcare/stacks/
 [github-widget]: https://github.com/uploadcare/uploadcare-widget
