@@ -1,3 +1,9 @@
+## [3.0.1](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v3.0.0...v3.0.1) (2021-07-01)
+
+### Changed
+
+* fix shipjs trigger workflow ([519bb9e](https://github.com/uploadcare/ngx-uploadcare-widget/commit/519bb9e52a6be86cbacd84b709dff22fd8860858))
+
 # [3.0.0](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v2.0.2...v3.0.0) (2021-07-01)
 
 ### BREAKING CHANGES
