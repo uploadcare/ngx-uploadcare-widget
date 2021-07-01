@@ -1,3 +1,21 @@
+## [2.0.3](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v2.0.2...v2.0.3) (2021-07-01)
+
+
+* BREAKING CHANGE: Update to Angular 12 (#68) ([0011815](https://github.com/uploadcare/ngx-uploadcare-widget/commit/00118152b8e0f6a73a8dd93c2a13db891ad49c3f)), closes [#68](https://github.com/uploadcare/ngx-uploadcare-widget/issues/68)
+
+
+### BREAKING CHANGES
+
+* update to angular 12
+
+* chore: migrate to from TSLint to ESLint
+
+* chore: update readme
+
+* chore: update gh actions node
+
+
+
 ## [2.0.2](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v2.0.1...v2.0.2) (2020-04-14)
 
 ### Changed
