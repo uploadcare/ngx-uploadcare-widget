@@ -30,14 +30,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-uploadcare-widget/tsconfig.lib.json",
-              "projects/ngx-uploadcare-widget/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-uploadcare-widget/**/*.ts",
+              "projects/ngx-uploadcare-widget/**/*.html"
             ]
           }
         }
@@ -135,15 +132,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/demo/tsconfig.app.json",
-              "projects/demo/tsconfig.spec.json",
-              "projects/demo/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/demo/**/*.ts",
+              "projects/demo/**/*.html"
             ]
           }
         },
@@ -160,6 +153,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ngx-uploadcare-widget"
+    }
+  },
+  "defaultProject": "ngx-uploadcare-widget",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
