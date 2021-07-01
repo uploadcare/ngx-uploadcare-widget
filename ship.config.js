@@ -11,4 +11,5 @@ module.exports = {
   beforeCommitChanges: ({ nextVersion, releaseType, exec, dir }) => {
     exec("npm run ts-appversion");
   },
+  conventionalChangelogArgs: '-p angular -i CHANGELOG.md -s'
 };
