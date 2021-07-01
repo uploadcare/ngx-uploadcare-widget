@@ -1,7 +1,7 @@
 {
   "name": "ngx-uploadcare-widget",
   "description": "Angular 2+ wrapper for Uploadcare Widget",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uploadcare/ngx-uploadcare-widget.git"
