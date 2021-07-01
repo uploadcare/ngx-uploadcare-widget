@@ -140,7 +140,7 @@
       <br/>
       <h3>Upload file results</h3>
     </div>
-    <div class="col-xs-12 offset-md-2" [class.word-wrap]="uploadedData != null">
+    <div class="col-xs-12 offset-md-2" [class.word-wrap]="!!uploadedData">
       <pre>
 {{uploadedData | json}} <!-- needed to remove space before json -->
       </pre>

@@ -7,16 +7,16 @@ import { UcWidgetModule } from '../../../ngx-uploadcare-widget/src/public-api';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    PrettyJsonModule,
-    UcWidgetModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        PrettyJsonModule,
+        UcWidgetModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
