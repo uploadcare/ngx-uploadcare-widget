@@ -28,6 +28,14 @@ Uploadcare Widget is an HTML5 file uploader, a part of the
 
 ## Install
 
+For Angular v12+ — install widget v3.x
+
+```bash
+npm install ngx-uploadcare-widget@3.x uploadcare-widget
+```
+
+For Angular from v9 to v11 — install widget v2.x
+
 ```bash
 npm install ngx-uploadcare-widget uploadcare-widget
 ```
