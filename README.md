@@ -9,6 +9,7 @@
 Angular 2+ wrapper for [Uploadcare Widget][uc-features-widget].
 
 [![NPM version][npm-img]][npm-url]
+[![Build Status][badge-img]][badge-url]
 [![Uploadcare stack on StackShare][stack-img]][stack-url]
 
 Uploadcare Widget is an HTML5 file uploader, a part of the
@@ -225,6 +226,8 @@ request at [hello@uploadcare.com][uc-email-hello].
 
 [npm-img]: http://img.shields.io/npm/v/ngx-uploadcare-widget.svg
 [npm-url]: https://www.npmjs.org/package/ngx-uploadcare-widget
+[badge-img]: https://github.com/uploadcare/ngx-uploadcare-widget/actions/workflows/checks.yml/badge.svg
+[badge-url]: https://github.com/uploadcare/ngx-uploadcare-widget/actions/workflows/checks.yml
 [stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
 [stack-url]: https://stackshare.io/uploadcare/stacks/
 [github-widget]: https://github.com/uploadcare/uploadcare-widget
