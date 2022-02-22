@@ -1,3 +1,12 @@
+## [3.0.2](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v3.0.1...v3.0.2) (2022-02-22)
+
+
+### Bug Fixes
+
+* wildcard angular version ([#85](https://github.com/uploadcare/ngx-uploadcare-widget/issues/85)) ([29c745e](https://github.com/uploadcare/ngx-uploadcare-widget/commit/29c745ef5f2e95354ee64719eb2b472297a53935))
+
+
+
 ## [3.0.1](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v3.0.0...v3.0.1) (2021-07-01)
 
 ### Changed
