@@ -32,7 +32,7 @@
   "peerDependencies": {
     "@angular/common": "*",
     "@angular/core": "*",
-    "uploadcare-widget": "^3.5.1"
+    "uploadcare-widget": "^3.17.0"
   },
   "dependencies": {
     "tslib": "^2.2.0"
