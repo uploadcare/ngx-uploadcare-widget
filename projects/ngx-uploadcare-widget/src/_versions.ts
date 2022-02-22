@@ -9,9 +9,9 @@ export interface TsAppVersion {
     gitTag?: string;
 };
 export const versions: TsAppVersion = {
-    version: '3.0.1',
+    version: '3.0.2',
     name: 'ngx-uploadcare-widget',
-    versionDate: '2021-07-01T10:36:24.418Z',
+    versionDate: '2022-02-22T10:00:56.543Z',
     description: 'Angular 2+ wrapper for Uploadcare Widget',
 };
 export default versions;
