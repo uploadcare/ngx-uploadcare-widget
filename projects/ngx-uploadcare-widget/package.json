@@ -30,9 +30,11 @@
   },
   "homepage": "https://github.com/uploadcare/ngx-uploadcare-widget#readme",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "tslib": "^1.10.0",
-    "uploadcare-widget": "^3.5.1"
+    "@angular/common": "*",
+    "@angular/core": "*",
+    "uploadcare-widget": "^3.17.0"
+  },
+  "dependencies": {
+    "tslib": "^2.2.0"
   }
 }
