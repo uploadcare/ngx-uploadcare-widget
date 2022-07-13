@@ -35,6 +35,6 @@
     "uploadcare-widget": "^3.17.0"
   },
   "dependencies": {
-    "tslib": "^2.2.0"
+    "tslib": "^2.4.0"
   }
 }

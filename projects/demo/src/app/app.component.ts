@@ -10,58 +10,58 @@ import { interval } from 'rxjs';
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  publicKey = 'demopublickey';
-  multipleFiles = false;
-  multipleMin = 1;
-  multipleMax = 2;
-  previewStep = false;
-  isImageOnly = false;
-  crop: string; // example: crop = '2:3';
-  imageShrink = null; // example: imageShrink = '1024x1024';
-  clearable = false;
-  tabs: string;
-  inputAcceptTypes: string;
-  preferredTypes: string;
-  systemDialog = false;
-  value = null;
-  cdnBase = null;
-  doNotStore = false;
-  tabSelectOptions = [
-      'default',
-      'file',
-      'url',
-      'camera',
-      'facebook',
-      'gdrive',
-      'gphotos',
-      'dropbox',
-      'instagram',
-      'evernote',
-      'flickr',
-      'skydrive',
-      'box',
-      'vk',
-      'huddle', ];
-  tabsArr = [ this.tabSelectOptions[0] ];
-  uploadedData: null;
-  cropOptions = ['disabled', 'free', '16:9', '4:3', '5:4', '1:1', '300x400 upscale', '300x200 minimum'];
-  cropSelected = [ this.cropOptions[0] ];
-  validators = [
-      (fileInfo) => {
-          console.log('validator 1 - fired');
-      // Throw error here to drop the uploading e.g.
-      // if (fileInfo.isImage) throw new Error('Not Images Only');
-      },
-      (fileInfo) => {
-          console.log('validator 2 - fired');
-          // Throw error here to drop the uploading e.g.
-          // if (!fileInfo.isImage) throw new Error('Images Only');
-      },
-  ];
-  closeInTwoSec = false;
+    publicKey = 'demopublickey';
+    multipleFiles = false;
+    multipleMin = 1;
+    multipleMax = 2;
+    previewStep = false;
+    isImageOnly = false;
+    crop: string; // example: crop = '2:3';
+    imageShrink = null; // example: imageShrink = '1024x1024';
+    clearable = false;
+    tabs: string;
+    inputAcceptTypes: string;
+    preferredTypes: string;
+    systemDialog = false;
+    value = null;
+    cdnBase = null;
+    doNotStore = false;
+    tabSelectOptions = [
+        'default',
+        'file',
+        'url',
+        'camera',
+        'facebook',
+        'gdrive',
+        'gphotos',
+        'dropbox',
+        'instagram',
+        'evernote',
+        'flickr',
+        'skydrive',
+        'box',
+        'vk',
+        'huddle', ];
+    tabsArr = [ this.tabSelectOptions[0] ];
+    uploadedData: null;
+    cropOptions = ['disabled', 'free', '16:9', '4:3', '5:4', '1:1', '300x400 upscale', '300x200 minimum'];
+    cropSelected = [ this.cropOptions[0] ];
+    validators = [
+        (fileInfo) => {
+            console.log('validator 1 - fired');
+            // Throw error here to drop the uploading e.g.
+            // if (fileInfo.isImage) throw new Error('Not Images Only');
+        },
+        (fileInfo) => {
+            console.log('validator 2 - fired');
+            // Throw error here to drop the uploading e.g.
+            // if (!fileInfo.isImage) throw new Error('Images Only');
+        },
+    ];
+    closeInTwoSec = false;
 
   @ViewChild(UcWidgetComponent)
-  private widgetComponent: UcWidgetComponent;
+    private widgetComponent: UcWidgetComponent;
 
   @ViewChild(UcWidgetCustomComponent)
   private widgetCustomComponent: UcWidgetCustomComponent;
