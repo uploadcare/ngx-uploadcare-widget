@@ -28,7 +28,8 @@
         "no-unused-expressions": "error",
         "no-use-before-define": "off",
         "quotes": "off",
-        "semi": "error"
+        "semi": "error",
+        "@typescript-eslint/member-ordering": "off"
       }
     },
     {
