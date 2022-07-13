@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v3.0.2...v4.0.0) (2022-07-13)
+
+
+* chore!: run migrations 12 -> 14 ([2ecc098](https://github.com/uploadcare/ngx-uploadcare-widget/commit/2ecc0987711dcad79760375e12bda9a7469017c8))
+
+
+### BREAKING CHANGES
+
+* The library is now built with angular 14 toolchain. Perhaps compatibility with previous versions of angular will be broken.
+
+
+
 ## [3.0.2](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v3.0.1...v3.0.2) (2022-02-22)
 
 
