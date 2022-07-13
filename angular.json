@@ -10,7 +10,7 @@
       "prefix": "ngx-uploadcare",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-uploadcare-widget/tsconfig.lib.json",
             "project": "projects/ngx-uploadcare-widget/ng-package.json"
