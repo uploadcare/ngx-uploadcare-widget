@@ -80,14 +80,14 @@ import { UcWidgetModule } from 'ngx-uploadcare-widget';
 ```html
 <!-- with default markup -->
 <ngx-uploadcare-widget
-  images-only="true"
-  public-key="YOUR_PUBLIC_KEY">
+  public-key="YOUR_PUBLIC_KEY"
+  [images-only]="true">
 </ngx-uploadcare-widget>
 
 <!-- without any markup -->
 <ngx-uploadcare-widget-custom
-  images-only="true"
-  public-key="YOUR_PUBLIC_KEY">
+  public-key="YOUR_PUBLIC_KEY"
+  [images-only]="true">
 </ngx-uploadcare-widget-custom>
 
 ```
@@ -104,8 +104,8 @@ Here is how you can handle those three,
 
 ```html
 <ngx-uploadcare-widget
-  images-only="true"
   public-key="demopublickey"
+  [images-only]="true"
   (on-upload-complete)="yourOnUploadHandler($event)"
   (on-change)="yourOnChangeHandler($event)"
   (on-progress)="yourOnProgressHandler($event)">
