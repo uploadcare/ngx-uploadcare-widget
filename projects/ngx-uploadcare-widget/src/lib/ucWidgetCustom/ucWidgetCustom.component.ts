@@ -107,4 +107,7 @@ export class UcWidgetCustomComponent {
       }
   }
 
+  getDialogApi() {
+      return this.dialog;
+  }
 }

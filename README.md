@@ -202,6 +202,7 @@ The components provides following public methods:
 * `reset(clearUploads = false)` - Resets the widget, You can also remove all the current uploads if `clearUploads` is set to `true`
 * `openDialog()` - Opens Uploadcare widget dialog with current configuration.
 * `reject()` - Closes the dialog opened with `openDialog()` method only and discards any file selection.
+* `getDialogApi()` - Returns [Dialog API instance][uc-docs-js-api-dialog-api]
 
 All methods are accessible from a parent component via the `@ViewChild()` approach.
 
@@ -265,3 +266,4 @@ request at [hello@uploadcare.com][uc-email-hello].
 [uc-docs-widget-validators]: https://uploadcare.com/docs/api_reference/javascript/file_validation/
 [uc-docs-js-api-widget-on-upload-complete]: https://uploadcare.com/docs/api_reference/javascript/widget/?utm_source=github&utm_campaign=ngx-uploadcare-widget#widget-on-upload-complete
 [uc-docs-js-api-widget-on-change]: https://uploadcare.com/docs/api_reference/javascript/widget/?utm_source=github&utm_campaign=ngx-uploadcare-widget#widget-on-change
+[uc-docs-js-api-dialog-api]: https://uploadcare.com/docs/file-uploader-api/dialog-panel/#dialog-api
