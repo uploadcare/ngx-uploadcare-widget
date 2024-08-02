@@ -1,4 +1,10 @@
-# ngx-uploadcare-widget
+# Angular Wrapper for jQuery File Uploader Widget
+
+## ⚠️ Deprecation alert
+
+**This repository is deprecated. Please use the [new Uploadcare File Uploader](https://github.com/uploadcare/file-uploader?tab=readme) for the latest updates and improvements.**
+
+---
 
 <a href="https://uploadcare.com/?utm_source=github&utm_campaign=ngx-uploadcare-widget">
   <img align="right" width="64" height="64"
@@ -6,13 +12,13 @@
        alt="">
 </a>
 
-Angular 2+ wrapper for [Uploadcare Widget][uc-features-widget].
+Angular 2+ wrapper for [Uploadcare jQuery File Uploader Widget][uc-features-widget].
 
 [![NPM version][npm-img]][npm-url]
 [![Build Status][badge-img]][badge-url]
 [![Uploadcare stack on StackShare][stack-img]][stack-url]
 
-Uploadcare Widget is an HTML5 file uploader, a part of the
+jQuery File Uploader Widget is an HTML5 file uploader, a part of the
 [Uploadcare][uc-home] ecosystem.
 
 <!-- toc -->
@@ -200,7 +206,7 @@ The components provides following public methods:
 
 * `clearUploads()` - Removes all current uploads from the widget. You can use the method to reset a form even if a user has already uploaded some files.
 * `reset(clearUploads = false)` - Resets the widget, You can also remove all the current uploads if `clearUploads` is set to `true`
-* `openDialog()` - Opens Uploadcare widget dialog with current configuration.
+* `openDialog()` - Opens the widget dialog with current configuration.
 * `reject()` - Closes the dialog opened with `openDialog()` method only and discards any file selection.
 
 All methods are accessible from a parent component via the `@ViewChild()` approach.
