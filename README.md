@@ -1,4 +1,4 @@
-# Angular Wrapper for jQuery File Uploader Widget
+# Angular Wrapper for jQuery File Uploader
 
 ## ⚠️ Deprecation alert
 
@@ -12,13 +12,13 @@
        alt="">
 </a>
 
-Angular 2+ wrapper for [Uploadcare jQuery File Uploader Widget][uc-features-widget].
+Angular 2+ wrapper for [Uploadcare jQuery File Uploader][uc-features-widget].
 
 [![NPM version][npm-img]][npm-url]
 [![Build Status][badge-img]][badge-url]
 [![Uploadcare stack on StackShare][stack-img]][stack-url]
 
-jQuery File Uploader Widget is an HTML5 file uploader, a part of the
+jQuery File Uploader is an HTML5 file uploader, a part of the
 [Uploadcare][uc-home] ecosystem.
 
 <!-- toc -->
