@@ -43,32 +43,32 @@ describe('Custom Widget Component', () => {
         component.validators = validators;
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [
                 UcWidgetCustomComponent
             ],
         }).compileComponents();
-    }));
+    });
 
-    it('should initialize the component', async(() => {
+    it('should initialize the component', () => {
         const fixture = TestBed.createComponent(UcWidgetCustomComponent);
         const comp = fixture.debugElement.componentInstance;
         expect(comp).toBeTruthy();
-    }));
+    });
 
-    it('should have as default value of publickey', async(() => {
+    it('should have as default value of publickey', () => {
         const fixture = TestBed.createComponent(UcWidgetCustomComponent);
         const comp = fixture.debugElement.componentInstance;
         expect(comp.publicKey).toEqual('demopublickey');
-    }));
+    });
 
-    it('call of "openDialog()" successfull', async(() => {
+    it('call of "openDialog()" successful', () => {
         const fixture = TestBed.createComponent(UcWidgetCustomComponent);
         const component = fixture.debugElement.componentInstance;
         initComponent(component);
         fixture.detectChanges();
         component.openDialog();
         expect(1).toBe(1);
-    }));
+    });
 });
