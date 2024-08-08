@@ -138,9 +138,9 @@
 
 ### Added
 
-* Exported the Uploadcare jQuery File Uploader API: you are now free to add directives.
+* Exported the jQuery File Uploader API: you are now free to add directives.
 * A new directive, `ngx-uploadcare-widget-custom` without any default markup.
-  You can now use Uploadcare jQuery File Uploader with your own.
+  You can now use jQuery File Uploader with your own.
 * New `openDialog()` method to both directives.
 * New `on-progress` event to both directives.
 * The `AUTHORS.txt` file to the repo to give credit to those contributing to
