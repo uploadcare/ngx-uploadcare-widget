@@ -1,6 +1,6 @@
 ## [4.0.1](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v4.0.0...v4.0.1) (2024-08-08)
 
-
+No changes
 
 # [4.0.0](https://github.com/uploadcare/ngx-uploadcare-widget/compare/v3.0.2...v4.0.0) (2022-07-13)
 
