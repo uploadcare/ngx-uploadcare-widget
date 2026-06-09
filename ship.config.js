@@ -8,6 +8,7 @@ module.exports = {
     packagesToPublish: ["dist/ngx-uploadcare-widget"],
   },
   buildCommand: () => "npm run build:release",
+  publishCommand: ({ tag }) => `npm stage publish --tag ${tag}`,
   beforeCommitChanges: ({ nextVersion, releaseType, exec, dir }) => {
     exec("npm run ts-appversion");
   },
