@@ -9,11 +9,13 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           registry-url: "https://registry.npmjs.org"
-          node-version: '20'
+          node-version: '22'
+      - name: Pin npm with staged publishing support
+        run: npm install -g npm@">=11.15.0"
       - run: npm ci
       - run: npm run lint
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
@@ -23,3 +25,26 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
           SLACK_INCOMING_HOOK: ${{ secrets.SLACK_INCOMING_HOOK }}
+      - name: Detect staged release
+        id: rel
+        run: |
+          tag="$(git tag --points-at HEAD | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1)"
+          if [ -n "$tag" ]; then
+            {
+              echo "released=true"
+              echo "name=$(node -p "require('./package.json').name")"
+              echo "version=$(node -p "require('./package.json').version")"
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "released=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Notify Slack about staged release
+        if: steps.rel.outputs.released == 'true'
+        uses: slackapi/slack-github-action@37ebaef184d7626c5f204ab8d3baff4262dd30f0 # v1.27.0
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        with:
+          channel-id: ${{ secrets.SLACK_NPM_RELEASE_CHANNEL }}
+          slack-message: |
+            :package: *${{ steps.rel.outputs.name }}@${{ steps.rel.outputs.version }}* staged for review
+            Review & approve (2FA required): https://www.npmjs.com/package/${{ steps.rel.outputs.name }}?activeTab=staged
