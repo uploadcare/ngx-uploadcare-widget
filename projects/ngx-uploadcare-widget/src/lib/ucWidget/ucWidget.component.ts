@@ -237,6 +237,10 @@ export class UcWidgetComponent implements AfterViewInit, AfterViewChecked {
       }
   }
 
+  getDialogApi() {
+      return this.dialog;
+  }
+
   private setReinitFlag(isClearValue: boolean) {
       if (this.widget) {
           this._reinitRequired = true;
